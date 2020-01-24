@@ -3,6 +3,7 @@
 import numpy as np 
 import pandas as pd 
 from matplotlib import pyplot as plt 
+import seaborn as sns
 # %%
 # Load data
 ionosphere_col_names=['radar'+str(i) for i in range(34) ] + ['target']
@@ -23,8 +24,23 @@ print('Missing values? ',np.any(ionosphere_data.isnull())) # No missing values
 # Transform the target into binary value
 ionosphere_data['target']=(ionosphere_data['target']=='g').astype(int)
 # %%
-# Plot the distribution of the data to check malformed features and discover the distribution
+# Give basic description to check malformed features and discover the distribution
 print('Data description\n',ionosphere_data.describe())
 # We can see that 'radar1' are all zeros, so we remove it from the data
 ionosphere_data=ionosphere_data.drop(columns="radar1")
+# %%
+# Plot the distribution of the data and check malformed features and discover the distribution
+# We plot the distribution of first three columns
+ionosphere_first_three=ionosphere_data[['radar0','radar2','radar3']]
+plt.plot(ionosphere_first_three)
+plt.legend(['radar0','radar2','radar3'])
+plt.show()
+# It can be seen that the radars look like time serires
+# %%
+# What are the distribution of th positive and negative classes?
+
+# How does the scatter plots of pair-wise features look-like for some subset of features
+#iono_piar=sns.pairplot(ionosphere_data) # Time consuming!
+#iono_piar.savefig("iono_piarplot.pdf")
+
 # %%
