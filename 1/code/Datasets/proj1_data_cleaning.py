@@ -186,5 +186,6 @@ np.save('iris_data_features.npy',iris_data[list(iris_data.columns)[:-1]])
 np.save('iris_data_target.npy',iris_data[list(iris_data.columns)[-1]])
 
 np.save('car_data_cleaned.npy',car_data)
-
+np.save('car_data_features.npy',car_data[list(car_data.columns)[:-1]])
+np.save('car_data_target.npy',car_data[list(car_data.columns)[-1]])
 # %%
