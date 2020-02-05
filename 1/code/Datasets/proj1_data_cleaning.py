@@ -3,7 +3,11 @@
 import numpy as np 
 import pandas as pd 
 from matplotlib import pyplot as plt 
+from sklearn.decomposition import PCA
 import seaborn as sns
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
 # %%
 # Load data
 ionosphere_col_names=['radar'+str(i) for i in range(34) ] + ['target']
@@ -15,10 +19,26 @@ adult_data=pd.read_csv('adult_data_set/adult.data',names=adult_col_names,header=
 iris_col_names=['sepal_length','sepal_width','petal_length','petal_width','target']
 iris_data=pd.read_csv('iris/iris.data',names=iris_col_names,header=None) # https://archive.ics.uci.edu/ml/datasets/Iris
 
-car_col_names=['buying','maint','doors','persons','lug_boot','target']
+car_col_names=['buying','maint','doors','persons','lug_boot','safety','target']
 car_data=pd.read_csv('car/car.data',names=car_col_names,header=None) # https://archive.ics.uci.edu/ml/datasets/Car+Evaluation
+
 # %%
-# Process ionosphere dataset
+
+def clean_continuous(input_feature_array,pca_flag=False, pca_dim=10,disc_bins=11):
+    input_feature_array_red = input_feature_array.copy()
+
+    if pca_flag:
+        pca=PCA(pca_dim) # Reduce to 10 dimensions, we can hyper-parameter search later on
+        input_feature_array_red = pca.fit_transform(input_feature_array)
+
+    input_feature_array_red_norm = MinMaxScaler().fit_transform(input_feature_array_red)
+    bins=np.linspace(0,1,disc_bins)# The real values are normalized in to [0,1]
+    input_feature_array_red_norm_disc = input_feature_array_red_norm.copy()
+    # Discretize the real value
+    for i in range(input_feature_array_red_norm.shape[1]):
+        input_feature_array_red_norm_disc[:,i]=np.digitize(input_feature_array_red_norm[:,i],bins=bins)
+    return input_feature_array_red_norm_disc
+# %% Process ionosphere dataset
 '''
 All predictors are real values
 '''
@@ -31,8 +51,13 @@ ionosphere_data['target']=(ionosphere_data['target']=='g').astype(int)
 print('Data description\n',ionosphere_data.describe())
 # We can see that 'radar1' are all zeros, so we remove it from the data
 ionosphere_data=ionosphere_data.drop(columns="radar1")
-# %%
-# Plot the distribution of the data and check malformed features and discover the distribution
+
+
+# %% Dimension reduction, min-max normalization and Discretization
+ionosphere_feat_red_norm_disc = clean_continuous(ionosphere_data[list(ionosphere_data.columns)[:-1]],pca_flag=True)
+
+
+# %% Plot the distribution of the data and check malformed features and discover the distribution
 # We plot the distribution of first three columns
 ionosphere_first_three=ionosphere_data[['radar0','radar2','radar3']]
 plt.plot(ionosphere_first_three)
@@ -49,8 +74,8 @@ plt.show()
 # %%
 # Process adult dataset
 '''
-Age: continuous count value
-Workcalss: categorical
+age: continuous count value
+workcalss: categorical
 fnlwgt: continuous
 education: categorical
 education-num: continuous
@@ -87,9 +112,16 @@ adult_cleanup_cols={
     'native-country': adult_cnt
 }
 adult_data.replace(adult_cleanup_cols,inplace=True)
+
 adult_data['target']=(adult_data['target']==' >50K').astype(int)
 # %%
-# Process iris data
+# Process continuous value
+adult_continuous_cols = ['age','fnlwgt','education-num','capital-gain','capital-loss','hours-per-week']
+adult_feat_red_norm_disc = clean_continuous(adult_data[adult_continuous_cols])
+adult_data[adult_continuous_cols]=adult_feat_red_norm_disc
+adult_data[adult_continuous_cols]=adult_data[adult_continuous_cols].astype('int64')
+
+# %% Process iris data
 '''
 sepal_length: real continuous
 sepal_width: real continuous 
@@ -106,6 +138,10 @@ iris_cleanup_cols={
 }
 iris_data.replace(iris_cleanup_cols,inplace=True)
 
+iris_continuous_cols = list(iris_data.columns)[:-1]
+iris_feat_red_norm_disc = clean_continuous(iris_data[iris_continuous_cols])
+iris_data[iris_continuous_cols]=iris_feat_red_norm_disc
+iris_data[iris_continuous_cols]=iris_data[iris_continuous_cols].astype('int64')
 # %%
 # Process car data
 '''
@@ -124,6 +160,7 @@ car_mnt={v:k for k,v in enumerate(car_data['maint'].unique())}
 car_dor={v:k for k,v in enumerate(car_data['doors'].unique())}
 car_per={v:k for k,v in enumerate(car_data['persons'].unique())}
 car_lug={v:k for k,v in enumerate(car_data['lug_boot'].unique())}
+car_saf={v:k for k,v in enumerate(car_data['safety'].unique())}
 car_target={'unacc':0,'acc':1,'good':2,'vgood':3}
 car_cleanup_cols={
     'buying':car_buy,
@@ -131,16 +168,23 @@ car_cleanup_cols={
     'doors': car_dor,
     'persons': car_per,
     'lug_boot': car_lug,
+    'safety': car_saf,
     'target': car_target
 }
 car_data.replace(car_cleanup_cols,inplace=True)
 
-# %%
+# %% Save data
+np.save('ionosphere_features.npy',ionosphere_feat_red_norm_disc)
+np.save('ionosphere_target.npy',ionosphere_data["target"])
 
-# Save data
-np.save('ionosphere_data_cleaned.npy',ionosphere_data)
 np.save('adult_data_cleaned.npy',adult_data)
+np.save('adult_data_features.npy',adult_data[list(adult_data.columns)[:-1]])
+np.save('adult_data_target.npy',adult_data[list(adult_data.columns)[-1]])
+
 np.save('iris_data_cleaned.npy',iris_data)
+np.save('iris_data_features.npy',iris_data[list(iris_data.columns)[:-1]])
+np.save('iris_data_target.npy',iris_data[list(iris_data.columns)[-1]])
+
 np.save('car_data_cleaned.npy',car_data)
 
 # %%
