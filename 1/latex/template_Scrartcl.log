@@ -1,65 +1,49 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2017.8.26)  22 JAN 2020 13:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.12)  6 FEB 2020 12:31
 entering extended mode
-**template_Scrartcl.tex
-
-("C:\Users\Thinkpad\OneDrive\OneDrive - McGill University\McGill Class\COMP 551
- Applied Machine Learning\project\COMP551-project\1\latex\template_Scrartcl.tex
-"
-LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for loaded.
-(C:\CTEX\MiKTeX\tex\latex\koma-script\scrartcl.cls
-Document Class: scrartcl 2012/03/08 v3.10a KOMA-Script document class (article)
-
-(C:\CTEX\MiKTeX\tex\latex\koma-script\scrkbase.sty
-Package: scrkbase 2012/03/08 v3.10a KOMA-Script package (KOMA-Script-dependent 
-basics and keyval usage)
-
-(C:\CTEX\MiKTeX\tex\latex\koma-script\scrbase.sty
-Package: scrbase 2012/03/08 v3.10a KOMA-Script package (KOMA-Script-independent
- basics and keyval usage)
-
-(C:\CTEX\MiKTeX\tex\latex\graphics\keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl
+(/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 3 language(s) loaded.
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrartcl.cls
+Document Class: scrartcl 2017/09/07 v3.24 KOMA-Script document class (article)
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2017/09/07 v3.24 KOMA-Script package (KOMA-Script-dependent basics and keyval usage)
+ (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2017/09/07 v3.24 KOMA-Script package (KOMA-Script-independent basics and keyval usage)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
-)
-(C:\CTEX\MiKTeX\tex\latex\koma-script\scrlfile.sty
-Package: scrlfile 2011/03/09 v3.09 KOMA-Script package (loading files)
-
-Package scrlfile, 2011/03/09 v3.09 KOMA-Script package (loading files)
-                  Copyright (C) Markus Kohm
-
-))) (C:\CTEX\MiKTeX\tex\latex\koma-script\tocbasic.sty
-Package: tocbasic 2011/05/30 v3.09a KOMA-Script package (handling toc-files)
+) (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2017/09/07 v3.24 KOMA-Script package (loading files)
+))) (/usr/share/texlive/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2017/09/07 v3.24 KOMA-Script package (handling toc-files)
+\scr@dte@tocline@numberwidth=\skip41
+\scr@dte@tocline@numbox=\box26
 )
 Package tocbasic Info: omitting babel extension for `toc'
 (tocbasic)             because of feature `nobabel' available
-(tocbasic)             for `toc' on input line 115.
+(tocbasic)             for `toc' on input line 133.
 Package tocbasic Info: omitting babel extension for `lof'
 (tocbasic)             because of feature `nobabel' available
-(tocbasic)             for `lof' on input line 116.
+(tocbasic)             for `lof' on input line 135.
 Package tocbasic Info: omitting babel extension for `lot'
 (tocbasic)             because of feature `nobabel' available
-(tocbasic)             for `lot' on input line 117.
+(tocbasic)             for `lot' on input line 136.
 Class scrartcl Info: File `scrsize11pt.clo' used instead of
-(scrartcl)           file `scrsize11.clo' to setup font sizes on input line 126
-3.
-
-(C:\CTEX\MiKTeX\tex\latex\koma-script\scrsize11pt.clo
-File: scrsize11pt.clo 2012/03/08 v3.10a KOMA-Script font size class option (11p
-t)
-)
-(C:\CTEX\MiKTeX\tex\latex\koma-script\typearea.sty
-Package: typearea 2012/03/08 v3.10a KOMA-Script package (type area)
-
-Package typearea, 2012/03/08 v3.10a KOMA-Script package (type area)
-                  Copyright (C) Frank Neukam, 1992-1994
-                  Copyright (C) Markus Kohm, 1994-
-
-\ta@bcor=\skip41
+(scrartcl)           file `scrsize11.clo' to setup font sizes on input line 2080.
+ (/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrsize11pt.clo
+File: scrsize11pt.clo 2017/09/07 v3.24 KOMA-Script font size class option (11pt)
+) (/usr/share/texlive/texmf-dist/tex/latex/koma-script/typearea.sty
+Package: typearea 2017/09/07 v3.24 KOMA-Script package (type area)
+\ta@bcor=\skip42
 \ta@div=\count79
-\ta@hblk=\skip42
-\ta@vblk=\skip43
-\ta@temp=\skip44
+\ta@hblk=\skip43
+\ta@vblk=\skip44
+\ta@temp=\skip45
+\footheight=\skip46
 Package typearea Info: These are the values describing the layout:
 (typearea)             DIV  = 10
 (typearea)             BCOR = 0.0pt
@@ -74,9 +58,9 @@ Package typearea Info: These are the values describing the layout:
 (typearea)              \headheight     = 17.0pt
 (typearea)              \headsep        = 20.40001pt
 (typearea)              \topskip        = 11.0pt
-(typearea)              \footskip       = 47.60002pt
+(typearea)              \footskip       = 47.6pt
 (typearea)              \baselineskip   = 13.6pt
-(typearea)              on input line 1177.
+(typearea)              on input line 1686.
 )
 \c@part=\count80
 \c@section=\count81
@@ -84,59 +68,63 @@ Package typearea Info: These are the values describing the layout:
 \c@subsubsection=\count83
 \c@paragraph=\count84
 \c@subparagraph=\count85
-\abovecaptionskip=\skip45
-\belowcaptionskip=\skip46
-\c@pti@nb@sid@b@x=\box26
+\scr@dte@part@maxnumwidth=\skip47
+\scr@dte@section@maxnumwidth=\skip48
+\scr@dte@subsection@maxnumwidth=\skip49
+\scr@dte@subsubsection@maxnumwidth=\skip50
+\scr@dte@paragraph@maxnumwidth=\skip51
+\scr@dte@subparagraph@maxnumwidth=\skip52
+LaTeX Info: Redefining \textsubscript on input line 4161.
+\abovecaptionskip=\skip53
+\belowcaptionskip=\skip54
+\c@pti@nb@sid@b@x=\box27
 \c@figure=\count86
 \c@table=\count87
+Class scrartcl Info: Redefining `\numberline' on input line 5319.
 \bibindent=\dimen102
 )
-("C:\Users\Thinkpad\OneDrive\OneDrive - McGill University\McGill Class\COMP 551
- Applied Machine Learning\project\COMP551-project\1\latex\template_Scrartcl.aux
-")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
+No file template_Scrartcl.aux.
+\openout1 = `template_Scrartcl.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 10.
+(Font)              <14.4> on input line 9.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 10.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 26.
- (C:\CTEX\MiKTeX\tex\latex\base\omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+(Font)              <7> on input line 9.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 25.
+(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 25.
  [1
 
 
-{C:/CTEX/UserData/pdftex/config/pdftex.map{Unicode.sfd}{UGBK.sfd}}]
-("C:\Users\Thinkpad\OneDrive\OneDrive - McGill University\McGill Class\COMP 551
- Applied Machine Learning\project\COMP551-project\1\latex\template_Scrartcl.aux
-") ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./template_Scrartcl.aux) ) 
 Here is how much of TeX's memory you used:
- 1234 strings out of 495354
- 19725 string characters out of 3183859
- 91911 words of memory out of 3000000
- 4458 multiletter control sequences out of 15000+200000
- 6297 words of font info for 23 fonts, out of 3000000 for 9000
+ 2064 strings out of 494923
+ 39409 string characters out of 6180741
+ 182572 words of memory out of 5000000
+ 5438 multiletter control sequences out of 15000+600000
+ 6297 words of font info for 23 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 35i,6n,35p,231b,204s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/CTEX/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmr12.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfo
-nts/cm/cmssbx10.pfb><C:/CTEX/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on template_Scrartcl.pdf (1 page, 45482 bytes).
+ 41i,6n,51p,8899b,209s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on template_Scrartcl.pdf (1 page, 44243 bytes).
 PDF statistics:
- 22 PDF objects out of 1000 (max. 8388607)
+ 24 PDF objects out of 1000 (max. 8388607)
+ 16 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
