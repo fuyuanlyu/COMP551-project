@@ -22,7 +22,7 @@ iris_data=pd.read_csv('iris/iris.data',names=iris_col_names,header=None) # https
 car_col_names=['buying','maint','doors','persons','lug_boot','safety','target']
 car_data=pd.read_csv('car/car.data',names=car_col_names,header=None) # https://archive.ics.uci.edu/ml/datasets/Car+Evaluation
 
-# %%
+# %% Function definition to clean continuous features
 
 def clean_continuous(input_feature_array,pca_flag=False, pca_dim=10,disc_bins=11):
     input_feature_array_red = input_feature_array.copy()
@@ -188,4 +188,3 @@ np.save('iris_data_target.npy',iris_data[list(iris_data.columns)[-1]])
 np.save('car_data_cleaned.npy',car_data)
 np.save('car_data_features.npy',car_data[list(car_data.columns)[:-1]])
 np.save('car_data_target.npy',car_data[list(car_data.columns)[-1]])
-# %%
