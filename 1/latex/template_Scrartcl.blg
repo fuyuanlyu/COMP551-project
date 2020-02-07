@@ -3,44 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: template_Scrartcl.aux
 The style file: unsrt.bst
 Database file #1: a1.bib
-You've used 1 entry,
+You've used 4 entries,
             1791 wiz_defined-function locations,
-            452 strings with 3759 characters,
-and the built_in function-call counts, 286 in all, are:
-= -- 24
-> -- 14
-< -- 0
-+ -- 5
-- -- 4
-* -- 26
-:= -- 52
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 1
+            473 strings with 4212 characters,
+and the built_in function-call counts, 1179 in all, are:
+= -- 114
+> -- 30
+< -- 3
++ -- 12
+- -- 8
+* -- 76
+:= -- 167
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 4
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 9
-empty$ -- 25
-format.name$ -- 4
-if$ -- 57
+cite$ -- 4
+duplicate$ -- 58
+empty$ -- 122
+format.name$ -- 8
+if$ -- 273
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 1
-pop$ -- 1
+int.to.str$ -- 4
+missing$ -- 4
+newline$ -- 23
+num.names$ -- 4
+pop$ -- 13
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 3
+skip$ -- 37
 stack$ -- 0
-substring$ -- 25
-swap$ -- 1
-text.length$ -- 0
+substring$ -- 106
+swap$ -- 23
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 3
-width$ -- 2
-write$ -- 13
+while$ -- 14
+width$ -- 5
+write$ -- 47

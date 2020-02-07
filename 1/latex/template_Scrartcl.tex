@@ -32,11 +32,11 @@ Ionosphere dataset contains 34 radar data (real values between -1 and 1)\cite{si
 \end{figure}
 
 \subsubsection*{Adult Dataset}
-Adult dataset aims to predict whether income exceeds \$50K/yr based on census data. There are 14 features included with datatypes of continuous count values, continuous real values and categorical/binary values. We min-max normalize the continuous values (both count and real),  discretize normalized real values into 10 categories and leave everything else untouched.
+Adult dataset aims to predict whether income exceeds \$50K/yr based on census data\cite{kohavi1996scaling}. There are 14 features included with datatypes of continuous count values, continuous real values and categorical/binary values. We min-max normalize the continuous values (both count and real),  discretize normalized real values into 10 categories and leave everything else untouched.
 
 
 \subsubsection*{Iris Dataset}
-There are continuous real value attributes with 1 decimal precision, whose basic statistic information is listed in Figure \ref{iris_des} and Table \ref{iris_table}, where \textit{sl,sw,pw,pw} stand for \textit{sepal length, sepal width, petal width, petal length}. Linear correlation between features can be found, e.g. petal length \& petal width and petal length \& sepal length. We also min-max normalize and discretize the normed real values.
+There are continuous real value attributes with 1 decimal precision, whose basic statistic information is listed in Figure \ref{iris_des} and Table \ref{iris_table}, where \textit{sl,sw,pw,pw} stand for \textit{sepal length, sepal width, petal width, petal length} \cite{fisher1936use}. Linear correlation between features can be found, e.g. petal length \& petal width and petal length \& sepal length. We also min-max normalize and discretize the normed real values.
 
 \begin{figure}[H]
 	\begin{minipage}{0.9\linewidth}
@@ -71,7 +71,7 @@ There are continuous real value attributes with 1 decimal precision, whose basic
 
 
 \subsubsection*{Car Evaluation Dataset}
-In Car Evaluation Dataset, we use some categorical features of cars, e.g. price, door number and capacity, to predict the safety level of the cars. This dataset is quite straightforward, we only transform the raw data into categorical features to predict the categorical safety level.
+In Car Evaluation Dataset, we use some categorical features of cars, e.g. price, door number and capacity, to predict the safety level of the cars \cite{bohanec1988knowledge}. This dataset is quite straightforward, we only transform the raw data into categorical features to predict the categorical safety level.
 
 
 \section{Results}
