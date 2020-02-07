@@ -8,6 +8,7 @@ import seaborn as sns
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OneHotEncoder
+plt.style.use('seaborn')
 # %%
 # Load data
 ionosphere_col_names=['radar'+str(i) for i in range(34) ] + ['target']
@@ -46,12 +47,39 @@ All predictors are real values
 print('Missing values? ',np.any(ionosphere_data.isnull())) # No missing values
 # Transform the target into binary value
 ionosphere_data['target']=(ionosphere_data['target']=='g').astype(int)
+# %% Plot the distribution of good and bad class
+iono_g = ionosphere_data[list(ionosphere_data.columns)[:-1]].loc[ionosphere_data['target']==1]
+iono_b = ionosphere_data[list(ionosphere_data.columns)[:-1]].loc[ionosphere_data['target']==0]
+fig,ax = plt.subplots(figsize=(8,6))
+ax.plot(iono_g.mean(0),label="Good class")
+ax.plot(iono_b.mean(0),label="Bad class")
+iono_g_up=iono_g.mean(0)[iono_g.mean(0)>=iono_g.mean(0).mean()]
+iono_g_dn=iono_g.mean(0)[iono_g.mean(0)<iono_g.mean(0).mean()]
+iono_g_up_p = np.zeros(2*len(iono_g_up)-1)
+iono_g_dn_p = np.zeros(2*len(iono_g_dn)-1)
+
+for i in range(0,len(iono_g_up_p),1):
+    if i % 2 == 1:
+        iono_g_up_p[i]=np.mean([iono_g_up[int((i-1)/2)],iono_g_up[int((i+1)/2)]])
+        iono_g_dn_p[i]=np.mean([iono_g_dn[int((i-1)/2)],iono_g_dn[int((i+1)/2)]])
+    else:
+        iono_g_up_p[i]=iono_g_up[int(i/2)]
+        iono_g_dn_p[i]=iono_g_dn[int(i/2)]
+
+x=np.arange(0,len(iono_g.mean(0)),1)
+ax.fill_between(x,np.append(iono_g_up_p,0.4), np.append(0,iono_g_dn_p), color='gray', alpha=0.2)
+ax.set_xlabel('Radar No.')
+ax.set_ylabel('Average antennas power')
+ax.set_title('Average feature distribution of good & bad class in Ionoshpere data ')
+ax.set_xticklabels([str(i) for i in np.arange(0,34,1)])
+ax.legend()
+plt.tight_layout()
+plt.savefig('iono_feat_dist.pdf')
 # %%
 # Give basic description to check malformed features and discover the distribution
 print('Data description\n',ionosphere_data.describe())
 # We can see that 'radar1' are all zeros, so we remove it from the data
 ionosphere_data=ionosphere_data.drop(columns="radar1")
-
 
 # %% Dimension reduction, min-max normalization and Discretization
 ionosphere_feat_red_norm_disc = clean_continuous(ionosphere_data[list(ionosphere_data.columns)[:-1]],pca_flag=True)
@@ -68,8 +96,8 @@ plt.show()
 # What are the distribution of th positive and negative classes?
 
 # How does the scatter plots of pair-wise features look-like for some subset of features
-#iono_piar=sns.pairplot(ionosphere_data) # Time consuming!
-#iono_piar.savefig("iono_piarplot.pdf")
+#iono_pair=sns.pairplot(ionosphere_data[list(ionosphere_data.columns[:-1])]).set(title='Ionosphere dataset pairplot')
+#iono_pair.savefig("iono_pairplot.pdf")
 
 # %%
 # Process adult dataset
@@ -142,6 +170,10 @@ iris_continuous_cols = list(iris_data.columns)[:-1]
 iris_feat_red_norm_disc = clean_continuous(iris_data[iris_continuous_cols])
 iris_data[iris_continuous_cols]=iris_feat_red_norm_disc
 iris_data[iris_continuous_cols]=iris_data[iris_continuous_cols].astype('int64')
+
+# %% Pairplot
+iris_pair=sns.pairplot(iris_data[list(iris_data.columns[:-1])]).set(title='Iris dataset pairplot')
+iris_pair.savefig("iris_pairplot.pdf")
 # %%
 # Process car data
 '''
@@ -172,7 +204,9 @@ car_cleanup_cols={
     'target': car_target
 }
 car_data.replace(car_cleanup_cols,inplace=True)
-
+# %% Pairplot
+car_pair=sns.pairplot(car_data[list(car_data.columns[:-1])]).set(title='Car dataset pairplot')
+car_pair.savefig("car_pairplot.pdf")
 # %% Save data
 np.save('ionosphere_features.npy',ionosphere_feat_red_norm_disc)
 np.save('ionosphere_target.npy',ionosphere_data["target"])
