@@ -208,6 +208,8 @@ car_data.replace(car_cleanup_cols,inplace=True)
 car_pair=sns.pairplot(car_data[list(car_data.columns[:-1])]).set(title='Car dataset pairplot')
 car_pair.savefig("car_pairplot.pdf")
 # %% Save data
+ionosphere_data_cleaned=pd.DataFrame(np.column_stack((ionosphere_feat_red_norm_disc,ionosphere_data["target"])),columns=['reduced_'+str(i) for i in range(10)]+['target'])
+np.save('ionosphere_cleaned.npy',ionosphere_data_cleaned)
 np.save('ionosphere_features.npy',ionosphere_feat_red_norm_disc)
 np.save('ionosphere_target.npy',ionosphere_data["target"])
 
