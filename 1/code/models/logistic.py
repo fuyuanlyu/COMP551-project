@@ -13,37 +13,26 @@ class logistic_regression():
 		self.max_iter = max_iter
 		self.num_of_class = num_of_class
 
-	def fit(self, X, y, lr=0.001):
+	def fit(self, X, y, lr=0.0001):
 		assert type(X) is np.ndarray and type(y) is np.ndarray and (X.shape[0] == y.shape[0])
 		assert self.num_of_features == X.shape[1]
 		assert self.num_of_class == y.shape[1]
 		num_of_samples = X.shape[0]
 		
 		predict_y = np.zeros((num_of_samples, self.num_of_class))
-		# print(self.weight.shape)
-		# print(X.shape)
 		for i in range(self.max_iter):
-			# predict_y = np.exp(-np.matmul(X, self.weight)) / (1 + np.sum(np.exp(-np.matmul(X, self.weight))))
 			predict_y = 1 / (1 + np.exp( - np.matmul(X, self.weight)))
 			gradient = np.dot(X.T, predict_y - y)
-			# print(gradient.shape)
-			# if gradient.ndim == 2:
-			# 	gradient = np.sum(gradient, axis=1)
 			self.weight -= gradient * lr
-		# print(self.weight.shape)
 		return self
 
 	def predict(self, X):
-		# predict_y = np.exp(-np.matmul(X, self.weight)) / (1 + np.sum(np.exp(-np.matmul(X, self.weight))))
 		predict_y = 1 / (1 + np.exp( - np.matmul(X, self.weight)))
-		# y = np.where(predict_y < 0.5, 0, 1) 
-		# max_y = np.max(predict_y, axis=1)
-		# y = np.where(predict_y == max_y)
-		# print(predict_y)
-		# print(y)
 		y = np.argmax(predict_y, axis=1)
 		return y
 
+
+## Testing
 
 # train_sample = 120
 # test_sample = 30

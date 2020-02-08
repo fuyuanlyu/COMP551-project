@@ -1,16 +1,10 @@
 import numpy as np
-# from ..myutility import convertToOneHot
+from models import myutility
 
-class BernoulliNB():
-	def fit(self, X, y):
-		a = X
-
-	def predict(self, X):
-		y = 0
-		return y
+epsilon = 1e-5
 
 
-class CategoricalNB():
+class NaiveBayes():
 	def __init__(self, num_of_features, num_of_class, alpha = 1.0):
 		assert isinstance(num_of_features, int)
 		assert num_of_features > 0
@@ -22,28 +16,51 @@ class CategoricalNB():
 		self.num_of_class = num_of_class
 		self.alpha = alpha
 		self.prior = np.zeros(self.num_of_class)
-		self.likelihood = np.zeros((self.num_of_features, self.num_of_class))
-		self.evidence = np.ones(self.num_of_features)
 
 	def fit(self, X, y):
-		a = X
+		# Initialize the likehood matrix
+		# The matrix itself is dependent of the number possible categories of each features
+		self.likelihood = []
+		for i in range(self.num_of_features):
+			max_dim_this_feature = (np.max(X[:,i])+1).astype(int)
+			temp_likelihood = np.zeros((max_dim_this_feature, self.num_of_class))
+			self.likelihood.append(temp_likelihood)
+
+		# MLE the prior
+		# The optimal for the prior is the number of samples in each class 
+		# normalized by the number of total samples
+		self.prior = np.sum(y, axis=0) / np.sum(y)
+
+		# MLE the likelihood
+		# The optimal for the likelihood is the number of samples in each 
+		for i in range(self.num_of_features):
+			temp_likelihood = self.likelihood[i]
+			max_dim_this_feature = int(np.max(X[:,i])+1)
+			for j in range(X.shape[0]):
+				temp_likelihood[X[j,i], np.squeeze(np.argwhere(y[j]==1))] += 1
+			normal = np.sum(temp_likelihood, axis=1) + epsilon
+			temp_likelihood /= normal[:, None]
+			self.likelihood[i] = temp_likelihood
+		return self
 
 	def predict(self, X):
-		# print(X.shape)
-		# print(self.weight.shape)
-		# print(self.prior.shape)
-		# print((np.matmul(X, self.likelihood)).shape)
-		log_p = np.log(self.prior) + np.sum(np.log(np.matmul(X, self.likelihood)), 0) + \
-				np.sum(np.log(np.matmul(X, self.likelihood)), 0)
-		# log_p = np.log(self.prior) + np.sum(np.log(self.likelihood * X[:,None]), 0) + \
-		# 		np.sum(np.log( (1 - self.likelihood) * (1 - X[:,None])), 0)
-		log_p -= np.max(log_p)
-		posterior = np.exp(log_p)
-		posterior /= np.sum(posterior)
-		return posterior	
+		posterior = np.zeros((X.shape[0], self.num_of_class))
+		for sample in range(X.shape[0]):
+			for i in range(self.num_of_class):
+				posterior[sample, i] = self.prior[i] 
+				for j in range(self.num_of_features):
+					temp_likelihood = self.likelihood[j]
+					posterior[sample, i] *= temp_likelihood[int(X[i,j]), i]
+
+		normal = np.sum(posterior, axis=1) + epsilon
+		posterior /= normal[:,None]
+		y = np.argmax(posterior, axis=1)
+
+		return y
 
 
 
+## Testing
 
 # train_sample = 20
 # test_sample = 7
