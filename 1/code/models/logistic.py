@@ -13,7 +13,7 @@ class logistic_regression():
 		self.max_iter = max_iter
 		self.num_of_class = num_of_class
 
-	def fit(self, X, y, lr=0.0001):
+	def fit(self, X, y, lr=0.001):
 		assert type(X) is np.ndarray and type(y) is np.ndarray and (X.shape[0] == y.shape[0])
 		assert self.num_of_features == X.shape[1]
 		assert self.num_of_class == y.shape[1]
