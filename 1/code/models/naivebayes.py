@@ -37,7 +37,7 @@ class NaiveBayes():
 			temp_likelihood = self.likelihood[i]
 			max_dim_this_feature = int(np.max(X[:,i])+1)
 			for j in range(X.shape[0]):
-				temp_likelihood[X[j,i], np.squeeze(np.argwhere(y[j]==1))] += 1
+				temp_likelihood[int(X[j,i]), np.squeeze(np.argwhere(y[j]==1))] += 1
 			normal = np.sum(temp_likelihood, axis=1) + epsilon
 			temp_likelihood /= normal[:, None]
 			self.likelihood[i] = temp_likelihood
