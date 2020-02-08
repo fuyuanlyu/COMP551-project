@@ -9,11 +9,11 @@ k_fold = 5
 datasets = ['iris_data_cleaned', 'car_data_cleaned',\
  'adult_data_cleaned', 'ionosphere_cleaned']
 
-def my_main():
+def main():
 	for dataset in datasets:
+		print("===", dataset, "===")
 		main_lr(dataset)
 		main_nb(dataset)
-		print("=================")
 
 def main_lr(dataset):
 	data = np.load('Datasets/' + dataset + '.npy')
@@ -42,8 +42,9 @@ def main_lr(dataset):
 	acc = 0.
 	for i in range(k_fold):
 		test_x, test_y = data_x[i:i+step], data_y[i:i+step]
-		train_x, train_y = np.concatenate((data_x[0:i], data_x[i+step:]), \
-				axis=0), np.concatenate((data_y[0:i], data_y[i+step:]), axis=0)
+		train_x, train_y = np.concatenate((data_x[0:i], \
+				data_x[i+step:]), axis=0), \
+			np.concatenate((data_y[0:i], data_y[i+step:]), axis=0)
 		
 		LR2 = LogisticRegression(solver='lbfgs', multi_class='auto')
 		LR2.fit(train_x, train_y)
@@ -65,9 +66,10 @@ def main_nb(dataset):
 
 	for i in range(k_fold):
 		test_x, test_y = data_x[i:i+step], data_y[i:i+step]
-		train_x, train_y = np.concatenate((data_x[0:i], data_x[i+step:]), axis=0), \
-			myutility.convertToOneHot(np.concatenate((data_y[0:i], data_y[i+step:]), \
-				axis=0), num_of_class)
+		train_x, train_y = np.concatenate((data_x[0:i], \
+				data_x[i+step:]), axis=0), \
+			myutility.convertToOneHot(np.concatenate((data_y[0:i], \
+				data_y[i+step:]), axis=0), num_of_class)
 
 		NB = naivebayes.NaiveBayes(train_x.shape[1], train_y.shape[1])
 		NB.fit(train_x, train_y)
@@ -91,9 +93,7 @@ def main_nb(dataset):
 
 
 if __name__ == '__main__':
-	# main_lr()
-	# main_nb()
-	my_main()
+	main()
 
 
 
