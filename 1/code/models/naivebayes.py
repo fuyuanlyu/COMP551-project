@@ -50,6 +50,7 @@ class NaiveBayes():
 				posterior[sample, i] = self.prior[i] 
 				for j in range(self.num_of_features):
 					temp_likelihood = self.likelihood[j]
+					# print(X[i,j], i)
 					posterior[sample, i] *= temp_likelihood[int(X[i,j]), i]
 
 		normal = np.sum(posterior, axis=1) + epsilon

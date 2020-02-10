@@ -13,7 +13,7 @@ def main():
 	for dataset in datasets:
 		print("===", dataset, "===")
 		print("Predicting based on logistic regression")
-		# main_lr(dataset)
+		main_lr(dataset)
 		print('Predicting based on Naive Bayes')
 		main_nb(dataset)
 
