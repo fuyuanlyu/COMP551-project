@@ -62,6 +62,7 @@ def main_nb(dataset):
 
 	step = data_x.shape[0] // k_fold
 	num_of_class = int(np.max(data_y)+1)
+	print(num_of_class)
 	acc = 0.
 
 	for i in range(k_fold):
@@ -71,7 +72,8 @@ def main_nb(dataset):
 			myutility.convertToOneHot(np.concatenate((data_y[0:i], \
 				data_y[i+step:]), axis=0), num_of_class)
 
-		NB = naivebayes.NaiveBayes(train_x.shape[1], train_y.shape[1])
+		# NB = naivebayes.NaiveBayes(train_x.shape[1], train_y.shape[1])
+		NB = naivebayes.NaiveBayes(train_x.shape[1], num_of_class)
 		NB.fit(train_x, train_y)
 		predict_y = NB.predict(test_x)
 		acc += np.sum(predict_y == test_y) / test_y.shape[0]
@@ -93,7 +95,8 @@ def main_nb(dataset):
 
 
 if __name__ == '__main__':
-	main()
+	# main()
+	main_nb('ionosphere_cleaned')
 
 
 
