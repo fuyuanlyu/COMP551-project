@@ -1,21 +1,51 @@
+## intend to plot ROC curve, but it can only apply to binary classification, don't know how to calculate the
+
 from models import logistic, naivebayes
 from models import myutility
 import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
-
+from sklearn import metrics
+import pandas as pd
+from sklearn.metrics import roc_auc_score
+from sklearn.metrics import roc_curve, auc
 k_fold = 5
 
-datasets = ['iris_data_cleaned', 'car_data_cleaned',\
- 'adult_data_cleaned', 'ionosphere_cleaned']
+# datasets = ['iris_data_cleaned', 'car_data_cleaned',\
+#  'adult_data_cleaned', 'ionosphere_cleaned']
+datasets = ['iris_data_cleaned']
 
 def main():
 	for dataset in datasets:
 		print("===", dataset, "===")
 		print("Predicting based on logistic regression")
-		# main_lr(dataset)
-		print('Predicting based on Naive Bayes')
-		main_nb(dataset)
+		y_score,y_test,n_classes= main_lr(dataset)
+		# print(y_score)
+		# print(y_test)
+		# fpr=dict()
+		# tpr=dict()
+		# roc_auc=dict()
+		# for i in range(n_classes-1):
+		# 	fpr[i],tpr[i],_ = roc_curve(y_test[:,i],y_score[:,i])
+		# 	roc_auc[i]=auc(fpr[i],tpr[i])
+##plot roc
+        # all_fpr=np.unique(np.concatenate([fpr[i] for i in range(n_classes)]))
+        # mean_tpr=np.zeros_like(all_fpr)
+        # for i in range(n_classes):
+        #     mean_tpr += interp(all_fpr,fpr[i],tpr[i])
+        # mean_tpr /= n_classes
+        # fpr["macro"]=all_fpr
+        # tpr["macro"]=mean_tpr
+        # # roc_auc["macro"]=auc(fpr["macro"],tpr["macro"])
+
+		# fpr["micro"],tpr["micro"],_ = roc_curve(y_test.ravel(),y_score.ravel())
+		# roc_auc["micro"]=auc(fpr["micro"],tpr["micro"])
+        
+		# plt.plot(fpr["micro"],tpr["micro"],label='micro-average ROC curve')
+		# plt.show()
+
+		# print('Predicting based on Naive Bayes')
+		# main_nb(dataset)
 
 ## Predicting based on logistic regression
 def main_lr(dataset):
@@ -41,6 +71,7 @@ def main_lr(dataset):
 		predict_y = LR.predict(test_x)
 		acc += np.sum(predict_y == test_y) / test_y.shape[0]
 	print(acc/k_fold)
+	print(metrics.classification_report(test_y,predict_y))
 
 	acc = 0.
 	for i in range(k_fold):
@@ -54,6 +85,9 @@ def main_lr(dataset):
 		predict_y = LR2.predict(test_x)
 		acc += np.sum(predict_y == test_y) / test_y.shape[0]
 	print(acc/k_fold)
+	print(metrics.classification_report(test_y,predict_y))
+
+	return predict_y,test_y,num_of_class
 
 ## Predicting based on naive bayes
 def main_nb(dataset):
@@ -79,6 +113,7 @@ def main_nb(dataset):
 		predict_y = NB.predict(test_x)
 		acc += np.sum(predict_y == test_y) / test_y.shape[0]
 	print(acc/k_fold)
+	print(metrics.classification_report(test_y,predict_y))
 
 	acc = 0.
 	for i in range(k_fold):
@@ -91,6 +126,7 @@ def main_nb(dataset):
 		predict_y = NB2.predict(test_x)
 		acc += np.sum(predict_y == test_y) / test_y.shape[0]
 	print(acc/k_fold)
+	print(metrics.classification_report(test_y,predict_y))
 
 
 
