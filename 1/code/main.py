@@ -56,7 +56,7 @@ def main_lr(dataset):
 def main_nb(dataset):
 	data = np.load('Datasets/' + dataset + '.npy')
 	np.random.shuffle(data)
-	num_samples = data.shape[0]
+	num_samples = int(0.1*data.shape[0])
 	data_x = data[:num_samples,:-1]
 	data_y = data[:num_samples,-1]
 
