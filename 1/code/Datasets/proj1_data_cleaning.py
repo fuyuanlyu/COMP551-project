@@ -208,8 +208,14 @@ car_data.replace(car_cleanup_cols,inplace=True)
 car_pair=sns.pairplot(car_data[list(car_data.columns[:-1])]).set(title='Car dataset pairplot')
 car_pair.savefig("car_pairplot.pdf")
 # %% Save data
-ionosphere_data_cleaned=pd.DataFrame(np.column_stack((ionosphere_feat_red_norm_disc,ionosphere_data["target"])),columns=['reduced_'+str(i) for i in range(10)]+['target'])
-np.save('ionosphere_cleaned.npy',ionosphere_data_cleaned)
+ionosphere_feat_norm_disc = clean_continuous(ionosphere_data[list(ionosphere_data.columns)[:-1]],pca_flag=False)
+
+ionosphere_data_cleaned = pd.DataFrame(np.column_stack((ionosphere_feat_norm_disc,ionosphere_data["target"])), columns=list(np.delete(  np.array(ionosphere_col_names),1)) )
+
+ionosphere_data_pca=pd.DataFrame(np.column_stack((ionosphere_feat_red_norm_disc,ionosphere_data["target"])),columns=['reduced_'+str(i) for i in range(10)]+['target'])
+
+np.save('ionosphere_cleaned.npy', ionosphere_data_cleaned )
+np.save('ionosphere_pca.npy',ionosphere_data_pca)
 np.save('ionosphere_features.npy',ionosphere_feat_red_norm_disc)
 np.save('ionosphere_target.npy',ionosphere_data["target"])
 
