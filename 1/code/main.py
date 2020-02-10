@@ -37,7 +37,7 @@ def main_lr(dataset):
 				data_y[i+step:]), axis=0), num_of_class)
 
 		LR = logistic.logistic_regression(train_x.shape[1], train_y.shape[1])
-		LR.fit(train_x, train_y)
+		predict_train_y = LR.fit(train_x, train_y)
 		predict_y = LR.predict(test_x)
 		acc += np.sum(predict_y == test_y) / test_y.shape[0]
 	print(acc/k_fold)
@@ -59,7 +59,7 @@ def main_lr(dataset):
 def main_nb(dataset):
 	data = np.load('Datasets/' + dataset + '.npy')
 	np.random.shuffle(data)
-	num_samples = int(data.shape[0]*0.01)
+	num_samples = data.shape[0]
 	num_samples = 10
 	data_x = data[:num_samples,:-1]
 	data_y = data[:num_samples,-1]
@@ -99,7 +99,8 @@ def main_nb(dataset):
 
 if __name__ == '__main__':
 	# main()
-	main_nb('ionosphere_cleaned')
+	for dataset in datasets:
+		main_lr(dataset)
 
 
 

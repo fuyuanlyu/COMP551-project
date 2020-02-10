@@ -61,7 +61,7 @@ def main_lr(dataset):
 
 	accs=[]
 	ths=[]
-	for th in range(40,60,1): 
+	for th in range(10,150,1): 
 	    step = data_x.shape[0] // k_fold
 	    num_of_class = int(np.max(data_y)+1)
 	    acc = 0.       
