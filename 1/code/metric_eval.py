@@ -11,9 +11,9 @@ from sklearn.metrics import roc_auc_score
 from sklearn.metrics import roc_curve, auc
 k_fold = 5
 
-# datasets = ['iris_data_cleaned', 'car_data_cleaned',\
-#  'adult_data_cleaned', 'ionosphere_cleaned']
-datasets = ['iris_data_cleaned']
+datasets = ['iris_data_cleaned', 'car_data_cleaned',\
+ 'adult_data_cleaned', 'ionosphere_cleaned']
+# datasets = ['iris_data_cleaned']
 
 def main():
 	for dataset in datasets:

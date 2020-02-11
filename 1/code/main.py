@@ -98,9 +98,9 @@ def main_nb(dataset):
 
 
 if __name__ == '__main__':
-	# main()
-	for dataset in ['ionosphere_cleaned']:
-		main_lr(dataset)
+	main()
+	# for dataset in ['ionosphere_cleaned']:
+	# 	main_lr(dataset)
 
 
 
