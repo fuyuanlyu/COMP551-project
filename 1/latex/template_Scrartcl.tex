@@ -21,7 +21,7 @@ In this project, we implement two basic machine learning models: logistic regres
 Classification tasks is one of the most common and important task in machine learning community. Given certain features, classification task is to categorize which class is most likely to be. In this project, we implement two basic machine learning models: logistic regression and naive bayes, and test their performance upone four dataset: Ionosphere Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/ionosphere}}, Adult Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Adult}}, Iris Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Iris}} and Car Evaluation Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Car+Evaluation}}. All the features are discretized during the pre-processing phase. We further investigate the influence of different training techniques, such as hyper-parameter tuning and feature selections, upon the performance of the models.
 
 \section{Datasets}
-We use four datasets including Ionosphere Dataset, Adult Dataset, Iris Dataset and Car Evaluation Dataset. The targets of all these four datasets are categorical classification (including binary classification). We exam four datasets to find that no missing values exist. We use \textit{replace} function in \textit{pandas} module to process all the target values into categorical count value. We will briefly describe the specific features and then introduce how to extract/process the features.
+The targets of all these four datasets are categorical classification (including binary classification). We exam four datasets to find that no missing values exist. We use \textit{replace} function in \textit{pandas} module to process all the target values into categorical count value. We will briefly describe the specific features and then introduce how to extract/process the features.
 
 \subsubsection*{Ionosphere Dataset}
 Ionosphere dataset contains 34 radar data (real values between -1 and 1) with 351 rows\cite{sigillito1989classification}. We find their distribution with respect to the "good" or "bad" target, which is reflected in Figure \ref{iono_feat}. We then remove radar 1 feature which is always 0. We can see that good class and bad class have quite distinct patterns in the antennas power value, which is essential in the following classification. We also fill between the intervals of good-class feature distribution to find that such surface is quite similar to the auto-correlated signals. Therefore, we use Principal Component Analysis to reduce the dimensions from 34 into 10 to learn the low-rank representation for more efficient and powerful training.
@@ -79,9 +79,44 @@ In Car Evaluation Dataset, we use 1728 records from 6 categorical features of ca
 \section{Results}
 \subsection*{\underline{Accuracy comparison on four datasets}}
 
-From Table \ref{} , for accuracy of each model, we find that our implemented logistic regression model can work well on small data set but worse in large dataset compared with sklearn model. IN the contrary, naive bayes work well on large data set but worse in small dataset.
+From Table \ref{accuracy_fourdata} , for accuracy of each model, we find that our implemented logistic regression model can work well on small datasets (iris and ionosphere datasets) but worse in larger dataset (car and adult datasets) compared with sklearn model. In the contrary, naive bayes work well on large data set but worse in small dataset.
 
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c|cccc}
+		\hline
+		 & iris	 & car & adult & ionosphere \\
+		\hline
+		logistic regression(ours) &  \textbf{0.75} & 0.65 & 0.66 & \textbf{0.80}\\
+		logistic regression(sklearn) & 0.93 & 0.87 & 0.82 & 0.82\\
+		naive bayes(ours) & 0.34 &  \textbf{0.69} & \textbf{0.76} & 0.67 \\
+		naive bayes(sklearn) & 0.74 & 0.69 & 0.75 & 0.81 \\
+		\hline
+	\end{tabular} 
+	\caption{Accuracy of our implemented model in four datasets comparing to sklearn module}
+	\label{accuracy_fourdata}
+\end{table}
 
+Furthermore, we compare the different evaluation metrics for binary classification, where ionosphere dataset and adult dataset are selected. Details can be found in Table \ref{binary_comparison}, where \textbf{o} stands for our model and \textbf{s} for results after running \textit{sklearn} module.
+
+\begin{table}[H]
+
+	\begin{tabular}{c|ccccccc}
+		\hline
+		& &  & ionosphere/adult & dataset & & & \\
+		\hline
+		& precision(o) & precision(s) & recall(o) & recall(s) & f1(o) & f1(s) & support \\
+		\hline
+		class 0 &1.00/0.93 &0.90/0.83 &0.48/0.49 &0.48/0.95 &0.65/0.64 &0.86/0.89 &33/4937\\
+		class 1 &0.69/0.35 &0.85/0.71 &1.00/0.88 &1.00/0.39 &0.81/0.51&0.88/0.51&37/1575\\
+		macro avg &0.84/0.64 &0.88/0.77 &0.74/0.68 &0.74/0.67 &0.73/0.57&0.87/0.70&70/6512\\
+		weighted avg &0.83/0.79 &0.87/0.80 &0.76/0.58 &0.76/0.81  &0.74/0.61 &0.87/0.79&70/6512\\
+
+		\hline
+	\end{tabular} 
+	\caption{Different evaluation metrics of our implemented model in binary-target datasets comparing to sklearn module}
+	\label{binary_comparison}
+\end{table}
 
 \subsection*{\underline{Learning rate test}}
 We mainly test several learning rates with stopping threshold 0.05 in the iris dataset. For small learning rate, such as lr is 0.0001, the accuracy makes no change during the gradient decent, which means that it converges very slow. When the learning rate is very big such as 1 , the accuracy will fluctuate sharply, which means that it will become unstable during gradient descent. We found the best learning rate in our experiment should be around 0.01. so we did hyperparameter search experiment around 0.01, which is in the following figures. We can find the best learning rate for iris should be 0.15, besides we also search the learning rate in ionosphere data set, the best learning rate should be 0.12 according to our experiment.
@@ -97,12 +132,12 @@ We have also grid searched for the best stopping thresholds for ionosphere and i
 
 \subsection*{\underline{Accuracy as a function of the size of dataset}}
 
-From Figure \ref{size_accuracy} we can find that accuracy increases when sample size is roughly less than 200. However, the accuracy become stable even the sample size continues growing. 
+From Figure \ref{size_accuracy} we can find that accuracy increases when sample size is roughly less than 200. However, the accuracy becomes stable even the sample size continues growing. 
 
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=0.8\linewidth]{fig/dataset_size.png}
-	\caption{Impact of size of the sample size on the accuracy}
+	\caption{Impact of the training sample size on the accuracy}
 	\label{size_accuracy}
 \end{figure}
 
@@ -112,9 +147,9 @@ From Figure \ref{size_accuracy} we can find that accuracy increases when sample 
 \section{Statement of Contributions}
 
 \begin{itemize}
-	\item Dingyi Zhunag
-	\item Tianyu Shi
-	\item Fuyuan Lyu
+	\item Dingyi Zhunag: Data preprocessing, data analysis and report formating.
+	\item Fuyuan Lyu: Model implementation and report writing.
+	\item Tianyu Shi: Running experiment, data visualization and data analysis.
 \end{itemize}
 
 \bibliographystyle{unsrt}

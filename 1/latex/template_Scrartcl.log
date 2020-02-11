@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.12)  11 FEB 2020 16:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.12)  11 FEB 2020 17:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -318,43 +318,40 @@ pdfTeX warning: pdflatex (file /home/dingyizhuang/Courses/COMP551-project/1/late
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 80.
 
-
-LaTeX Warning: Reference `' on page 3 undefined on input line 82.
+Overfull \hbox (63.84155pt too wide) in paragraph at lines 104--117
+[][] 
+ []
 
 <fig/stopping-threshold.png, id=110, 886.0302pt x 506.6127pt>
 File: fig/stopping-threshold.png Graphic file (type png)
 <use fig/stopping-threshold.png>
-Package pdftex.def Info: fig/stopping-threshold.png  used on input line 93.
+Package pdftex.def Info: fig/stopping-threshold.png  used on input line 128.
 (pdftex.def)             Requested size: 364.19672pt x 208.24593pt.
 <fig/dataset_size.png, id=112, 1543.7675pt x 1005.7575pt>
 File: fig/dataset_size.png Graphic file (type png)
 <use fig/dataset_size.png>
-Package pdftex.def Info: fig/dataset_size.png  used on input line 104.
+Package pdftex.def Info: fig/dataset_size.png  used on input line 139.
 (pdftex.def)             Requested size: 364.19672pt x 237.27383pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 115.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 150.
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 115.
- [3 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/stopping-threshold.png>] (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.bbl) [4 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/dataset_size.png>] (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 150.
+ [3] [4 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/stopping-threshold.png> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/dataset_size.png>] (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.bbl) [5] (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.aux) ) 
 Here is how much of TeX's memory you used:
- 5327 strings out of 494923
- 91632 string characters out of 6180741
- 241967 words of memory out of 5000000
- 8574 multiletter control sequences out of 15000+600000
+ 5329 strings out of 494923
+ 91677 string characters out of 6180741
+ 243983 words of memory out of 5000000
+ 8576 multiletter control sequences out of 15000+600000
  20138 words of font info for 47 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  51i,11n,51p,8897b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx2074.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on /home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf (4 pages, 316384 bytes).
+Output written on /home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf (5 pages, 320914 bytes).
 PDF statistics:
- 446 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
+ 459 PDF objects out of 1000 (max. 8388607)
+ 79 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
