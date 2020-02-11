@@ -1,5 +1,5 @@
 \documentclass[11pt]{scrartcl}
-\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage[top=1cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage{graphicx,float}
 \usepackage{url}
 \usepackage[T1]{fontenc}
@@ -21,27 +21,27 @@ In this project, we implement two basic machine learning models: logistic regres
 Classification tasks is one of the most common and important task in machine learning community. Given certain features, classification task is to categorize which class is most likely to be. In this project, we implement two basic machine learning models: logistic regression and naive bayes, and test their performance upone four dataset: Ionosphere Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/ionosphere}}, Adult Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Adult}}, Iris Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Iris}} and Car Evaluation Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Car+Evaluation}}. All the features are discretized during the pre-processing phase. We further investigate the influence of different training techniques, such as hyper-parameter tuning and feature selections, upon the performance of the models.
 
 \section{Datasets}
-We use four datasets including Ionosphere Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/ionosphere}}, Adult Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Adult}}, Iris Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Iris}} and Car Evaluation Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Car+Evaluation}}. The targets of all these four datasets are categorical classification (including binary classification). We exam four datasets to find that no missing values exist. We use \textit{replace} function in \textit{pandas} module to process all the target values into categorical count value. We will briefly describe the specific features and then introduce how to extract/process the features.
+We use four datasets including Ionosphere Dataset, Adult Dataset, Iris Dataset and Car Evaluation Dataset. The targets of all these four datasets are categorical classification (including binary classification). We exam four datasets to find that no missing values exist. We use \textit{replace} function in \textit{pandas} module to process all the target values into categorical count value. We will briefly describe the specific features and then introduce how to extract/process the features.
 
 \subsubsection*{Ionosphere Dataset}
-Ionosphere dataset contains 34 radar data (real values between -1 and 1)\cite{sigillito1989classification}. We find their distribution with respect to the "good" or "bad" target, which is reflected in Figure \ref{iono_feat}. We then remove radar 1 feature which is always 0. We can see that good class and bad class have quite distinct patterns in the antennas power value, which is essential in the following classification. We also fill between the intervals of good-class feature distribution to find that such surface is quite similar to the auto-correlated signals. Therefore, we use Principal Component Analysis to reduce the dimensions from 34 into 10 to learn the low-rank representation for more efficient and powerful training.
+Ionosphere dataset contains 34 radar data (real values between -1 and 1) with 351 rows\cite{sigillito1989classification}. We find their distribution with respect to the "good" or "bad" target, which is reflected in Figure \ref{iono_feat}. We then remove radar 1 feature which is always 0. We can see that good class and bad class have quite distinct patterns in the antennas power value, which is essential in the following classification. We also fill between the intervals of good-class feature distribution to find that such surface is quite similar to the auto-correlated signals. Therefore, we use Principal Component Analysis to reduce the dimensions from 34 into 10 to learn the low-rank representation for more efficient and powerful training.
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=0.8\linewidth]{fig/iono_feat_dist.pdf}
+	\includegraphics[width=0.7\linewidth]{fig/iono_feat_dist.pdf}
 	\caption{Distribution of average numerical features given "good" or "bad" class in ionosphere dataset}
 	\label{iono_feat}
 \end{figure}
 
 \subsubsection*{Adult Dataset}
-Adult dataset aims to predict whether income exceeds \$50K/yr based on census data\cite{kohavi1996scaling}. There are 14 features included with datatypes of continuous count values, continuous real values and categorical/binary values. We min-max normalize the continuous values (both count and real),  discretize normalized real values into 10 categories and leave everything else untouched.
+Adult dataset aims to predict whether income exceeds \$50K/yr based on census data\cite{kohavi1996scaling}. There are 32561 records and 14 features included with datatypes of continuous count values, continuous real values and categorical/binary values. We min-max normalize the continuous values (both count and real),  discretize normalized real values into 10 categories and leave everything else untouched.
 
 
 \subsubsection*{Iris Dataset}
-There are continuous real value attributes with 1 decimal precision, whose basic statistic information is listed in Figure \ref{iris_des} and Table \ref{iris_table}, where \textit{sl,sw,pw,pw} stand for \textit{sepal length, sepal width, petal width, petal length} \cite{fisher1936use}. Linear correlation between features can be found, e.g. petal length \& petal width and petal length \& sepal length. We also min-max normalize and discretize the normed real values.
+There are 4 continuous real value attributes with 1 decimal precision, whose basic statistic information is listed in Figure \ref{iris_des} and Table \ref{iris_table}, where \textit{sl,sw,pw,pw} stand for \textit{sepal length, sepal width, petal width, petal length} \cite{fisher1936use}. Linear correlation between features can be found, e.g. petal length \& petal width and petal length \& sepal length. We also min-max normalize and discretize the normed real values.
 
 \begin{figure}[H]
-	\begin{minipage}{0.9\linewidth}
+	\begin{minipage}{0.8\linewidth}
 		\begin{minipage}[b]{0.5\linewidth}
 		  \centering
 		  \includegraphics[width= \linewidth]{fig/iris_pairplot.pdf}
@@ -73,10 +73,39 @@ There are continuous real value attributes with 1 decimal precision, whose basic
 
 
 \subsubsection*{Car Evaluation Dataset}
-In Car Evaluation Dataset, we use some categorical features of cars, e.g. price, door number and capacity, to predict the safety level of the cars \cite{bohanec1988knowledge}. This dataset is quite straightforward, we only transform the raw data into categorical features to predict the categorical safety level.
+In Car Evaluation Dataset, we use 1728 records from 6 categorical features of cars, e.g. price, door number and capacity, to predict the safety level of the cars \cite{bohanec1988knowledge}. This dataset is quite straightforward, we only transform the raw data into categorical features to predict the categorical safety level.
 
 
 \section{Results}
+\subsection*{\underline{Accuracy comparison on four datasets}}
+
+From Table \ref{} , for accuracy of each model, we find that our implemented logistic regression model can work well on small data set but worse in large dataset compared with sklearn model. IN the contrary, naive bayes work well on large data set but worse in small dataset.
+
+
+
+\subsection*{\underline{Learning rate test}}
+We mainly test several learning rates with stopping threshold 0.05 in the iris dataset. For small learning rate, such as lr is 0.0001, the accuracy makes no change during the gradient decent, which means that it converges very slow. When the learning rate is very big such as 1 , the accuracy will fluctuate sharply, which means that it will become unstable during gradient descent. We found the best learning rate in our experiment should be around 0.01. so we did hyperparameter search experiment around 0.01, which is in the following figures. We can find the best learning rate for iris should be 0.15, besides we also search the learning rate in ionosphere data set, the best learning rate should be 0.12 according to our experiment.
+
+We have also grid searched for the best stopping thresholds for ionosphere and iris datasets based on the above learning rate tests, which is shown in Figure \ref{stopping_cri_lr}. 
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\linewidth]{fig/stopping-threshold.png}
+	\caption{Best stopping criterion for Ionosphere Dataset and Iris Dataset given optimal learning rate}
+	\label{stopping_cri_lr}
+\end{figure}
+
+\subsection*{\underline{Accuracy as a function of the size of dataset}}
+
+From Figure \ref{size_accuracy} we can find that accuracy increases when sample size is roughly less than 200. However, the accuracy become stable even the sample size continues growing. 
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\linewidth]{fig/dataset_size.png}
+	\caption{Impact of size of the sample size on the accuracy}
+	\label{size_accuracy}
+\end{figure}
+
 
 \section{Discussion and Conclusion}
 
