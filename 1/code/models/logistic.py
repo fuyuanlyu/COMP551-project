@@ -2,10 +2,11 @@ import numpy as np
 # from ..myutility import convertToOneHot
 
 class logistic_regression():
-	def __init__(self, num_of_features, num_of_class, max_iter=1000,thres=0.05,lr=0.0001):
+	def __init__(self, num_of_features, num_of_class, max_iter=1000,thres=0.05,lr=0.0001, penalty='None', penalty_index = 1):
 		assert isinstance(num_of_features, int) and num_of_features > 0
 		assert isinstance(max_iter, int) and max_iter > 0
 		assert isinstance(num_of_class, int) and num_of_class > 0
+		assert penalty in ['L1', 'L2', 'None']
 
 		self.weight = 2 * np.random.random_sample( (num_of_features, num_of_class) ) - 1
 		# self.weight = 2 * np.random.random_sample( (num_of_class, num_of_features) ) - 1
@@ -14,6 +15,9 @@ class logistic_regression():
 		self.num_of_class = num_of_class
 		self.lr=lr
 		self.thres=thres
+		self.penalty = penalty
+		self.penalty_index = penalty_index
+
 	## To do : test different learning rate for gradient descent to logistic regression
 	## To do : test different stopping criteria for gradient descent
 	def fit(self, X, y):
@@ -25,7 +29,12 @@ class logistic_regression():
 		predict_y = np.zeros((num_of_samples, self.num_of_class))
 		for i in range(self.max_iter):
 			predict_y = 1 / (1 + np.exp( - np.matmul(X, self.weight)))
-			gradient = np.dot(X.T, predict_y - y)
+			if self.penalty == 'None':
+				gradient = np.dot(X.T, predict_y - y)
+			elif self.penalty == 'L2':
+				gradient = np.dot(X.T, predict_y - y) + self.penalty_index * self.weight * X.shape[0]
+			elif self.penalty == 'L1':
+				gradient = np.dot(X.T, predict_y - y) + self.penalty_index * self.weight * X.shape[0] * (1/ np.absolute(self.weight))
 			self.weight -= gradient * self.lr
 			# y_train = np.argmax(predict_y, axis=1)
 			# acc = np.sum(y_train == y) / y.shape[0]

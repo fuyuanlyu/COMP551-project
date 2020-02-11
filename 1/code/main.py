@@ -20,7 +20,7 @@ def main():
 ## Predicting based on logistic regression
 def main_lr(dataset):
 	data = np.load('Datasets/' + dataset + '.npy')
-	np.random.shuffle(data)
+	# np.random.shuffle(data)
 	num_samples = data.shape[0]
 	data_x = data[:num_samples,:-1]
 	data_y = data[:num_samples,-1]
@@ -36,7 +36,8 @@ def main_lr(dataset):
 			myutility.convertToOneHot(np.concatenate((data_y[0:i], \
 				data_y[i+step:]), axis=0), num_of_class)
 
-		LR = logistic.logistic_regression(train_x.shape[1], train_y.shape[1])
+		LR = logistic.logistic_regression(train_x.shape[1], train_y.shape[1], penalty='L1', penalty_index = 1)
+		# LR = logistic.logistic_regression(train_x.shape[1], train_y.shape[1])
 		predict_train_y = LR.fit(train_x, train_y)
 		predict_y = LR.predict(test_x)
 		acc += np.sum(predict_y == test_y) / test_y.shape[0]
@@ -50,6 +51,7 @@ def main_lr(dataset):
 			np.concatenate((data_y[0:i], data_y[i+step:]), axis=0)
 		
 		LR2 = LogisticRegression(solver='lbfgs', multi_class='auto')
+		# LR2 = LogisticRegression(solver='liblinear')
 		LR2.fit(train_x, train_y)
 		predict_y = LR2.predict(test_x)
 		acc += np.sum(predict_y == test_y) / test_y.shape[0]
@@ -98,7 +100,7 @@ def main_nb(dataset):
 if __name__ == '__main__':
 	# main()
 	for dataset in ['ionosphere_cleaned']:
-		main_nb(dataset)
+		main_lr(dataset)
 
 
 
