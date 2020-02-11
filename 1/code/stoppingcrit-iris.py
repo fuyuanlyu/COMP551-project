@@ -12,21 +12,21 @@ k_fold = 5
 datasets = ['iris_data_cleaned']
 
 def main():
-    fig, axes= plt.subplots(2,2,figsize=(10,10))
-    fig.subplots_adjust(bottom=-0.8)
+    # fig, axes= plt.subplots(2,2,figsize=(10,10))
+    # fig.subplots_adjust(bottom=-0.8)
     acc_all=[]*len(datasets)
     size_of_datasets=[]*len(datasets)
-    ths=0.001*np.arange(10,250,30)
+    ths=0.001*np.arange(10,1000,10)
     for dataset in datasets:
     	print("===", dataset, "===")
     	print("Predicting based on logistic regression")
     	accs=main_lr(dataset,range_th=ths)
     	acc_all.append(accs)
 
-    axes[0,0].plot(ths,acc_all[0])
-    axes[0,0].set_xlabel('stopping threshold')
-    axes[0,0].set_ylabel('Accuracy')
-    axes[0,0].set_title('iris')
+    plt.plot(ths,acc_all[0])
+    plt.xlabel('stopping threshold')
+    plt.ylabel('Accuracy')
+    plt.title('iris')
 
     # axes[0,1].plot(ths,acc_all[1],label="LR")
     # axes[0,1].set_xlabel('stopping threshold')
