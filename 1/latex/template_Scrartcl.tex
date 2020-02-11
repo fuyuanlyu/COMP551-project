@@ -28,7 +28,7 @@ Ionosphere dataset contains 34 radar data (real values between -1 and 1) with 35
 
 \begin{figure}[t]
 	\centering
-	\includegraphics[width=0.7\linewidth]{fig/iono_feat_dist.pdf}
+	\includegraphics[width=0.6\linewidth]{fig/iono_feat_dist.pdf}
 	\caption{Distribution of average numerical features given "good" or "bad" class in ionosphere dataset}
 	\label{iono_feat}
 \end{figure}
@@ -41,7 +41,7 @@ Adult dataset aims to predict whether income exceeds \$50K/yr based on census da
 There are 4 continuous real value attributes with 1 decimal precision, whose basic statistic information is listed in Figure \ref{iris_des} and Table \ref{iris_table}, where \textit{sl,sw,pw,pw} stand for \textit{sepal length, sepal width, petal width, petal length} \cite{fisher1936use}. Linear correlation between features can be found, e.g. petal length \& petal width and petal length \& sepal length. We also min-max normalize and discretize the normed real values.
 
 \begin{figure}[H]
-	\begin{minipage}{0.8\linewidth}
+	\begin{minipage}{0.9\linewidth}
 		\begin{minipage}[b]{0.5\linewidth}
 		  \centering
 		  \includegraphics[width= \linewidth]{fig/iris_pairplot.pdf}
@@ -58,22 +58,19 @@ There are 4 continuous real value attributes with 1 decimal precision, whose bas
 				count & 150 & 150 & 150 & 150\\
 				mean & 5.84 & 3.05 & 3.75 & 1.19\\
 				std & 0.82 & 0.43 & 1.76 & 0.76\\
-				\hfill
-				\begin{minipage}[b]{0.4\linewidth}
-				  \centering
-				  \includegraphics[width= \linewidth]{fig/iris-lr-01.png}
-				\end{minipage}
-			\end{minipage}	min & 4.3 & 2.0 & 1.0 & 0.1 \\
+				min & 4.3 & 2.0 & 1.0 & 0.1 \\
 				25\% & 5.1 & 2.8 & 1.6 & 0.3\\
 				50\% & 5.8 & 3.0 & 4.3 & 1.3\\
 				75\% & 6.4 & 3.3 & 5.1 & 1.8 \\
 				max & 7.9 & 4.4  & 6.9 & 2.5 \\
 				\hline
 			\end{tabular} 
+			
 		\captionof{table}{Iris data description}
 		\label{iris_table}
-		\end{minipage}
 	\end{minipage}
+\end{minipage}
+
 \end{figure}
 
 
@@ -123,10 +120,39 @@ Furthermore, we compare the different evaluation metrics for binary classificati
 	\label{binary_comparison}
 \end{table}
 
-\subsection*{\underline{Learning rate test}}
-We mainly test several learning rates with stopping threshold 0.05 in the iris dataset. For small learning rate, such as lr is 0.0001, the accuracy makes no change during the gradient decent, which means that it converges very slow. When the learning rate is very big such as 1 , the accuracy will fluctuate sharply, which means that it will become unstable during gradient descent. We found the best learning rate in our experiment should be around 0.01. so we did hyperparameter search experiment around 0.01, which is in the following figures. We can find the best learning rate for iris should be 0.15, besides we also search the learning rate in ionosphere data set, the best learning rate should be 0.12 according to our experiment.
 
-We have also grid searched for the best stopping thresholds for ionosphere and iris datasets based on the above learning rate tests, which is shown in Figure \ref{stopping_cri_lr}. 
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.8\linewidth}
+		\begin{minipage}[b]{0.48\linewidth}
+		  \centering
+		  \includegraphics[width= \linewidth]{fig/iris-lr0001.png}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[b]{0.48\linewidth}
+		  \centering			
+		  \includegraphics[width= \linewidth]{fig/iris-lr-001.png}
+		\end{minipage}
+		\begin{minipage}[b]{0.48\linewidth}
+			\centering
+			\includegraphics[width= \linewidth]{fig/iris-lr-01.png}
+		  \end{minipage}
+		  \hfill
+		  \begin{minipage}[b]{0.48\linewidth}
+			\centering			
+			\includegraphics[width= \linewidth]{fig/iris-lr-1.png}
+		  \end{minipage}
+	\end{minipage}
+	\caption{Learning rate test, from left to right, the learning rate is: 0.001, 0.01, 0.1 and 1}
+	\label{lr_test}
+\end{figure}
+
+\subsection*{\underline{Learning rate test}}
+We mainly test several learning rates with stopping threshold 0.05 in the iris dataset, which is shown in Figure \ref{lr_test}. For small learning rate, like 0.0001, the accuracy makes no change during the gradient decent, which means that it converges very slow. When the learning rate is very big such as 1 , the accuracy will fluctuate sharply, which means that it will become unstable during gradient descent. 
+
+
+We found the best learning rate in our experiment should be around 0.01. so we did hyperparameter search experiment around 0.01, which is in Figure \ref{stopping_cri_lr}. We can find the best learning rate for iris should be 0.15, besides we also search the learning rate in ionosphere data set, the best learning rate should be 0.12 according to our experiment.
+
 
 \begin{figure}[htbp]
 	\centering
@@ -151,7 +177,7 @@ Because ionosphere has strong auto-correlated, we use PCA to reduce the dimensio
 
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=0.8\linewidth]{fig/PCA.png}
+	\includegraphics[width=0.7\linewidth]{fig/PCA.png}
 	\caption{Training and validation accuracy comparison before and after using PCA}
 	\label{pca}
 \end{figure}
