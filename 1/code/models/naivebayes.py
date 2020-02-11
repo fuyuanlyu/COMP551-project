@@ -25,6 +25,7 @@ class NaiveBayes():
 		for i in range(self.num_of_features):
 			# max_dim_this_feature = (np.max(X[:,i])+1).astype(int)
 			max_dim_this_feature = int(self.max_features[i])
+			# temp_likelihood = np.ones((max_dim_this_feature, self.num_of_class)) * self.alpha
 			temp_likelihood = np.zeros((max_dim_this_feature, self.num_of_class))
 			self.likelihood.append(temp_likelihood)
 
@@ -41,7 +42,10 @@ class NaiveBayes():
 			max_dim_this_feature = int(self.max_features[i])
 			for j in range(X.shape[0]):
 				temp_likelihood[int(X[j,i]), np.squeeze(np.argwhere(y[j]==1))] += 1
-			normal = np.sum(temp_likelihood, axis=1) + epsilon
+
+			# Implement the smoothing here
+			normal = np.sum(temp_likelihood, axis=1) + self.alpha * self.num_of_features
+			temp_likelihood += self.alpha
 			temp_likelihood /= normal[:, None]
 			self.likelihood[i] = temp_likelihood
 

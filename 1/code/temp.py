@@ -34,4 +34,4 @@ for i in range(k_fold):
 		train_accs.append(train_acc)
 		test_accs.append(test_acc)
 
-	print(train_accs)
+	print(trai2n_accs)

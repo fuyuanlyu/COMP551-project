@@ -2,7 +2,7 @@ from models import logistic, naivebayes
 from models import myutility
 import numpy as np
 from sklearn.linear_model import LogisticRegression
-from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import MultinomialNB, BernoulliNB
 
 k_fold = 5
 
@@ -60,7 +60,6 @@ def main_nb(dataset):
 	data = np.load('Datasets/' + dataset + '.npy')
 	np.random.shuffle(data)
 	num_samples = data.shape[0]
-	num_samples = 10
 	data_x = data[:num_samples,:-1]
 	data_y = data[:num_samples,-1]
 
@@ -88,19 +87,19 @@ def main_nb(dataset):
 		train_x, train_y = np.concatenate((data_x[0:i], data_x[i+step:]), axis=0), \
 			np.concatenate((data_y[0:i], data_y[i+step:]), axis=0)
 		
-		NB2 = MultinomialNB()
+		# NB2 = MultinomialNB()
+		NB2 = BernoulliNB()
 		NB2.fit(train_x, train_y)
 		predict_y = NB2.predict(test_x)
 		acc += np.sum(predict_y == test_y) / test_y.shape[0]
 	print(acc/k_fold)
 
 
-
-
 if __name__ == '__main__':
 	# main()
-	for dataset in datasets:
-		main_lr(dataset)
+	for dataset in ['ionosphere_cleaned']:
+		main_nb(dataset)
+
 
 
 
