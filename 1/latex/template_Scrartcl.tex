@@ -24,7 +24,7 @@ Classification tasks is one of the most common and important task in machine lea
 The targets of all these four datasets are categorical classification (including binary classification). We exam four datasets to find that no missing values exist. We use \textit{replace} function in \textit{pandas} module to process all the target values into categorical count value. We will briefly describe the specific features and then introduce how to extract/process the features.
 
 \subsubsection*{Ionosphere Dataset}
-Ionosphere dataset contains 34 radar data (real values between -1 and 1) with 351 rows\cite{sigillito1989classification}. We find their distribution with respect to the "good" or "bad" target, which is reflected in Figure \ref{iono_feat}. We then remove radar 1 feature which is always 0. We can see that good class and bad class have quite distinct patterns in the antennas power value, which is essential in the following classification. We also fill between the intervals of good-class feature distribution to find that such surface is quite similar to the auto-correlated signals. Therefore, we use Principal Component Analysis to reduce the dimensions from 34 into 10 to learn the low-rank representation for more efficient and powerful training.
+Ionosphere dataset contains 34 radar data (real values between -1 and 1) with 351 rows\cite{sigillito1989classification}. We find their distribution with respect to the "good" or "bad" target, which is reflected in Figure \ref{iono_feat}. We then remove radar 1 feature which is always 0. We can see that good class and bad class have quite distinct patterns in the antennas power value, which is essential in the following classification. We also fill between the intervals of good-class feature distribution to find that such surface is quite similar to the auto-correlated signals. Therefore, we use Principal Component Analysis (PCA) to reduce the dimensions from 34 into 10 to learn the low-rank representation for more efficient and powerful training.
 
 \begin{figure}[t]
 	\centering
@@ -58,7 +58,12 @@ There are 4 continuous real value attributes with 1 decimal precision, whose bas
 				count & 150 & 150 & 150 & 150\\
 				mean & 5.84 & 3.05 & 3.75 & 1.19\\
 				std & 0.82 & 0.43 & 1.76 & 0.76\\
-				min & 4.3 & 2.0 & 1.0 & 0.1 \\
+				\hfill
+				\begin{minipage}[b]{0.4\linewidth}
+				  \centering
+				  \includegraphics[width= \linewidth]{fig/iris-lr-01.png}
+				\end{minipage}
+			\end{minipage}	min & 4.3 & 2.0 & 1.0 & 0.1 \\
 				25\% & 5.1 & 2.8 & 1.6 & 0.3\\
 				50\% & 5.8 & 3.0 & 4.3 & 1.3\\
 				75\% & 6.4 & 3.3 & 5.1 & 1.8 \\
@@ -141,6 +146,15 @@ From Figure \ref{size_accuracy} we can find that accuracy increases when sample 
 	\label{size_accuracy}
 \end{figure}
 
+\subsection*{\underline{Dimension reduction comparison}}
+Because ionosphere has strong auto-correlated, we use PCA to reduce the dimensions for better training results, which can be reflected in Figure \ref{pca}. It can be found that accuracy on both training and validation sets perform better if PCA is applied.
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=0.8\linewidth]{fig/PCA.png}
+	\caption{Training and validation accuracy comparison before and after using PCA}
+	\label{pca}
+\end{figure}
 
 \section{Discussion and Conclusion}
 
