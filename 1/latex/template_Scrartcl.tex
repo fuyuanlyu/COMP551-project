@@ -13,12 +13,12 @@
 \maketitle
 
 \begin{abstract}
-In this project, we implement two basic machine learning models: logistic regression and naive bayes. These models are tested upon four classification datasets: Ionosphere Dataset, Iris Dataset, Car Evaluation Dataset and Adult Dataset. These datasets contains various type of features: both continuous and discrete. In the pre-processing phase, we first discretize all the continuous features, handling the missing values and values out of range. In the experiment phase, apart from reporting evaluation metrics upon various models with different datasets, we further investigate the influence of hyper-parameter tuning, feature selection and dataset selection.
+In this project, we implement two basic machine learning models: logistic regression and naive bayes. These models are tested upon four classification datasets: Ionosphere Dataset, Iris Dataset, Car Evaluation Dataset and Adult Dataset. These datasets contain various types of features: both continuous and discrete. In the pre-processing phase, we first discretize all the continuous features, handling the missing values and values out of range. In the experiment phase, apart from reporting evaluation metrics upon various models with different datasets, we further investigate the influence of differnet learning rates, different stopping criteria, hyper-parameter tuning, feature selection and dataset selection.
 
 \end{abstract}
 
 \section{Introduction}
-Classification tasks is one of the most common and important task in machine learning community. Given certain features, classification task is to categorize which class is most likely to be. In this project, we implement two basic machine learning models: logistic regression and naive bayes, and test their performance upone four dataset: Ionosphere Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/ionosphere}}, Adult Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Adult}}, Iris Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Iris}} and Car Evaluation Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Car+Evaluation}}. All the features are discretized during the pre-processing phase. We further investigate the influence of different training techniques, such as hyper-parameter tuning and feature selections, upon the performance of the models.
+Classification tasks is one of the most common and important task in machine learning community. Given certain features, classification task is to categorize which class is most likely to be. In this project, we implement two basic machine learning models: logistic regression and naive bayes, and test their performance upone four datasets: Ionosphere Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/ionosphere}}, Adult Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Adult}}, Iris Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Iris}} and Car Evaluation Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Car+Evaluation}}. All the features are discretized during the pre-processing phase. We further investigate the influence of different training techniques, such as hyper-parameter tuning and feature selections, upon the performance of the models.
 
 \section{Datasets}
 The targets of all these four datasets are categorical classification (including binary classification). We exam four datasets to find that no missing values exist. We use \textit{replace} function in \textit{pandas} module to process all the target values into categorical count value. We will briefly describe the specific features and then introduce how to extract/process the features.
@@ -38,7 +38,7 @@ Adult dataset aims to predict whether income exceeds \$50K/yr based on census da
 
 
 \subsubsection*{Iris Dataset}
-There are 4 continuous real value attributes with 1 decimal precision, whose basic statistic information is listed in Figure \ref{iris_des} and Table \ref{iris_table}, where \textit{sl,sw,pw,pw} stand for \textit{sepal length, sepal width, petal width, petal length} \cite{fisher1936use}. Linear correlation between features can be found, e.g. petal length \& petal width and petal length \& sepal length. We also min-max normalize and discretize the normed real values.
+There are 4 continuous real values attribute with 1 decimal precision, whose basic statistic information are listed in Figure \ref{iris_des} and Table \ref{iris_table}, where \textit{sl,sw,pw,pw} stand for \textit{sepal length, sepal width, petal width, petal length} \cite{fisher1936use}. Linear correlation between features can be found, e.g. petal length \& petal width and petal length \& sepal length. We also min-max, normalize and then discretize the normed real values.
 
 \begin{figure}[H]
 	\begin{minipage}{0.9\linewidth}
@@ -99,7 +99,7 @@ From Table \ref{accuracy_fourdata} , for accuracy of each model, we find that ou
 	\label{accuracy_fourdata}
 \end{table}
 
-Furthermore, we compare the different evaluation metrics for binary classification, where ionosphere dataset and adult dataset are selected. Details can be found in Table \ref{binary_comparison}, where \textbf{o} stands for our model and \textbf{s} for results after running \textit{sklearn} module.
+Furthermore, we compare the different evaluation metrics for binary classification, where ionosphere dataset and adult dataset are selected. Details can be found in Table \ref{binary_comparison}, where \textbf{o} stands for our model and \textbf{s} for results after running \textit{sklearn} module.We found that our model have lower precision and recall on class 1 for large data set (car data), which can explain why the model fail to show the performance like sklearn model. We plan to investigate more in the characteristic of the features in large dataset.
 
 \begin{table}[H]
 
@@ -143,7 +143,7 @@ Furthermore, we compare the different evaluation metrics for binary classificati
 			\includegraphics[width= \linewidth]{fig/iris-lr-1.png}
 		  \end{minipage}
 	\end{minipage}
-	\caption{Learning rate test, from left to right, the learning rate is: 0.001, 0.01, 0.1 and 1}
+	\caption{Learning rate test, from left top to right top, from left bottom to right bottom, the learning rates are: 0.001, 0.01, 0.1 and 1}
 	\label{lr_test}
 \end{figure}
 
@@ -151,8 +151,11 @@ Furthermore, we compare the different evaluation metrics for binary classificati
 We mainly test several learning rates with stopping threshold 0.05 in the iris dataset, which is shown in Figure \ref{lr_test}. For small learning rate, like 0.0001, the accuracy makes no change during the gradient decent, which means that it converges very slow. When the learning rate is very big such as 1 , the accuracy will fluctuate sharply, which means that it will become unstable during gradient descent. 
 
 
-We found the best learning rate in our experiment should be around 0.01. so we did hyperparameter search experiment around 0.01, which is in Figure \ref{stopping_cri_lr}. We can find the best learning rate for iris should be 0.15, besides we also search the learning rate in ionosphere data set, the best learning rate should be 0.12 according to our experiment.
+We found the best learning rate in our experiment should be around 0.01. so we did hyperparameter search experiments around 0.01 in a small range, which is in Figure \ref{stopping_cri_lr}. We can find the best learning rate for iris should be xx, besides we also search the learning rate in ionosphere data set, the best learning rate should be xx according to our experiment, for car data set it should be, for adult dataset it should be .
 
+
+
+\subsection*{\underline{Stopping criteria for logistic regression}}
 
 \begin{figure}[htbp]
 	\centering
@@ -160,7 +163,7 @@ We found the best learning rate in our experiment should be around 0.01. so we d
 	\caption{Best stopping criterion for Ionosphere Dataset and Iris Dataset given optimal learning rate}
 	\label{stopping_cri_lr}
 \end{figure}
-
+We also investigate the stopping criteria on four datasets. The stopping criteria is considered as a threshold for change in the value of cost function. We plot the accuracy on four different datasets. In our results, we find there are not much influence on accuracy for car and adult datasets because these two datasets are very big, our model may need to run max iteration to meet the optimal solution. We find that for iris and ionosphere datasets, there will be optimal criteria, which are 0.15 and 0.14 respectively.
 \subsection*{\underline{Accuracy as a function of the size of dataset}}
 
 From Figure \ref{size_accuracy} we can find that accuracy increases when sample size is roughly less than 200. However, the accuracy becomes stable even the sample size continues growing. 
@@ -173,7 +176,7 @@ From Figure \ref{size_accuracy} we can find that accuracy increases when sample 
 \end{figure}
 
 \subsection*{\underline{Dimension reduction comparison}}
-Because ionosphere has strong auto-correlated, we use PCA to reduce the dimensions for better training results, which can be reflected in Figure \ref{pca}. It can be found that accuracy on both training and validation sets perform better if PCA is applied.
+Because ionosphere has strong auto-correlated, we use PCA to reduce the dimensions for better training results, which can be reflected in Figure \ref{pca}. It can be found that accuracy on both training and validation sets perform better if PCA is applied. By using PCA for dimension reduction, we can select a good sebset of features.
 
 \begin{figure}[htbp]
 	\centering
