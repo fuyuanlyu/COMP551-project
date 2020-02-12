@@ -13,12 +13,13 @@
 \maketitle
 
 \begin{abstract}
-In this project, we implement two basic machine learning models: logistic regression and naive bayes. These models are tested upon four classification datasets: Ionosphere Dataset, Iris Dataset, Car Evaluation Dataset and Adult Dataset. In the pre-processing phase, we first discretize all the continuous features, handling the missing values and values out of range. In the experiment phase, the naive bayes model performs well on larger dataset like Adult Dataset and Car Evaluation Dataset while the logistic regression model performs on smaller dataset, including Iris Dataset and Ionosphere. we further investigate the influence of different learning rates, different stopping criteria, hyper-parameter tuning, feature selection and dataset selection.
+In this project, we implement two basic machine learning models: logistic regression and Naive Bayes. These models are tested upon four classification datasets: Ionosphere Dataset, Iris Dataset, Car Evaluation Dataset, and Adult Dataset. In the pre-processing phase, we first discretize all the continuous features, handling the missing values and values out of range. In the experiment phase, the Naive Bayes model performs well on larger datasets like Adult Dataset and Car Evaluation Dataset while the logistic regression model performs on smaller datasets, including Iris Dataset and Ionosphere. we further investigate the influence of different learning rates, different stopping criteria, hyper-parameter tuning, feature selection, and dataset selection.
 
 \end{abstract}
 
 \section{Introduction}
-Classification tasks is one of the most common and important task in machine learning community. Given certain features, classification task is to categorize which class is most likely to be. In this project, we implement two basic machine learning models: logistic regression and naive bayes, and test their performance upon four datasets: Ionosphere Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/ionosphere}}, Adult Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Adult}}, Iris Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Iris}} and Car Evaluation Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Car+Evaluation}}. The logistic regression model performs better on Iris Dataset and Ionosphere Dataset, while the naive bayes model performs better on Adult Dataset and Car Evaluation Dataset. All the features are discretized during the pre-processing phase. We further investigate the influence of different training techniques, such as hyper-parameter tuning and feature selections, upon the performance of the models.
+Classification tasks are one of the most common and important tasks in the machine learning community. Given certain features, the classification task is to categorize which class is most likely to be. In this project, we implement two basic machine learning models: logistic regression and Naive Bayes, and test their performance upon four datasets: Ionosphere Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/ionosphere}}, Adult Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Adult}}, Iris Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Iris}} and Car Evaluation Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Car+Evaluation}}. The logistic regression model performs better on Iris Dataset and Ionosphere Dataset, while the Naive Bayes model performs better on Adult Dataset and Car Evaluation Dataset. All the features are discretized during the pre-processing phase. We further investigate the influence of different training techniques, such as hyper-parameter tuning and feature selections, upon the performance of the models.
+
 
 \section{Datasets}
 The targets of all these four datasets are categorical classification (including binary classification). We exam four datasets to find that no missing values exist. We use \textit{replace} function in \textit{pandas} module to process all the target values into categorical count value. We will briefly describe the specific features and then introduce how to extract/process the features.
@@ -178,7 +179,7 @@ We mainly test learning rates with stopping threshold 0.05 in four datasets, a s
 \end{figure}
 
 
-We also find similar effect on four data set, with different learning rate range. For example, in iris dataset,the best learning rate in our experiment should be around 0.01. But in adult data set it should be 0.1. Then, we perform hyperparameter search in a smaller range of learning rate, which is shown in Figure \ref{stopping_cri_lr}. According to our experiment, we find the best learning rate for iris dataset should be 0.025, ionosphere dataset should be 0.0025, car dataset should be 0.015 and adult dataset should be 0.24.
+We also find similar effect on four data set, with different learning rate ranges. For example, in the iris dataset, the best learning rate in our experiment should be around 0.01. But in adult data set it should be 0.1. Then, we perform hyper-parameter search in a smaller range of learning rates, which is shown in Figure \ref{stopping_cri_lr}. According to our experiment, we find the best learning rate for the iris dataset should be 0.025, the ionosphere dataset should be 0.0025, the car evaluation dataset should be 0.015 and the adult dataset should be 0.24.
 
 \begin{figure}[H]
 	\centering
@@ -189,7 +190,7 @@ We also find similar effect on four data set, with different learning rate range
 
 \subsection*{\underline{Stopping criteria for logistic regression}}
 
-We also investigate the stopping criteria on four datasets. The stopping criteria is considered as a threshold for change in the value of cost function. From Figure \ref{stopping_cri_lr}, we find there are not much influence on accuracy for car and adult datasets because these two datasets are very big, our model may need to run max iteration to meet the optimal solution. We find that for iris and ionosphere datasets, there will be optimal criteria, which are 0.15 and 0.14 respectively.
+We also investigate the stopping criteria on four datasets. The stopping criteria are considered as a threshold for change in the value of cost function. From Figure \ref{stopping_cri_lr}, we find there is not much influence on accuracy for car and adult datasets because these two datasets are very big, our model may need to run max iteration to meet the optimal solution. We find that for iris and ionosphere datasets, there will be optimal criteria, which are 0.15 and 0.14 respectively.
 
 
 
@@ -224,12 +225,12 @@ From Figure \ref{size_accuracy} we can find that accuracy increases when sample 
 
 
 \subsection*{\underline{Dimension reduction comparison}}
-Because ionosphere has strong auto-correlation, we use PCA to reduce the dimensions for better training results, which can be reflected in Figure \ref{pca}. It can be found that accuracy on both training and validation sets perform better if PCA is applied. By using PCA for dimension reduction, we can learn better representation of features.
+Because the ionosphere dataset has strong auto-correlation, we use PCA to reduce the dimensions for better training results, which can be reflected in Figure \ref{pca}. It can be found that accuracy on both training and validation sets perform better if PCA is applied. By using PCA for dimension reduction, we can learn a better representation of features.
 
 
 \section{Discussion and Conclusion}
 
-In this report, we implement logistic regression and naive bayes models. They are tested on four categorical classification datasets. In data cleaning part, we check missing values, discretize the real values and reduce dimensions for auto-correlated features. We test the accuracy and impact of learning rate, stopping criteria and dimension reduction, where we all choose a improved strategy. As future work, we still need to look into why our model would perform less accuracy and efficient than \textit{sklearn} module.
+In this report, we implement logistic regression and Naive Bayes models. They are tested on four categorical classification datasets. In the data cleaning part, we check missing values, discretize the real values and reduce dimensions for auto-correlated features. We test the accuracy and impact of learning rate, stopping criteria and dimension reduction, where we all choose an improved strategy. As future work, we still need to look into why our model would perform less accuracy and efficient than \textit{sklearn} module.
 
 \section{Statement of Contributions}
 
