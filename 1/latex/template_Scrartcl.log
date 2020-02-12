@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.12)  11 FEB 2020 21:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.12)  11 FEB 2020 21:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -277,96 +277,104 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 14.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 20.
+(Font)              <10.95> on input line 24.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 20.
+(Font)              <8> on input line 24.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 20.
+(Font)              <6> on input line 24.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 20.
+(Font)              <9> on input line 24.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 20.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 20.
+(Font)              <5> on input line 24.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 24.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-<fig/iono_feat_dist.pdf, id=1, 578.16pt x 433.62pt>
-File: fig/iono_feat_dist.pdf Graphic file (type pdf)
-<use fig/iono_feat_dist.pdf>
-Package pdftex.def Info: fig/iono_feat_dist.pdf  used on input line 30.
-(pdftex.def)             Requested size: 273.14928pt x 204.86006pt.
- [1
+) [1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<fig/iris_pairplot.pdf, id=16, 703.44366pt x 725.35365pt>
+<fig/iono_feat_dist.pdf, id=14, 578.16pt x 433.62pt>
+File: fig/iono_feat_dist.pdf Graphic file (type pdf)
+<use fig/iono_feat_dist.pdf>
+Package pdftex.def Info: fig/iono_feat_dist.pdf  used on input line 35.
+(pdftex.def)             Requested size: 273.14928pt x 204.86006pt.
+<fig/iris_pairplot.pdf, id=15, 703.44366pt x 725.35365pt>
 File: fig/iris_pairplot.pdf Graphic file (type pdf)
 <use fig/iris_pairplot.pdf>
-Package pdftex.def Info: fig/iris_pairplot.pdf  used on input line 46.
+Package pdftex.def Info: fig/iris_pairplot.pdf  used on input line 51.
 (pdftex.def)             Requested size: 204.85847pt x 211.2326pt.
 
 
 Package caption Warning: The caption type was already set to `figure'
-(caption)                 on input line 68.
+(caption)                 on input line 73.
 See the caption package documentation for explanation.
 
+[2 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iono_feat_dist.pdf>]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 81.
-[2 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iono_feat_dist.pdf> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris_pairplot.pdf
+(Font)              <12> on input line 86.
 
-pdfTeX warning: pdflatex (file /home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris_pairplot.pdf): PDF inclusion: multiple pdfs with page group included in a single page
->]
-Overfull \hbox (63.84155pt too wide) in paragraph at lines 105--118
+Overfull \hbox (63.84155pt too wide) in paragraph at lines 110--123
 [][] 
  []
 
-<fig/iris-lr0001.png, id=110, 462.528pt x 346.896pt>
+[3 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris_pairplot.pdf>]
+<fig/iris-lr0001.png, id=116, 462.528pt x 346.896pt>
 File: fig/iris-lr0001.png Graphic file (type png)
 <use fig/iris-lr0001.png>
-Package pdftex.def Info: fig/iris-lr0001.png  used on input line 128.
+Package pdftex.def Info: fig/iris-lr0001.png  used on input line 133.
 (pdftex.def)             Requested size: 174.81287pt x 131.11255pt.
-<fig/iris-lr-001.png, id=112, 572.1375pt x 422.57875pt>
+<fig/iris-lr-001.png, id=118, 572.1375pt x 422.57875pt>
 File: fig/iris-lr-001.png Graphic file (type png)
 <use fig/iris-lr-001.png>
-Package pdftex.def Info: fig/iris-lr-001.png  used on input line 133.
+Package pdftex.def Info: fig/iris-lr-001.png  used on input line 138.
 (pdftex.def)             Requested size: 174.81287pt x 129.11523pt.
-<fig/iris-lr-01.png, id=113, 573.14125pt x 424.58624pt>
+<fig/iris-lr-01.png, id=119, 573.14125pt x 424.58624pt>
 File: fig/iris-lr-01.png Graphic file (type png)
 <use fig/iris-lr-01.png>
-Package pdftex.def Info: fig/iris-lr-01.png  used on input line 137.
+Package pdftex.def Info: fig/iris-lr-01.png  used on input line 142.
 (pdftex.def)             Requested size: 174.81287pt x 129.50185pt.
-<fig/iris-lr-1.png, id=114, 570.13pt x 420.57124pt>
+<fig/iris-lr-1.png, id=120, 570.13pt x 420.57124pt>
 File: fig/iris-lr-1.png Graphic file (type png)
 <use fig/iris-lr-1.png>
-Package pdftex.def Info: fig/iris-lr-1.png  used on input line 142.
+Package pdftex.def Info: fig/iris-lr-1.png  used on input line 147.
 (pdftex.def)             Requested size: 174.81287pt x 128.95108pt.
-[3 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris-lr0001.png> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris-lr-001.png> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris-lr-01.png> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris-lr-1.png>]
-<fig/ionosphere_lr.pdf, id=124, 722.7pt x 722.7pt>
+<fig/ionosphere_lr.pdf, id=121, 722.7pt x 722.7pt>
 File: fig/ionosphere_lr.pdf Graphic file (type pdf)
 <use fig/ionosphere_lr.pdf>
-Package pdftex.def Info: fig/ionosphere_lr.pdf  used on input line 158.
+Package pdftex.def Info: fig/ionosphere_lr.pdf  used on input line 163.
 (pdftex.def)             Requested size: 152.96pt x 152.95142pt.
-<fig/adult_lr.pdf, id=125, 722.7pt x 722.7pt>
+<fig/adult_lr.pdf, id=122, 722.7pt x 722.7pt>
 File: fig/adult_lr.pdf Graphic file (type pdf)
 <use fig/adult_lr.pdf>
-Package pdftex.def Info: fig/adult_lr.pdf  used on input line 163.
+Package pdftex.def Info: fig/adult_lr.pdf  used on input line 168.
 (pdftex.def)             Requested size: 152.96pt x 152.95142pt.
-<fig/iris_lr.pdf, id=126, 722.7pt x 722.7pt>
+<fig/iris_lr.pdf, id=123, 722.7pt x 722.7pt>
 File: fig/iris_lr.pdf Graphic file (type pdf)
 <use fig/iris_lr.pdf>
-Package pdftex.def Info: fig/iris_lr.pdf  used on input line 167.
+Package pdftex.def Info: fig/iris_lr.pdf  used on input line 172.
 (pdftex.def)             Requested size: 152.96pt x 152.95142pt.
-<fig/car_lr.pdf, id=127, 722.7pt x 722.7pt>
+<fig/car_lr.pdf, id=124, 722.7pt x 722.7pt>
 File: fig/car_lr.pdf Graphic file (type pdf)
 <use fig/car_lr.pdf>
-Package pdftex.def Info: fig/car_lr.pdf  used on input line 172.
+Package pdftex.def Info: fig/car_lr.pdf  used on input line 177.
 (pdftex.def)             Requested size: 152.96pt x 152.95142pt.
-<fig/stopping-threshold.png, id=128, 1310.8975pt x 820.06375pt>
+ [4 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris-lr0001.png> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris-lr-001.png> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris-lr-01.png> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris-lr-1.png>]
+<fig/stopping-threshold.png, id=132, 1310.8975pt x 820.06375pt>
 File: fig/stopping-threshold.png Graphic file (type png)
 <use fig/stopping-threshold.png>
-Package pdftex.def Info: fig/stopping-threshold.png  used on input line 184.
+Package pdftex.def Info: fig/stopping-threshold.png  used on input line 189.
 (pdftex.def)             Requested size: 273.14928pt x 170.86705pt.
- [4 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/ionosphere_lr.pdf> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/adult_lr.pdf
+<fig/dataset_size.png, id=133, 1543.7675pt x 1005.7575pt>
+File: fig/dataset_size.png Graphic file (type png)
+<use fig/dataset_size.png>
+Package pdftex.def Info: fig/dataset_size.png  used on input line 210.
+(pdftex.def)             Requested size: 227.62209pt x 148.29424pt.
+<fig/PCA.png, id=134, 702.4644pt x 489.9906pt>
+File: fig/PCA.png Graphic file (type png)
+<use fig/PCA.png>
+Package pdftex.def Info: fig/PCA.png  used on input line 217.
+(pdftex.def)             Requested size: 218.51524pt x 152.41887pt.
+ [5 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/ionosphere_lr.pdf> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/adult_lr.pdf
 
 pdfTeX warning: pdflatex (file /home/dingyizhuang/Courses/COMP551-project/1/latex/fig/adult_lr.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 > </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/iris_lr.pdf
@@ -376,23 +384,13 @@ pdfTeX warning: pdflatex (file /home/dingyizhuang/Courses/COMP551-project/1/late
 
 pdfTeX warning: pdflatex (file /home/dingyizhuang/Courses/COMP551-project/1/latex/fig/car_lr.pdf): PDF inclusion: multiple pdfs with page group included in a single page
 > </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/stopping-threshold.png>]
-<fig/dataset_size.png, id=247, 1543.7675pt x 1005.7575pt>
-File: fig/dataset_size.png Graphic file (type png)
-<use fig/dataset_size.png>
-Package pdftex.def Info: fig/dataset_size.png  used on input line 205.
-(pdftex.def)             Requested size: 227.62209pt x 148.29424pt.
-<fig/PCA.png, id=248, 702.4644pt x 489.9906pt>
-File: fig/PCA.png Graphic file (type png)
-<use fig/PCA.png>
-Package pdftex.def Info: fig/PCA.png  used on input line 212.
-(pdftex.def)             Requested size: 218.51524pt x 152.41887pt.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 236.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 241.
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 236.
- (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.bbl [5 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/dataset_size.png> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/PCA.png>]) [6] (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.aux)
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 241.
+ (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.bbl [6 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/dataset_size.png> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/PCA.png>]) [7] (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -400,16 +398,16 @@ LaTeX Warning: There were multiply-defined labels.
 Here is how much of TeX's memory you used:
  5376 strings out of 494923
  92672 string characters out of 6180741
- 242038 words of memory out of 5000000
+ 244038 words of memory out of 5000000
  8614 multiletter control sequences out of 15000+600000
  20138 words of font info for 47 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  51i,11n,51p,8897b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx2074.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on /home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf (6 pages, 690669 bytes).
+ </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx2074.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on /home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf (7 pages, 693409 bytes).
 PDF statistics:
- 605 PDF objects out of 1000 (max. 8388607)
- 102 compressed objects within 2 object streams
+ 617 PDF objects out of 1000 (max. 8388607)
+ 107 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  66 words of extra memory for PDF output out of 10000 (max. 10000000)
 
