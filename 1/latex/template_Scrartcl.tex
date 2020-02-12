@@ -11,9 +11,8 @@
 \begin{document}
 
 \maketitle
-
 \begin{abstract}
-In this project, we implement two basic machine learning models: logistic regression and naive bayes. These models are tested upon four classification datasets: Ionosphere Dataset, Iris Dataset, Car Evaluation Dataset and Adult Dataset. In the pre-processing phase, we first discretize all the continuous features, handling the missing values and values out of range. In the experiment phase, the naive bayes model performs well on larger dataset like Adult Dataset and Car Evaluation Dataset while the logistic regression model performs on smaller dataset, including Iris Dataset and Ionosphere. we further investigate the influence of different learning rates, different stopping criteria, hyper-parameter tuning, feature selection and dataset selection.
+In this project, we implement two basic machine learning models: logistic regression and naive bayes. These models are tested upon four classification datasets: Ionosphere Dataset, Iris Dataset, Car Evaluation Dataset and Adult Dataset. In the pre-processing phase, we first discretize all the continuous features, handling the missing values and values out of range. In the experiment phase, the naive bayes model performs well on larger dataset like Adult Dataset and Car Evaluation Dataset while the logistic regression model performs well on smaller dataset, including Iris Dataset and Ionosphere. we further investigate the influence of different learning rates, different stopping criteria, hyper-parameter tuning, feature selection and dataset selection.
 
 \end{abstract}
 
@@ -182,7 +181,7 @@ We also find similar effect on four data set, with different learning rate range
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.68\linewidth]{fig/stopping-threshold.png}
+	\includegraphics[width=0.6\linewidth]{fig/stopping-threshold.png}
 	\caption{Best stopping criterion for Ionosphere Dataset and Iris Dataset given optimal learning rate}
 	\label{stopping_cri_lr}
 \end{figure}

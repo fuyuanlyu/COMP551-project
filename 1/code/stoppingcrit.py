@@ -12,7 +12,7 @@ k_fold = 5
 datasets = ['iris_data_cleaned']
 
 def main():
-    fig, axes= plt.subplots(2,2,figsize=(10,10))
+    fig, axes= plt.subplots(1,2,figsize=(10,10))
     fig.subplots_adjust(bottom=-0.8)
     acc_all=[]*len(datasets)
     size_of_datasets=[]*len(datasets)
@@ -23,10 +23,10 @@ def main():
     	accs=main_lr(dataset,range_th=ths)
     	acc_all.append(accs)
 
-    axes[0,0].plot(ths,acc_all[0])
-    axes[0,0].set_xlabel('stopping threshold')
-    axes[0,0].set_ylabel('Accuracy')
-    axes[0,0].set_title('iris')
+    axes[0].plot(ths,acc_all[0])
+    axes[0].set_xlabel('stopping threshold',fontsize=16)
+    axes[0].set_ylabel('Accuracy',fontsize=16)
+    axes[0].set_title('iris',fontsize=20)
 
     # axes[0,1].plot(ths,acc_all[1],label="LR")
     # axes[0,1].set_xlabel('stopping threshold')
@@ -39,10 +39,10 @@ def main():
     # axes[1,0].set_title('adult')
 	#
 	#
-    # axes[1,1].plot(ths,acc_all[2],label="LR")
-    # axes[1,1].set_xlabel('stopping threshold')
-    # axes[1,1].set_ylabel('Accuracy')
-    # axes[1,1].set_title('inosphere')
+    axes[1].plot(ths,acc_all[1],label="LR")
+    axes[1].set_xlabel('stopping threshold',fontsize=16)
+    axes[1].set_ylabel('Accuracy',fontsize=16)
+    axes[1].set_title('ionosphere',fontsize=20)
 
     plt.show()
 
