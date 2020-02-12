@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex template_Scrartcl"] 1581475253 "template_Scrartcl.aux" "template_Scrartcl.bbl" "template_Scrartcl" 1581475253
+["bibtex template_Scrartcl"] 1581476144 "template_Scrartcl.aux" "template_Scrartcl.bbl" "template_Scrartcl" 1581476145
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/unsrt.bst" 1480098433 18030 1376b4b231b50c66211e47e42eda2875 ""
   "a1.bib" 1581448707 1076 83216a81e2da1b16022a7e26d65a4946 ""
-  "template_Scrartcl.aux" 1581475253 2834 0fd4f5c6a1cbf60c3ce721f87a5ca38e ""
+  "template_Scrartcl.aux" 1581476145 2839 4a483f573b218c3ddb59621dfea641e7 ""
   "template_Scrartcl.bcf" 0 -1 0 ""
   (generated)
-  "template_Scrartcl.bbl"
   "template_Scrartcl.blg"
-["pdflatex"] 1581475253 "template_Scrartcl.tex" "/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf" "template_Scrartcl" 1581475253
+  "template_Scrartcl.bbl"
+["pdflatex"] 1581476144 "template_Scrartcl.tex" "/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf" "template_Scrartcl" 1581476145
   "/etc/texmf/web2c/texmf.cnf" 1576177827 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk" 1581022086 25396 017d249a268fb7e768be7511119e05a5 ""
   "/home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk" 1581085953 28952 0e51730dc78fe73d2f403281d2e51eeb ""
@@ -22,7 +22,7 @@
   "/home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx2074.600pk" 1581022088 52288 180b1c78324a313ab33dbb6f64859803 ""
   "/home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk" 1581022087 35180 39b0b8b05dde3b75907bd401e3ba4c13 ""
   "/home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk" 1581022086 17492 29c0a9d93b06caad3eb102f74e61841f ""
-  "/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.aux" 1581475253 2834 0fd4f5c6a1cbf60c3ce721f87a5ca38e ""
+  "/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.aux" 1581476145 2839 4a483f573b218c3ddb59621dfea641e7 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1480098696 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1095.tfm" 1480098696 3584 21b378cca2e40816b0e6d74a4dc98f04 ""
@@ -109,12 +109,12 @@
   "fig/iris_lr.pdf" 1581471607 10344 1ae976303d3a28a5caee08143c247842 ""
   "fig/iris_pairplot.pdf" 1581448707 25728 bda45048e03b185d345781f0a3861ff8 ""
   "fig/stopping-threshold.png" 1581475076 77810 56b23e61d74b09e36a2cbb82caaae684 ""
-  "template_Scrartcl.aux" 1581475253 2834 0fd4f5c6a1cbf60c3ce721f87a5ca38e ""
-  "template_Scrartcl.bbl" 1581475253 929 32a103c5c00eea85a8345f0dc5078e27 "bibtex template_Scrartcl"
-  "template_Scrartcl.tex" 1581475249 13812 a45f2501b349d90fcb30a9320aaa6d00 ""
+  "template_Scrartcl.aux" 1581476145 2839 4a483f573b218c3ddb59621dfea641e7 ""
+  "template_Scrartcl.bbl" 1581476144 929 32a103c5c00eea85a8345f0dc5078e27 "bibtex template_Scrartcl"
+  "template_Scrartcl.tex" 1581476142 13795 0aa1041514ada7895ee4ad1e923ff1ec ""
   (generated)
-  "template_Scrartcl.aux"
+  "/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf"
   "template_Scrartcl.pdf"
   "template_Scrartcl.log"
-  "/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf"
   "/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.log"
+  "template_Scrartcl.aux"

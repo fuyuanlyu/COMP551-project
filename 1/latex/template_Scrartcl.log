@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.12)  11 FEB 2020 21:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.12)  11 FEB 2020 21:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -161,11 +161,7 @@ See the caption package documentation for explanation.
 
 \c@ContinuedFloat=\count92
 Package caption Info: float package is loaded.
-) (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.aux
-
-LaTeX Warning: Label `lr_test' multiply defined.
-
-)
+) (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.aux)
 \openout1 = `template_Scrartcl.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
@@ -392,21 +388,17 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 236.
- (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.bbl [5 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/dataset_size.png> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/PCA.png>]) [6] (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+ (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.bbl [5 </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/dataset_size.png> </home/dingyizhuang/Courses/COMP551-project/1/latex/fig/PCA.png>]) [6] (/home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.aux) ) 
 Here is how much of TeX's memory you used:
- 5376 strings out of 494923
- 92672 string characters out of 6180741
- 242038 words of memory out of 5000000
- 8614 multiletter control sequences out of 15000+600000
+ 5377 strings out of 494923
+ 92686 string characters out of 6180741
+ 242007 words of memory out of 5000000
+ 8615 multiletter control sequences out of 15000+600000
  20138 words of font info for 47 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  51i,11n,51p,8897b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx2074.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on /home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf (6 pages, 691099 bytes).
+Output written on /home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf (6 pages, 691111 bytes).
 PDF statistics:
  606 PDF objects out of 1000 (max. 8388607)
  102 compressed objects within 2 object streams

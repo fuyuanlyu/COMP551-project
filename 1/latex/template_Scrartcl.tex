@@ -12,7 +12,7 @@
 
 \maketitle
 \begin{abstract}
-In this project, we implement two basic machine learning models: logistic regression and naive bayes. These models are tested upon four classification datasets: Ionosphere Dataset, Iris Dataset, Car Evaluation Dataset and Adult Dataset. In the pre-processing phase, we first discretize all the continuous features, handling the missing values and values out of range. In the experiment phase, the naive bayes model performs well on larger dataset like Adult Dataset and Car Evaluation Dataset while the logistic regression model performs well on smaller dataset, including Iris Dataset and Ionosphere. we further investigate the influence of different learning rates, different stopping criteria, hyper-parameter tuning, feature selection and dataset selection.
+In this project, we implement two basic machine learning models: logistic regression and naive bayes. These models are tested upon four classification datasets: Ionosphere Dataset, Iris Dataset, Car Evaluation Dataset and Adult Dataset. In the pre-processing phase, we first discretize all the continuous features, handling the missing values and values out of range. In the experiment phase, the naive bayes model performs well on larger dataset like Adult Dataset and Car Evaluation Dataset while the logistic regression model performs well on smaller dataset, including Iris Dataset and Ionosphere. We further investigate the influence of different learning rates, different stopping criteria, hyper-parameter tuning and feature selection.
 \end{abstract}
 
 \section{Introduction}
@@ -173,7 +173,7 @@ We mainly test learning rates with stopping threshold 0.05 in four datasets, a s
 		  \end{minipage}
 	\end{minipage}
 	\caption{Hyperparameter search for learning rates in different datasets, from left bottom to right bottom, the learning rates are: ionosphere, adult, iris and car datasets}
-	\label{lr_test}
+	\label{stopping_cri_lr}
 \end{figure}
 
 
@@ -183,12 +183,12 @@ We also find similar effect on four data set, with different learning rate range
 	\centering
 	\includegraphics[width=0.6\linewidth]{fig/stopping-threshold.png}
 	\caption{Best stopping criterion for Ionosphere Dataset and Iris Dataset given optimal learning rate}
-	\label{stopping_cri_lr}
+	\label{stopping_cri}
 \end{figure}
 
 \subsection*{\underline{Stopping criteria for logistic regression}}
 
-We also investigate the stopping criteria on four datasets. The stopping criteria are considered as a threshold for change in the value of cost function. From Figure \ref{stopping_cri_lr}, we find there is not much influence on accuracy for car and adult datasets because these two datasets are very big, our model may need to run max iteration to meet the optimal solution. We find that for iris and ionosphere datasets, there will be optimal criteria, which are 0.15 and 0.14 respectively.
+We also investigate the stopping criteria on four datasets. The stopping criteria are considered as a threshold for change in the value of cost function. From Figure \ref{stopping_cri}, we find there is not much influence on accuracy for car and adult datasets because these two datasets are very big, our model may need to run max iteration to meet the optimal solution. We find that for iris and ionosphere datasets, there will be optimal criteria, which are 0.15 and 0.14 respectively.
 
 
 
