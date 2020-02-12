@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.12)  11 FEB 2020 21:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.12)  11 FEB 2020 21:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -324,12 +324,7 @@ Overfull \hbox (63.84155pt too wide) in paragraph at lines 106--119
 File: fig/iris-lr0001.png Graphic file (type png)
 <use fig/iris-lr0001.png>
 Package pdftex.def Info: fig/iris-lr0001.png  used on input line 129.
-(pdftex.def)             Requested size: 178.30986pt x 133.73268pt.
-
-Overfull \hbox (3.497pt too wide) in paragraph at lines 129--130
- [][] 
- []
-
+(pdftex.def)             Requested size: 174.81287pt x 131.11255pt.
 <fig/iris-lr-001.png, id=112, 572.1375pt x 422.57875pt>
 File: fig/iris-lr-001.png Graphic file (type png)
 <use fig/iris-lr-001.png>
@@ -411,7 +406,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  51i,11n,51p,8897b,454s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0900.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1440.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1440.600pk> </home/dingyizhuang/.texlive2017/texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx2074.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on /home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf (6 pages, 678722 bytes).
+Output written on /home/dingyizhuang/Courses/COMP551-project/1/latex/template_Scrartcl.pdf (6 pages, 678787 bytes).
 PDF statistics:
  605 PDF objects out of 1000 (max. 8388607)
  102 compressed objects within 2 object streams

@@ -13,12 +13,12 @@
 \maketitle
 
 \begin{abstract}
-In this project, we implement two basic machine learning models: logistic regression and naive bayes. These models are tested upon four classification datasets: Ionosphere Dataset, Iris Dataset, Car Evaluation Dataset and Adult Dataset. These datasets contain various types of features: both continuous and discrete. In the pre-processing phase, we first discretize all the continuous features and targets, handling the missing values and auto-correlated features. In the experiment phase, apart from reporting evaluation metrics upon various models with different datasets, we further investigate the influence of different learning rates, different stopping criteria, hyper-parameter tuning, feature selection and dataset selection.
+In this project, we implement two basic machine learning models: logistic regression and naive bayes. These models are tested upon four classification datasets: Ionosphere Dataset, Iris Dataset, Car Evaluation Dataset and Adult Dataset. In the pre-processing phase, we first discretize all the continuous features, handling the missing values and values out of range. In the experiment phase, the naive bayes model performs well on larger dataset like Adult Dataset and Car Evaluation Dataset while the logistic regression model performs on smaller dataset, including Iris Dataset and Ionosphere. we further investigate the influence of different learning rates, different stopping criteria, hyper-parameter tuning, feature selection and dataset selection.
 
 \end{abstract}
 
 \section{Introduction}
-Classification tasks is one of the most common and important task in machine learning community. Given certain features, classification task is to categorize which class is most likely to be. In this project, we implement two basic machine learning models: logistic regression and naive bayes, and test their performance upon four datasets: Ionosphere Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/ionosphere}}, Adult Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Adult}}, Iris Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Iris}} and Car Evaluation Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Car+Evaluation}}. All the features are discretized during the pre-processing phase. We further investigate the influence of different training techniques, such as hyper-parameter tuning and feature selections, upon the performance of the models.
+Classification tasks is one of the most common and important task in machine learning community. Given certain features, classification task is to categorize which class is most likely to be. In this project, we implement two basic machine learning models: logistic regression and naive bayes, and test their performance upon four datasets: Ionosphere Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/ionosphere}}, Adult Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Adult}}, Iris Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Iris}} and Car Evaluation Dataset\footnote{\url{https://archive.ics.uci.edu/ml/datasets/Car+Evaluation}}. The logistic regression model performs better on Iris Dataset and Ionosphere Dataset, while the naive bayes model performs better on Adult Dataset and Car Evaluation Dataset. All the features are discretized during the pre-processing phase. We further investigate the influence of different training techniques, such as hyper-parameter tuning and feature selections, upon the performance of the models.
 
 \section{Datasets}
 The targets of all these four datasets are categorical classification (including binary classification). We exam four datasets to find that no missing values exist. We use \textit{replace} function in \textit{pandas} module to process all the target values into categorical count value. We will briefly describe the specific features and then introduce how to extract/process the features.
@@ -75,7 +75,7 @@ There are 4 continuous real value attributes, whose basic statistic information 
 
 
 \subsubsection*{Car Evaluation Dataset}
-In Car Evaluation Dataset, we use 1728 records from 6 categorical features of cars, e.g. price, door number and capacity, to predict the safety level of the cars \cite{bohanec1988knowledge}. This dataset is quite straightforward, we only transform the raw data into categorical features to predict the categorical safety level.
+In Car Evaluation Dataset, we use 1728 records from 6 categorical features of cars, e.g. price, door number and capacity, to predict the safety level of the cars \cite{bohanec1988knowledge}. This dataset is straightforward, we only transform the raw data into categorical features to predict the categorical safety level.
 
 
 \section{Results}
@@ -126,7 +126,7 @@ Furthermore, we compare the different evaluation metrics for binary classificati
 	\begin{minipage}{0.8\linewidth}
 		\begin{minipage}[b]{0.48\linewidth}
 		  \centering
-		  \includegraphics[width= 1.02\linewidth]{fig/iris-lr0001.png}
+		  \includegraphics[width= \linewidth]{fig/iris-lr0001.png}
 		\end{minipage}
 		\hfill
 		\begin{minipage}[b]{0.48\linewidth}
