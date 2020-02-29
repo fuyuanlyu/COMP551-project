@@ -4,7 +4,9 @@ from sklearn.model_selection import cross_val_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import  AdaBoostClassifier, RandomForestClassifier
+from sklearn.neural_network import MLPClassifier
 from dataset.dataset import get_twenty_dataset, get_IMDB_dataset
+
 import numpy as np
 ##overall performance is IMDB>news group
 # datasets = ['20 news group', 'IMDB Reviews']
@@ -48,6 +50,12 @@ def main(x_train, y_train, x_test, y_test):
 	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
 	print(np.mean(y_predicted_RDF == y_test))
 
+	clf_NN = MLPClassifier(solver='lbfgs',hidden_layer_sizes=(50,),max_iter=10000)
+	print('MLPClassifier model')
+	clf_NN.fit(x_train, y_train)
+	y_predicted_NN = clf_NN.predict(x_test)
+	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
+	print(np.mean(y_predicted_NN == y_test))
 
 
 if __name__ == '__main__':
