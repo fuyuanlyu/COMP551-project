@@ -25,6 +25,7 @@ def main(x_train, y_train, x_test, y_test):
 	print('logistic regression model')
 	y_predicted_LR = clf_LR.predict(x_test)
 	#print(dataset + ':', np.mean(y_predicted_LR == y_test))
+	print(np.mean(y_predicted_LR == y_test))
 
 	clf_DT = DecisionTreeClassifier(random_state=0,max_depth=100,criterion="gini",min_samples_leaf=2).fit(x_train, y_train) ##can change the depth to increase acc, gini is better,mini_sample_leaf increase, acc get down
 	print('Decision Tree model')
@@ -56,6 +57,8 @@ def main(x_train, y_train, x_test, y_test):
 	y_predicted_NN = clf_NN.predict(x_test)
 	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
 	print(np.mean(y_predicted_NN == y_test))
+
+	return {'NB':clf_NB,'LR':clf_LR,'DT':clf_DT,'SVC':clf_SVC,'ADB':clf_ADB,'RDF':clf_RDF,'NN':clf_NN}
 
 
 if __name__ == '__main__':
