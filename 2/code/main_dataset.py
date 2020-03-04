@@ -5,6 +5,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import  AdaBoostClassifier, RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
+from xgboost import XGBClassifier
 from dataset.dataset import get_twenty_dataset, get_IMDB_dataset
 
 import numpy as np
@@ -51,18 +52,26 @@ def main(x_train, y_train, x_test, y_test):
 	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
 	print(np.mean(y_predicted_RDF == y_test))
 
-	clf_NN = MLPClassifier(solver='lbfgs',hidden_layer_sizes=(50,),max_iter=10000)
+	clf_NN = MLPClassifier(solver='lbfgs',hidden_layer_sizes=(30,1024),max_iter=5000)  ##trade off between hidden units and layer depth
 	print('MLPClassifier model')
 	clf_NN.fit(x_train, y_train)
 	y_predicted_NN = clf_NN.predict(x_test)
 	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
 	print(np.mean(y_predicted_NN == y_test))
 
-	return {'NB':clf_NB,'LR':clf_LR,'DT':clf_DT,'SVC':clf_SVC,'ADB':clf_ADB,'RDF':clf_RDF,'NN':clf_NN}
+	clf_xgb = XGBClassifier(learning_rate=0.01)
+	print('XGboost model')
+	clf_xgb.fit(x_train, y_train)
+	y_predicted_XGB = clf_xgb.predict(x_test)
+	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
+	print(np.mean(y_predicted_XGB == y_test))
+
+
+	return {'NB':clf_NB,'LR':clf_LR,'DT':clf_DT,'SVC':clf_SVC,'ADB':clf_ADB,'RDF':clf_RDF,'NN':clf_NN,'XGB':clf_xgb}
 
 
 if __name__ == '__main__':
-	datasets = ['20 news group']
+	datasets = ['20 news group','IMDB Reviews']
 	for dataset in datasets:
 		if dataset == '20 news group':
 			x_train, y_train, x_test, y_test = get_twenty_dataset()
