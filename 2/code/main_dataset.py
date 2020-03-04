@@ -6,6 +6,8 @@ from sklearn.svm import LinearSVC
 from sklearn.ensemble import  AdaBoostClassifier, RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 from xgboost import XGBClassifier
+from keras.models import Sequential
+from keras.layers import LSTM,Dense,Activation,Embedding
 from dataset.dataset import get_twenty_dataset, get_IMDB_dataset
 
 import numpy as np
@@ -52,7 +54,7 @@ def main(x_train, y_train, x_test, y_test):
 	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
 	print(np.mean(y_predicted_RDF == y_test))
 
-	clf_NN = MLPClassifier(solver='lbfgs',hidden_layer_sizes=(30,1024),max_iter=5000)  ##trade off between hidden units and layer depth
+	clf_NN = MLPClassifier(solver='lbfgs',hidden_layer_sizes=(30,1024),max_iter=5000)  ##trade off between hidden units and layer depth, deeper will better
 	print('MLPClassifier model')
 	clf_NN.fit(x_train, y_train)
 	y_predicted_NN = clf_NN.predict(x_test)
@@ -66,12 +68,28 @@ def main(x_train, y_train, x_test, y_test):
 	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
 	print(np.mean(y_predicted_XGB == y_test))
 
+	##LSTM model: source: https://www.kaggle.com/jannesklaas/19-lstm-for-email-classification, but some parameer may not suit our dataset
+	# embedding_dim=114751
+	# vocab_size=11314
+	# max_length=100
+	# emb_mean=0.004451992
+	# emb_std=0.40815741
+	# nb_words=min(vocab_size,len(word_index))
+	# embedding_matrix=np.random.normal(emb_mean,emb_std,((nb_words, embedding_dim)))
+	# model=Sequential()
+	# model.add(Embedding(vocab_size,embedding_dim,input_length=max_length,weights=[embedding_matrix],trainable=False))
+	# model.add(Activation('softmax'))
+	# model.compile(optimizer='adam',loss='binary_crossentropy',metrics=['acc'])
+	# model.fit(x_train,y_train,epochs=2)
+	# y_predicted_LSTM = model.predict(x_test)
+	# #print(dataset + ':', np.mean(y_predicted_RDF == y_test))
+	# print(np.mean(y_predicted_LSTM == y_test))
 
-	return {'NB':clf_NB,'LR':clf_LR,'DT':clf_DT,'SVC':clf_SVC,'ADB':clf_ADB,'RDF':clf_RDF,'NN':clf_NN,'XGB':clf_xgb}
+	# return {'NB':clf_NB,'LR':clf_LR,'DT':clf_DT,'SVC':clf_SVC,'ADB':clf_ADB,'RDF':clf_RDF,'NN':clf_NN,'XGB':clf_xgb}
 
 
 if __name__ == '__main__':
-	datasets = ['20 news group','IMDB Reviews']
+	datasets = ['20 news group']
 	for dataset in datasets:
 		if dataset == '20 news group':
 			x_train, y_train, x_test, y_test = get_twenty_dataset()
