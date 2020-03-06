@@ -6,8 +6,8 @@ from sklearn.svm import LinearSVC
 from sklearn.ensemble import  AdaBoostClassifier, RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 from xgboost import XGBClassifier
-from keras.models import Sequential
-from keras.layers import LSTM,Dense,Activation,Embedding
+# from keras.models import Sequential
+# from keras.layers import LSTM,Dense,Activation,Embedding
 from dataset.dataset import get_twenty_dataset, get_IMDB_dataset
 
 import numpy as np
@@ -88,11 +88,22 @@ def main(x_train, y_train, x_test, y_test):
 	# return {'NB':clf_NB,'LR':clf_LR,'DT':clf_DT,'SVC':clf_SVC,'ADB':clf_ADB,'RDF':clf_RDF,'NN':clf_NN,'XGB':clf_xgb}
 
 
+def main_test(x_train, y_train, x_test, y_test):
+	## logistic regression model
+	clf_LR = LogisticRegression(random_state=0, multi_class='auto', solver='lbfgs').fit(x_train, y_train)
+	print('logistic regression model')
+	y_predicted_LR = clf_LR.predict(x_test)
+	#print(dataset + ':', np.mean(y_predicted_LR == y_test))
+	print(np.mean(y_predicted_LR == y_test))
+
 if __name__ == '__main__':
-	datasets = ['20 news group']
+	datasets = ['20 news group', '20 news group with stop words']
 	for dataset in datasets:
 		if dataset == '20 news group':
-			x_train, y_train, x_test, y_test = get_twenty_dataset()
+			x_train, y_train, x_test, y_test = get_twenty_dataset(remove_stop_word=False, use_PCA=False, n_components=30)
+		elif dataset == '20 news group with stop words': 
+			x_train, y_train, x_test, y_test = get_twenty_dataset(remove_stop_word=True, use_PCA=False, n_components=30)
 		elif dataset == 'IMDB Reviews':
 			x_train, y_train, x_test, y_test = get_IMDB_dataset()
-		main(x_train, y_train, x_test, y_test)
+		main_test(x_train, y_train, x_test, y_test)
+		# main(x_train, y_train, x_test, y_test)
