@@ -4,11 +4,14 @@ import pickle
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.decomposition import TruncatedSVD
+from sklearn.manifold import TSNE
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 import string
 from nltk.corpus import stopwords
 
+
 # Get 20 news group dataset
-def get_twenty_dataset(remove_stop_word=False, use_PCA=False, n_components=2):
+def get_twenty_dataset(remove_stop_word=False, preprocessing_trick=None, n_components=2):
 	twenty_train = fetch_20newsgroups(subset='train', \
 		remove=['headers', 'footers', 'quote'], shuffle=True)
 	twenty_test = fetch_20newsgroups(subset='test', \
@@ -25,16 +28,27 @@ def get_twenty_dataset(remove_stop_word=False, use_PCA=False, n_components=2):
 	X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
 	X_test_tfidf = tfidf_transformer.transform(X_test_counts)
 
-	if use_PCA:
-		pca = TruncatedSVD(n_components = n_components) 
-		X_train_tfidf = pca.fit_transform(X_train_tfidf)
-		X_test_tfidf = pca.transform(X_test_tfidf)
+	X_train, X_test = X_train_tfidf, X_test_tfidf
 
-	return X_train_tfidf, twenty_train.target, X_test_tfidf, twenty_test.target
+	if preprocessing_trick == 'PCA':
+		pca = TruncatedSVD(n_components = n_components) 
+		X_train = pca.fit_transform(X_train)
+		X_test = pca.transform(X_test)
+	elif preprocessing_trick == 'LDA':
+		lda = LinearDiscriminantAnalysis()
+		X_train = lda.fit_transform(X_train.toarray(), twenty_train.target)
+		X_test = lda.transform(X_test.toarray())
+	elif preprocessing_trick == 'TSNE':
+		tsne = TSNE(n_components=n_components)
+		X_train = tsne.fit_transform(X_train.toarray())
+		X_test = tsne.transform(X_test.toarray())
+
+
+	return X_train, twenty_train.target, X_test, twenty_test.target
 
 
 # Get IMDB Review dataset
-def get_IMDB_dataset(remove_stop_word=False, use_PCA=False, n_components=2):
+def get_IMDB_dataset(remove_stop_word=False, preprocessing_trick=None, n_components=2):
 	with open('./dataset/IMDB.pickle', 'rb') as data:
 		dataset = pickle.load(data)
 	train_x_raw, train_y = dataset['train']
@@ -51,12 +65,22 @@ def get_IMDB_dataset(remove_stop_word=False, use_PCA=False, n_components=2):
 	X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
 	X_test_tfidf = tfidf_transformer.transform(X_test_counts)
 
-	if use_PCA:
-		pca = TruncatedSVD(n_components = n_components) 
-		X_train_tfidf = pca.fit_transform(X_train_tfidf)
-		X_test_tfidf = pca.transform(X_test_tfidf)
+	X_train, X_test = X_train_tfidf, X_test_tfidf
 
-	return X_train_tfidf, train_y, X_test_tfidf, test_y
+	if preprocessing_trick == 'PCA':
+		pca = TruncatedSVD(n_components = n_components) 
+		X_train = pca.fit_transform(X_train)
+		X_test = pca.transform(X_test)
+	elif preprocessing_trick == 'LDA':
+		lda = LinearDiscriminantAnalysis()
+		X_train = lda.fit_transform(X_train.toarray(), train_y)
+		X_test = lda.transform(X_test.toarray())
+	elif preprocessing_trick == 'TSNE':
+		tsne = TSNE(n_components=n_components)
+		X_train = tsne.fit_transform(X_train.toarray())
+		X_test = tsne.transform(X_test.toarray())
+
+	return X_train, train_y, X_test, test_y
 
 # Extract the txt files and assemble into a pickle dataset
 def prepare_IMDB_dataset():

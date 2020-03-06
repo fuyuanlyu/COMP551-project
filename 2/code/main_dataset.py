@@ -97,12 +97,13 @@ def main_test(x_train, y_train, x_test, y_test):
 	print(np.mean(y_predicted_LR == y_test))
 
 if __name__ == '__main__':
-	datasets = ['20 news group', '20 news group with stop words']
+	# datasets = ['20 news group', '20 news group with stop words']
+	datasets = ['20 news group with stop words']
 	for dataset in datasets:
 		if dataset == '20 news group':
-			x_train, y_train, x_test, y_test = get_twenty_dataset(remove_stop_word=False, use_PCA=False, n_components=30)
+			x_train, y_train, x_test, y_test = get_twenty_dataset()
 		elif dataset == '20 news group with stop words': 
-			x_train, y_train, x_test, y_test = get_twenty_dataset(remove_stop_word=True, use_PCA=False, n_components=30)
+			x_train, y_train, x_test, y_test = get_twenty_dataset(remove_stop_word=True, preprocessing_trick='LDA')
 		elif dataset == 'IMDB Reviews':
 			x_train, y_train, x_test, y_test = get_IMDB_dataset()
 		main_test(x_train, y_train, x_test, y_test)
