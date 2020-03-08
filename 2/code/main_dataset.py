@@ -99,11 +99,12 @@ def main_test(x_train, y_train, x_test, y_test):
 if __name__ == '__main__':
 	# datasets = ['20 news group', '20 news group with stop words']
 	datasets = ['20 news group with stop words']
+	# datasets = ['IMDB Reviews']
 	for dataset in datasets:
 		if dataset == '20 news group':
 			x_train, y_train, x_test, y_test = get_twenty_dataset()
 		elif dataset == '20 news group with stop words': 
-			x_train, y_train, x_test, y_test = get_twenty_dataset(remove_stop_word=True, preprocessing_trick='LDA')
+			x_train, y_train, x_test, y_test = get_twenty_dataset(remove_stop_word=True, preprocessing_trick='SVD',n_components=2)
 		elif dataset == 'IMDB Reviews':
 			x_train, y_train, x_test, y_test = get_IMDB_dataset()
 		main_test(x_train, y_train, x_test, y_test)

@@ -30,7 +30,7 @@ def get_twenty_dataset(remove_stop_word=False, preprocessing_trick=None, n_compo
 
 	X_train, X_test = X_train_tfidf, X_test_tfidf
 
-	if preprocessing_trick == 'PCA':
+	if preprocessing_trick == 'SVD':
 		pca = TruncatedSVD(n_components = n_components) 
 		X_train = pca.fit_transform(X_train)
 		X_test = pca.transform(X_test)
