@@ -69,22 +69,22 @@ def main(x_train, y_train, x_test, y_test):
 	# print(np.mean(y_predicted_XGB == y_test))
 
 	##LSTM model: source: https://www.kaggle.com/jannesklaas/19-lstm-for-email-classification, but some parameer may not suit our dataset
-	print('LSTM model')
-	embedding_dim=114751
-	vocab_size=114751
-	max_length=1
-	emb_mean=7.189107310776865e-05
-	emb_std=0.002948158256916767
-	nb_words=min(vocab_size,len(word_index))
-	embedding_matrix=np.random.normal(emb_mean,emb_std,((nb_words, embedding_dim)))
-	model=Sequential()
-	model.add(Embedding(vocab_size,embedding_dim,input_length=max_length,weights=[embedding_matrix],trainable=False))
-	model.add(Activation('softmax'))
-	model.compile(optimizer='adam',loss='binary_crossentropy',metrics=['acc'])
-	model.fit(x_train,y_train,epochs=2)
-	y_predicted_LSTM = model.predict(x_test)
-	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
-	print(np.mean(y_predicted_LSTM == y_test))
+	#print('LSTM model')
+	#embedding_dim=114751
+	# vocab_size=114751
+	# max_length=1
+	# emb_mean=7.189107310776865e-05
+	# emb_std=0.002948158256916767
+	# nb_words=min(vocab_size,len(word_index))
+	# embedding_matrix=np.random.normal(emb_mean,emb_std,((nb_words, embedding_dim)))
+	# model=Sequential()
+	# model.add(Embedding(vocab_size,embedding_dim,input_length=max_length,weights=[embedding_matrix],trainable=False))
+	# model.add(Activation('softmax'))
+	# model.compile(optimizer='adam',loss='binary_crossentropy',metrics=['acc'])
+	# model.fit(x_train,y_train,epochs=2)
+	# y_predicted_LSTM = model.predict(x_test)
+	# #print(dataset + ':', np.mean(y_predicted_RDF == y_test))
+	# print(np.mean(y_predicted_LSTM == y_test))
 
 	# return {'NB':clf_NB,'LR':clf_LR,'DT':clf_DT,'SVC':clf_SVC,'ADB':clf_ADB,'RDF':clf_RDF,'NN':clf_NN,'XGB':clf_xgb}
 
