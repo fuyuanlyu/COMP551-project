@@ -68,7 +68,6 @@ def get_twenty_dataset(remove_stop_word=False, preprocessing_trick=None, n_compo
 
 	embedding_dict = {'embedding_dim': embedding_dim, 'vocab_size': vocab_size, 'max_length': max_length, 'embed_mean': embed_mean, 'embed_std': embed_std}
 
-
 	return X_train, twenty_train.target, X_test, twenty_test.target, embedding_dict
 
 

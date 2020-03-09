@@ -5,9 +5,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import  AdaBoostClassifier, RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
-from xgboost import XGBClassifier
-# from keras.models import Sequential
-# from keras.layers import LSTM,Dense,Activation,Embedding
+# from xgboost import XGBClassifier
+from keras.models import Sequential
+from keras.layers import LSTM,Dense,Activation,Embedding
 from dataset.dataset import get_twenty_dataset, get_IMDB_dataset
 
 import numpy as np
@@ -54,19 +54,19 @@ def main(x_train, y_train, x_test, y_test):
 	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
 	print(np.mean(y_predicted_RDF == y_test))
 
-	clf_NN = MLPClassifier(solver='lbfgs',hidden_layer_sizes=(30,1024),max_iter=5000)  ##trade off between hidden units and layer depth, deeper will better
-	print('MLPClassifier model')
-	clf_NN.fit(x_train, y_train)
-	y_predicted_NN = clf_NN.predict(x_test)
-	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
-	print(np.mean(y_predicted_NN == y_test))
+	# clf_NN = MLPClassifier(solver='lbfgs',hidden_layer_sizes=(30,1024),max_iter=5000)  ##trade off between hidden units and layer depth, deeper will better
+	# print('MLPClassifier model')
+	# clf_NN.fit(x_train, y_train)
+	# y_predicted_NN = clf_NN.predict(x_test)
+	# #print(dataset + ':', np.mean(y_predicted_RDF == y_test))
+	# print(np.mean(y_predicted_NN == y_test))
 
-	clf_xgb = XGBClassifier(learning_rate=0.01)
-	print('XGboost model')
-	clf_xgb.fit(x_train, y_train)
-	y_predicted_XGB = clf_xgb.predict(x_test)
-	#print(dataset + ':', np.mean(y_predicted_RDF == y_test))
-	print(np.mean(y_predicted_XGB == y_test))
+	# clf_xgb = XGBClassifier(learning_rate=0.01)
+	# print('XGboost model')
+	# clf_xgb.fit(x_train, y_train)
+	# y_predicted_XGB = clf_xgb.predict(x_test)
+	# #print(dataset + ':', np.mean(y_predicted_RDF == y_test))
+	# print(np.mean(y_predicted_XGB == y_test))
 
 	##LSTM model: source: https://www.kaggle.com/jannesklaas/19-lstm-for-email-classification, but some parameer may not suit our dataset
 	# embedding_dim=114751
