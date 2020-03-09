@@ -68,15 +68,10 @@ def get_twenty_dataset(remove_stop_word=False, preprocessing_trick=None, n_compo
 
 
 	# Calculate dimensions
-	#_, embedding_dim = X_train.shape
-	# print(type(X_train))
-	#max_length = np.amax(X_train)
-	#embed_mean = np.mean(X_train)
-	# embed_std = np.std(X_train.toarray())
-	#embed_std = np.std(X_train)
-	#embedding_dict = {'embedding_dim': embedding_dim, 'vocab_size': vocab_size, 'max_length': max_length, 'embed_mean': embed_mean, 'embed_std': embed_std}
+	max_length = np.amax(X_train)
+	embedding_dict = {'vocab_size': vocab_size, 'max_length': max_length}
 
-	return X_train, twenty_train.target, X_test, twenty_test.target
+	return X_train, twenty_train.target, X_test, twenty_test.target, embedding_dict
 
 
 # Get IMDB Review dataset
@@ -92,6 +87,8 @@ def get_IMDB_dataset(remove_stop_word=False, preprocessing_trick=None, n_compone
 		count_vect = CountVectorizer()
 	X_train_counts = count_vect.fit_transform(train_x_raw)
 	X_test_counts = count_vect.transform(test_x_raw)
+
+	_, vocab_size = X_train_counts.shape
 
 	tfidf_transformer = TfidfTransformer()
 	X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
@@ -112,8 +109,11 @@ def get_IMDB_dataset(remove_stop_word=False, preprocessing_trick=None, n_compone
 		X_train = tsne.fit_transform(X_train.toarray())
 		X_test = tsne.transform(X_test.toarray())
 
+	# Calculate dimensions
+	max_length = np.amax(X_train)
+	embedding_dict = {'vocab_size': vocab_size, 'max_length': max_length}
 
-	return X_train, train_y, X_test, test_y
+	return X_train, train_y, X_test, test_y, embedding_dict
 
 # Extract the txt files and assemble into a pickle dataset
 def prepare_IMDB_dataset():
