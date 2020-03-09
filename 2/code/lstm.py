@@ -9,21 +9,28 @@ from keras.models import Sequential
 from keras.layers import LSTM, Dense, Activation, Embedding
 
 
-twenty_train = fetch_20newsgroups(subset='train', shuffle=True, download_if_missing=False)
+twenty_train = fetch_20newsgroups(subset='train', remove=['headers', 'footers', 'quote'], shuffle=True)
+twenty_test = fetch_20newsgroups(subset='test', remove=['headers', 'footers', 'quote'], shuffle=True)
 texts = twenty_train.data # Extract text
 target = twenty_train.target # Extract target
+texts_test=twenty_test.data
+targets_test=twenty_test.target
 vocab_size = 20000
 tokenizer = Tokenizer(num_words=vocab_size) # Setup tokenizer
 tokenizer.fit_on_texts(texts)
 sequences = tokenizer.texts_to_sequences(texts) # Generate sequences
+sequences_test = tokenizer.texts_to_sequences(texts_test) # Generate sequences for texting
+
 word_index = tokenizer.word_index
 # Create inverse index mapping numbers to words
 inv_index = {v: k for k, v in tokenizer.word_index.items()}
 max_length = 100
 embedding_dim = 100 # We use 100 dimensional glove vectors
 data = pad_sequences(sequences, maxlen=max_length)
+data_test=pad_sequences(sequences_test, maxlen=max_length)
 ##Turning labels into One-Hot encodings¶
 labels = to_categorical(np.asarray(target))
+labels_test=to_categorical(np.asarray(targets_test))
 ##Loading GloVe embeddings
 embeddings_index = {} # We create a dictionary of word -> embedding
 f = open('glove.6B.100d.txt') # Open file
@@ -75,7 +82,8 @@ model.compile(optimizer='adam',
               loss='binary_crossentropy',
               metrics=['acc'])
 model.fit(data,labels,validation_split=0.2,epochs=2)
-
+lstm_predicted=model.predict(data_test)
+print(np.mean(lstm_predicted == data_test))
 
 
 
