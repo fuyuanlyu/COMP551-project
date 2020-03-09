@@ -5,7 +5,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import LinearSVC
 from sklearn.ensemble import  AdaBoostClassifier, RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
-# from xgboost import XGBClassifier
+from xgboost import XGBClassifier
 from keras.models import Sequential
 from keras.layers import LSTM,Dense,Activation,Embedding
 from dataset.dataset import get_twenty_dataset, get_IMDB_dataset

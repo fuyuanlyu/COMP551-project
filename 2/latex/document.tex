@@ -5,7 +5,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[font=small,labelfont=bf,tableposition=top]{caption}
 \usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithm, algorithmic}
+%\usepackage{algorithm, algorithmic}
 %opening
 \title{Project Report 2}
 \author{Fuyuan Lyu, Tianyu Shi, Dingyi Zhuang}
@@ -21,7 +21,7 @@
 \section{Introduction}
 
 \section{Related Work}
-Text classification intends to assign predefined labels to text documents \cite{allahyari2017brief,thangaraj2018text}. Firstly, probabilistic classifiers have gained a lot of popularity and shown markable performance \cite{chakrabarti1997using,joachims1996probabilistic,koller1997hierarchically,larkey1996combining}. These probabilistic methods introduce prior assumptions about how the data (words in documents) are generated and to use a probabilistic model on these assumptions. Besides probabilistic models, the hierarchical structures of decision trees is appealing. In the context of text data, the conditions on the tree nodes are usually defined as the terms in the documents, e.g. the presence or absence of a particular term in the document \cite{breiman1984classification,duda2012pattern}. Decision trees are also combined with boosting techniques to improve the accuracy of classification \cite{freund1995desicion,schapire2000boostexter}. Owing to the robustness of data, Supported Vector Machines (SVM) are also widely implemented to form linear classifiers for supervised learning classification algorithms \cite{joachims1998text,joachims2001statistical}.
+Text classification intends to assign predefined labels to text documents \cite{allahyari2017brief,thangaraj2018text}. Firstly, probabilistic classifiers have gained a lot of popularity and shown markable performance \cite{chakrabarti1997using,joachims1996probabilistic,koller1997hierarchically,larkey1996combining}. These probabilistic methods introduce prior assumptions about how the data (words in documents) are generated and to use a probabilistic model on these assumptions. Besides probabilistic models, the hierarchical structures of decision trees is appealing. In the context of text data, the conditions on the trese nodes are usually defined as the terms in the documents, e.g. the presence or absence of a particular term in the document \cite{breiman1984classification,duda2012pattern}. Decision trees are also combined with boosting techniques to improve the accuracy of classification \cite{freund1995desicion,schapire2000boostexter}. Owing to the robustness of data, Supported Vector Machines (SVM) are also widely implemented to form linear classifiers for supervised learning classification algorithms \cite{joachims1998text,joachims2001statistical}.
 
 Multiple classes in text classification makes it difficult to pick a particular set of attributes. There are many evolving techniques that adapt the algorithms for multi-class task, including K-nearest neighbor, decision trees and SVM \cite{tang2016multi,yi2011multi}. Recently neural network is widely applied in hierarchical multi-label classification issues. Neural network forms the base of the ensemble with the help of composite stumps \cite{nie2015neural,cerri2014hierarchical}.
 \section{Dataset and setup}
@@ -33,6 +33,52 @@ For our prediction model, we choose logistic regression, decision tree, support 
 
 
 \section{Results}
+
+The experiments are performed to find a suitable preprocessing and classification technique for the proposal text documentation classifiers. Effect of different preprocessing methods (TF-IDF, stop words removal, SVD and autoencoder) on the performance of the classifiers along with grid-search on tuning the best parameters on each classifiers are also discussed.
+\subsubsection*{Analysis of the performance of different classifiers}
+Test accuracy of different classifiers on two datasets are shown in Table \ref{accuracy_20} and Table \ref{accuracy_imdb}.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|cccccccc}
+        \hline
+         & NB   & LR & DT & SVC & ADB & RDF & MLP & XGB \\
+        \hline
+        TF-IDF & & & & & & & & \\
+		Stop word removal & & & & & & & & \\
+		SVD-2 & & & & & & & & \\
+		SVD-3 & & & & & & & & \\
+		SVD-4 & & & & & & & & \\
+		SVD-5 & & & & & & & & \\
+		SVD-6 & & & & & & & & \\
+		autoencoder & & & & & & & & \\
+		best model params & & & & & & & & \\
+        \hline
+    \end{tabular} 
+    \caption{Accuracy of differnt classifiers on Twenty Century News dataset}
+    \label{accuracy_20}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|cccccccc}
+        \hline
+         & NB   & LR & DT & SVC & ADB & RDF & MLP & XGB \\
+        \hline
+        TF-IDF & & & & & & & & \\
+		Stop word removal & & & & & & & & \\
+		SVD-2 & & & & & & & & \\
+		SVD-3 & & & & & & & & \\
+		SVD-4 & & & & & & & & \\
+		SVD-5 & & & & & & & & \\
+		SVD-6 & & & & & & & & \\
+		autoencoder & & & & & & & & \\
+		best model params & & & & & & & & \\
+        \hline
+    \end{tabular} 
+    \caption{Accuracy of differnt classifiers on IMDB dataset}
+    \label{accuracy_imdb}
+\end{table}
 
 \section{Discussion and Conclusion}
 

@@ -70,7 +70,7 @@ def main(x_train, y_train, x_test, y_test):
 
 	#LSTM model: source: https://www.kaggle.com/jannesklaas/19-lstm-for-email-classification, but some parameer may not suit our dataset
 	print('LSTM model')
-	embedding_dim=114751
+	embedding_dim=256
 	vocab_size=114751
 	max_length=1
 	emb_mean=7.189107310776865e-05

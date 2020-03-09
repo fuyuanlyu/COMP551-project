@@ -8,8 +8,8 @@ from sklearn.manifold import TSNE
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 import string
 from nltk.corpus import stopwords
-# from keras.models import Model
-# from keras.layers import Input, Dense 
+from keras.models import Model
+from keras.layers import Input, Dense 
 
 
 # Get 20 news group dataset
@@ -47,28 +47,36 @@ def get_twenty_dataset(remove_stop_word=False, preprocessing_trick=None, n_compo
 		X_train = tsne.fit_transform(X_train.toarray())
 		X_test = tsne.transform(X_test.toarray())
 	elif preprocessing_trick == 'autoencoder':
+		#n_components = 256
 		num_samples, feature_dim = X_train.shape
-		print(num_samples, feature_dim)
-		# input_sample = Input(shape=(feature_dim,))
-		# encoded = Dense(feature_dim, activation='relu')(input_sample)
-		# decoded = Dense(feature_dim, activation='sigmoid')(encoded)
-		# autoencoder = Model(input_sample, decoded)
+		print('autoencoder: ',num_samples, feature_dim,n_components)
+		input_sample = Input(shape=(feature_dim,))
+		encoded = Dense(int(feature_dim/2), activation='relu')(input_sample)
+		encoded = Dense(int(feature_dim/4), activation='relu')(encoded)
+		encoded = Dense(min([int(feature_dim/16),n_components]), activation='relu')(encoded)	
 
-		# autoencoder.fit(X_train, X_train, epochs=50, batch_size=256, shuffle=True, validation_data=(X_test, X_test))
-		# X_train = autoencoder.predict(X_train)
-		# X_test = autoencoder.predict(X_test)
+		decoded = Dense(feature_dim, activation='relu')(encoded)
+		decoded = Dense(feature_dim, activation='relu')(decoded)
+		decoded = Dense(feature_dim, activation='sigmoid')(decoded)
+
+		autoencoder = Model(input_sample, decoded)
+		autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+
+		autoencoder.fit(X_train, X_train, epochs=50, batch_size=256, shuffle=True, validation_data=(X_test, X_test))
+		X_train = autoencoder.predict(X_train)
+		X_test = autoencoder.predict(X_test)
 
 
 	# Calculate dimensions
-	_, embedding_dim = X_train.shape
+	#_, embedding_dim = X_train.shape
 	# print(type(X_train))
-	max_length = np.amax(X_train)
-	embed_mean = np.mean(X_train)
-	embed_std = np.std(X_train.toarray())
+	#max_length = np.amax(X_train)
+	#embed_mean = np.mean(X_train)
+	# embed_std = np.std(X_train.toarray())
+	#embed_std = np.std(X_train)
+	#embedding_dict = {'embedding_dim': embedding_dim, 'vocab_size': vocab_size, 'max_length': max_length, 'embed_mean': embed_mean, 'embed_std': embed_std}
 
-	embedding_dict = {'embedding_dim': embedding_dim, 'vocab_size': vocab_size, 'max_length': max_length, 'embed_mean': embed_mean, 'embed_std': embed_std}
-
-	return X_train, twenty_train.target, X_test, twenty_test.target, embedding_dict
+	return X_train, twenty_train.target, X_test, twenty_test.target
 
 
 # Get IMDB Review dataset
