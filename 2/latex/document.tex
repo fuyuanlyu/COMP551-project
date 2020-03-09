@@ -1,5 +1,11 @@
-\documentclass[]{scrartcl}
-
+\documentclass[11pt]{scrartcl}
+\usepackage[top=1cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{graphicx,float}
+\usepackage{url}
+\usepackage[T1]{fontenc}
+\usepackage[font=small,labelfont=bf,tableposition=top]{caption}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithm, algorithmic}
 %opening
 \title{Project Report 2}
 \author{Fuyuan Lyu, Tianyu Shi, Dingyi Zhuang}
@@ -15,10 +21,16 @@
 \section{Introduction}
 
 \section{Related Work}
+Text classification intends to assign predefined labels to text documents \cite{allahyari2017brief,thangaraj2018text}. Firstly, probabilistic classifiers have gained a lot of popularity and shown markable performance \cite{chakrabarti1997using,joachims1996probabilistic,koller1997hierarchically,larkey1996combining}. These probabilistic methods introduce prior assumptions about how the data (words in documents) are generated and to use a probabilistic model on these assumptions. Besides probabilistic models, the hierarchical structures of decision trees is appealing. In the context of text data, the conditions on the tree nodes are usually defined as the terms in the documents, e.g. the presence or absence of a particular term in the document \cite{breiman1984classification,duda2012pattern}. Decision trees are also combined with boosting techniques to improve the accuracy of classification \cite{freund1995desicion,schapire2000boostexter}. Owing to the robustness of data, Supported Vector Machines (SVM) are also widely implemented to form linear classifiers for supervised learning classification algorithms \cite{joachims1998text,joachims2001statistical}.
 
+Multiple classes in text classification makes it difficult to pick a particular set of attributes. There are many evolving techniques that adapt the algorithms for multi-class task, including K-nearest neighbor, decision trees and SVM \cite{tang2016multi,yi2011multi}. Recently neural network is widely applied in hierarchical multi-label classification issues. Neural network forms the base of the ensemble with the help of composite stumps \cite{nie2015neural,cerri2014hierarchical}.
 \section{Dataset and setup}
 
 \section{Proposed approach}
+For our prediction model, we choose logistic regression, decision tree, support vector machine, adaboot, and random forest as candidate models. Of all the well-known learning methods, decision trees come closest to meeting the requirements for serving as an off-the-shelf procedure for data mining. They are relatively fast to construct and they produce interpretable models (if the trees are small). For naive bayes model,it doesn’t require as much training data, and it can handles both continuous and discrete data. Also, it is not sensitive to irrelevant features. For SVM model, It scales relatively well to high dimensional data. SVM models have generalization in practice, the risk of over-fitting is less in SVM. We choose another multi-layer perceptron  model because it is a very good algorithm to be used to map an N-dimensional input signal to an M-dimensional output signal, this mapping can also be non-linear.  However, this will increase the total training time. Another limitation of the MLP algorithm is that the number of Hidden Neurons must be set by the user, setting this value too low may result in the MLP model underfitting while setting this value too high may result in the MLP model overfitting. 
+
+
+
 
 \section{Results}
 
@@ -31,4 +43,6 @@
 	\item Dingyi Zhuang:
 \end{itemize}
 
+\bibliographystyle{unsrt}
+\bibliography{ref}
 \end{document}
