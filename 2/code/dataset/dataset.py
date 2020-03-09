@@ -51,20 +51,20 @@ def get_twenty_dataset(remove_stop_word=False, preprocessing_trick=None, n_compo
 		num_samples, feature_dim = X_train.shape
 		print('autoencoder: ',num_samples, feature_dim,n_components)
 		input_sample = Input(shape=(feature_dim,))
-		encoded = Dense(int(feature_dim/2), activation='relu')(input_sample)
-		encoded = Dense(int(feature_dim/4), activation='relu')(encoded)
-		encoded = Dense(min([int(feature_dim/16),n_components]), activation='relu')(encoded)	
+		encoded = Dense(1024, activation='relu')(input_sample)
+		encoded = Dense(512, activation='relu')(encoded)
+		encoded = Dense(256, activation='relu')(encoded)	
 
-		decoded = Dense(feature_dim, activation='relu')(encoded)
-		decoded = Dense(feature_dim, activation='relu')(decoded)
+		decoded = Dense(512, activation='relu')(encoded)
+		decoded = Dense(1024, activation='relu')(decoded)
 		decoded = Dense(feature_dim, activation='sigmoid')(decoded)
 
 		autoencoder = Model(input_sample, decoded)
 		autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
 
-		autoencoder.fit(X_train, X_train, epochs=50, batch_size=256, shuffle=True, validation_data=(X_test, X_test))
-		X_train = autoencoder.predict(X_train)
-		X_test = autoencoder.predict(X_test)
+		autoencoder.fit(X_train.todense(), X_train.todense(), epochs=50, batch_size=256, shuffle=True, validation_data=(X_test.todense(), X_test.todense()))
+		X_train = autoencoder.predict(X_train.todense())
+		X_test = autoencoder.predict(X_test.todense())
 
 
 	# Calculate dimensions
