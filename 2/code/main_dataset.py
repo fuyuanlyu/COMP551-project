@@ -98,13 +98,14 @@ def main_test(x_train, y_train, x_test, y_test):
 
 if __name__ == '__main__':
 	# datasets = ['20 news group', '20 news group with stop words']
-	datasets = ['20 news group with stop words']
+	datasets = ['20 news group']
 	for dataset in datasets:
 		if dataset == '20 news group':
-			x_train, y_train, x_test, y_test = get_twenty_dataset()
+			x_train, y_train, x_test, y_test, embed_dict = get_twenty_dataset()
 		elif dataset == '20 news group with stop words': 
-			x_train, y_train, x_test, y_test = get_twenty_dataset(remove_stop_word=True, preprocessing_trick='LDA')
+			x_train, y_train, x_test, y_test, embed_dict = get_twenty_dataset(remove_stop_word=True, preprocessing_trick='autoencoder')
 		elif dataset == 'IMDB Reviews':
-			x_train, y_train, x_test, y_test = get_IMDB_dataset()
-		main_test(x_train, y_train, x_test, y_test)
+			x_train, y_train, x_test, y_test, embed_dict = get_IMDB_dataset()
+		print(embed_dict)
+		# main_test(x_train, y_train, x_test, y_test)
 		# main(x_train, y_train, x_test, y_test)

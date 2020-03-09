@@ -8,6 +8,8 @@ from sklearn.manifold import TSNE
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 import string
 from nltk.corpus import stopwords
+# from keras.models import Model
+# from keras.layers import Input, Dense 
 
 
 # Get 20 news group dataset
@@ -23,6 +25,8 @@ def get_twenty_dataset(remove_stop_word=False, preprocessing_trick=None, n_compo
 		count_vect = CountVectorizer()
 	X_train_counts = count_vect.fit_transform(twenty_train.data)
 	X_test_counts = count_vect.transform(twenty_test.data)
+
+	_, vocab_size = X_train_counts.shape
 
 	tfidf_transformer = TfidfTransformer()
 	X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
@@ -42,9 +46,30 @@ def get_twenty_dataset(remove_stop_word=False, preprocessing_trick=None, n_compo
 		tsne = TSNE(n_components=n_components)
 		X_train = tsne.fit_transform(X_train.toarray())
 		X_test = tsne.transform(X_test.toarray())
+	elif preprocessing_trick == 'autoencoder':
+		num_samples, feature_dim = X_train.shape
+		print(num_samples, feature_dim)
+		# input_sample = Input(shape=(feature_dim,))
+		# encoded = Dense(feature_dim, activation='relu')(input_sample)
+		# decoded = Dense(feature_dim, activation='sigmoid')(encoded)
+		# autoencoder = Model(input_sample, decoded)
+
+		# autoencoder.fit(X_train, X_train, epochs=50, batch_size=256, shuffle=True, validation_data=(X_test, X_test))
+		# X_train = autoencoder.predict(X_train)
+		# X_test = autoencoder.predict(X_test)
 
 
-	return X_train, twenty_train.target, X_test, twenty_test.target
+	# Calculate dimensions
+	_, embedding_dim = X_train.shape
+	# print(type(X_train))
+	max_length = np.amax(X_train)
+	embed_mean = np.mean(X_train)
+	embed_std = np.std(X_train.toarray())
+
+	embedding_dict = {'embedding_dim': embedding_dim, 'vocab_size': vocab_size, 'max_length': max_length, 'embed_mean': embed_mean, 'embed_std': embed_std}
+
+
+	return X_train, twenty_train.target, X_test, twenty_test.target, embedding_dict
 
 
 # Get IMDB Review dataset
@@ -79,6 +104,7 @@ def get_IMDB_dataset(remove_stop_word=False, preprocessing_trick=None, n_compone
 		tsne = TSNE(n_components=n_components)
 		X_train = tsne.fit_transform(X_train.toarray())
 		X_test = tsne.transform(X_test.toarray())
+
 
 	return X_train, train_y, X_test, test_y
 
