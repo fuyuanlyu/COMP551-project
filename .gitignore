@@ -9,6 +9,8 @@
 *.pdf
 *.gz
 *.log
+*.bbl
+*.blg
 
 # Python Lib
 *.pyc
