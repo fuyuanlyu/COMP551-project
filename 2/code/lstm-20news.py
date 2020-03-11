@@ -8,10 +8,11 @@ from keras.utils import to_categorical
 import os
 from keras.models import Sequential
 from keras.layers import LSTM, Dense, Activation, Embedding
+from keras.layers.convolutional import  Conv1D
+from keras.layers.convolutional import MaxPooling1D
 
-
-class LSTM_model():
-    def __init__(self,vocab_size = 20000,max_length = 100,embedding_dim = 100):
+class LSTM_20news():
+    def __init__(self,vocab_size = 20000,max_length = 1000,embedding_dim = 100):
         self.vocab_size=vocab_size
         self.max_length=max_length
         self.embedding_dim=embedding_dim
@@ -85,14 +86,16 @@ class LSTM_model():
                             input_length=self.max_length,
                             weights = [embedding_matrix],
                             trainable = False))
-        model.add(LSTM(128,recurrent_dropout=0.1))
-        model.add(Dense(20))
+        # model.add(Conv1D(filters=32,kernel_size=3,padding='same',activation='relu'))
+        # model.add(MaxPooling1D(pool_size=2))
+        model.add(LSTM(200))
+        model.add(Dense(20,input_dim=20,activation='sigmoid'))
         model.add(Activation('softmax'))
         model.summary()
         model.compile(optimizer='adam',
                       loss='binary_crossentropy',
                       metrics=['acc'])
-        model.fit(data,labels,validation_split=0.2,epochs=100)
+        model.fit(data,labels,validation_split=0.2,epochs=20)
 
     # def main_test(self):
         ##process testing dataset
@@ -100,7 +103,7 @@ class LSTM_model():
         texts_test= twenty_test.data # Extract text
         targets_test=twenty_test.target# Extract target
         tokenizer_test = Tokenizer(num_words=self.vocab_size) # Setup tokenizer
-        tokenizer_test.fit_on_texts(texts_test)
+        tokenizer_test.fit_on_texts(texts)
         sequences_test = tokenizer_test.texts_to_sequences(texts_test) # Generate sequences for texting
         data_test=pad_sequences(sequences_test, maxlen=self.max_length)
         ##Turning labels into One-Hot encodings¶
@@ -111,4 +114,4 @@ class LSTM_model():
         print('accuracy',np.mean(np.argmax(lstm_predicted,axis=1) == np.argmax(labels_test,axis=1)))
 
 if __name__ == '__main__':
-    LSTM_model()
+    LSTM_20news()
