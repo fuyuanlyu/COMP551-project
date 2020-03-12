@@ -44,7 +44,7 @@ Multiple classes in text classification makes it difficult to pick a particular 
 We use two dataset to test our model performance. The Twenty Newsgroup dataset is a 20-class classification task with approximately 20000 newsgroup documents evenly spread\cite{Lang95}. While the IMDB Reviews dataset is a binary sentimental classification task with 25000 movie reviews for both training and testing\cite{maas-EtAl:2011:ACL-HLT2011}. In the feature-extraction stage, we propose two types of methods: TF-IDF based and word2vec based. In the TF-IDF based method, we first tokenize every samples and apply TF-IDF to each. Several other feature engineering techniques, such as removing stop word or SVD decomposition. In the word2vec based method, we use pre-trained GloVe\cite{pennington2014glove} word representation to represent each sample.
 
 \section{Proposed approach}
-For our prediction model, we choose logistic regression , decision tree, support vector classifier, Adaboost, random forest, XGBoost and neural networks as candidate models. Of all the well-known learning methods, decision trees come closest to meeting the requirements for serving as an off-the-shelf procedure for data mining. They are relatively fast to construct and they produce interpretable models (if the trees are small). For naive bayes model, it does not require as much training data, and it can handles both continuous and discrete data. Also, it is not sensitive to irrelevant features. For SVM model, It scales relatively well to high dimensional data. SVM models have generalization in practice, the risk of over-fitting is less in SVM. For XGBoost algorithm, it is a well-known tree boosting algorithm applied into many real world application. We choose another MLP model because it is a very good algorithm to be used to map an N-dimensional input signal to an M-dimensional output signal, this mapping can also be non-linear. However, this will increase the total training time. Another limitation of the MLP algorithm is that the number of Hidden Neurons must be set by the user, setting this value too low may result in the MLP model underfitting while setting this value too high may result in the MLP model overfitting. 
+For our prediction model, we choose logistic regression , decision tree, support vector classifier, Adaboost, random forest, XGBoost and neural networks as candidate models. Of all the well-known learning methods, decision trees come closest to meeting the requirements for serving as an off-the-shelf procedure for data mining. They are relatively fast to construct and they produce interpretable models (if the trees are small). For naive bayes model, it does not require as much training data. Also, it is not sensitive to irrelevant features. For SVM model, It scales relatively well to high dimensional data. SVM models have generalization in practice, the risk of over-fitting is less in SVM. For XGBoost algorithm, it is a well-known tree boosting algorithm applied into many real world application. We choose MLP model because it is a very good algorithm to be used to map an N-dimensional input signal to an M-dimensional output signal, this mapping can also be non-linear. However, this will increase the total training time.  As these two datasets are sequence data, so we also leveraged the advantage of LSTM models for prediction.
 
 \section{Results}
 
@@ -129,16 +129,22 @@ We also discuss the overall accuracy where we consider the true positive portion
 
 
 \section{Discussion and Conclusion}
-We achieve TA's baselines in Twenty Newsgroup dataset accuracy and overall accuracy and approximate very closely to IMDB dataset accuracy. We find that TF-IDF alone is very powerful preprocessing technique. Generally, SVM outperforms other classifiers and achieves highest accuracy in all cases. Runtime of traditional Machine Learning algorithm is much less than MLP based Neural Networks. Best parameters of models are roughly the same on two datasets but slightly differ. We hope to analyze more state-of-the-art for higher accuracy.
+We outperform TA's baselines in Twenty Newsgroup dataset accuracy and overall accuracy and approximate very closely to IMDB dataset accuracy. We find that TF-IDF alone is very powerful preprocessing technique. Generally, SVM outperforms other classifiers and achieves highest accuracy in all cases. Runtime of traditional Machine Learning algorithm is much less than MLP based Neural Networks. Best parameters of models are roughly the same on two datasets but slightly differ. We also studied state-of-the-art method for higher accuracy. We constructed different LSTM structures (including BiLSTM\cite{graves2013hybrid}, ConvLSTM\cite{LSTM+CNN}) and analysed different hyper-parameters' effect. We found that convLSTM can improve the accuracy of vanilla LSTM model significantly on IMDB  dataset. However the accuracy drop down a bit in 20 news group dataset. Generally, ConvLSTM can speed up the training time approximate 50\%. For BiLSTM model, it has similar result on IMDB reviews dataset. But it will increase the accuracy of LSTM on 20 news group dataset in sacrifice of training time. The detailed results are given in Appendix.
 
 \section{Statement for Contributions}
 \begin{itemize}
 	\item Fuyuan Lyu: Dataset preprocessing and feature engineering
-	\item Tianyu Shi:
+	\item Tianyu Shi: Model design, hyper-parameter and model architecture analysis.
 	\item Dingyi Zhuang: Experiments, validation pipelines and paper writing
 \end{itemize}
-
 \newpage
 \bibliographystyle{unsrt}
+
 \bibliography{ref}
+\section{Appendix}
+\begin{itemize}
+	\item Structure Results and Analysis
+	\item Hyper-parameter  Results and Analysis
+	
+\end{itemize}
 \end{document}
