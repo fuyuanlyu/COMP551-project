@@ -10,6 +10,9 @@ dataset/dataset.py: code for dataset preparation
 
 dataset/IMDB.pickle: IMDB dataset. We transform the original 50000 txt files into a pickle dataset for the sake of simplicity. The transformation is done via dataset/dataset.py:119 prepare_IMDB_dataset() function. No other processing is done in this step.
 
+lstm-exp-architecture/: code for different LSTMs' architechture analysis (include:biLSTM,convLSTM,LSTM)
+
+lstm-exp-hyperparameter/: code for LSTM's hyperparameters analysis (include: epoch, max review length) 
 
 
 -----------------------------------------
