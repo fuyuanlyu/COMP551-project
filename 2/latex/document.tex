@@ -8,6 +8,7 @@
 %\usepackage{algorithm, algorithmic}
 %opening
 \usepackage{titling}
+\usepackage{multirow}
 \setlength{\droptitle}{-2cm}
 \title{Project Report 2}
 \author{Fuyuan Lyu, Tianyu Shi, Dingyi Zhuang}
@@ -129,7 +130,7 @@ We also discuss the overall accuracy where we consider the true positive portion
 
 
 \section{Discussion and Conclusion}
-We outperform TA's baselines in Twenty Newsgroup dataset accuracy and overall accuracy and approximate very closely to IMDB dataset accuracy. We find that TF-IDF alone is very powerful preprocessing technique. Generally, SVM outperforms other classifiers and achieves highest accuracy in all cases. Runtime of traditional Machine Learning algorithm is much less than MLP based Neural Networks. Best parameters of models are roughly the same on two datasets but slightly differ. We also studied state-of-the-art method for higher accuracy. We constructed different LSTM structures (including BiLSTM\cite{graves2013hybrid}, ConvLSTM\cite{LSTM+CNN}) and analysed different hyper-parameters' effect. We found that convLSTM can improve the accuracy of vanilla LSTM model significantly on IMDB  dataset. However the accuracy drop down a bit in 20 news group dataset. Generally, ConvLSTM can speed up the training time approximate 50\%. For BiLSTM model, it has similar result on IMDB reviews dataset. But it will increase the accuracy of LSTM on 20 news group dataset in sacrifice of training time. The detailed results are given in Appendix.
+We outperform TA's baselines in Twenty Newsgroup dataset accuracy and overall accuracy and approximate very closely to IMDB dataset accuracy(ConvLSTM model on IMDB outperforms baseline a little bit [Table \ref{acc}]). We find that TF-IDF alone is very powerful preprocessing technique. Generally, SVM outperforms other classifiers and achieves highest accuracy in all cases. Runtime of traditional Machine Learning algorithm is much less than MLP based Neural Networks. Best parameters of models are roughly the same on two datasets but slightly differ. We also studied state-of-the-art method for higher accuracy. We constructed different LSTM structures (including BiLSTM\cite{graves2013hybrid}, ConvLSTM\cite{LSTM+CNN}) and analysed different hyper-parameters' effect. We found that convLSTM can improve the accuracy of vanilla LSTM model significantly on IMDB  dataset. However the accuracy drop down a bit in 20 news group dataset. Generally, ConvLSTM can speed up the training time approximate 50\%. For BiLSTM model, it has similar result on IMDB reviews dataset. But it will increase the accuracy of LSTM on 20 news group dataset in sacrifice of training time. The detailed results are given in Appendix.
 
 \section{Statement for Contributions}
 \begin{itemize}
@@ -142,9 +143,59 @@ We outperform TA's baselines in Twenty Newsgroup dataset accuracy and overall ac
 
 \bibliography{ref}
 \section{Appendix}
+\subsection{Analysis of LSTM model}
 \begin{itemize}
 	\item Structure Results and Analysis
+	Basically, we have analysed three different architectures of LSTM. Firstly, we consider the simple LSTM as shown in Figure \ref{LSTM}.
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9 \linewidth]{fig/lstm.png}
+	\caption{Naive LSTM structure}
+	\label{LSTM}
+\end{figure}
+	To improve our models performance, we further consider to apply CNN for feature embedding then use LSTM to do the sequence prediction, which is inspired from \cite{LSTM+CNN}, then we build the following model as shown in Figure \ref{ConvLSTM}.
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{fig/convlstm.png}
+	\caption{ConvLSTM structure}
+	\label{ConvLSTM}
+\end{figure}
+	Furthermore, to decrease the running time of our model, we modified the LSTM into biLSTM based on the best structure on each dataset, i.e. in IMDB dataset we use ConvbiLSTM and 20 news we use biLSTM. A typical structure of ConvbiLSTM is shown in Figure \ref{bilstm}.
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/bilstm.png}
+	\caption{biLSTM structure}
+	\label{bilstm}
+\end{figure}
+The accuracy and run time of each model on different datasets are summarized in the following Table \ref{acc}.
+% Please add the following required packages to your document preamble:
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+                 & &ConvLSTM  &LSTM  &BiLSTM    \\ \hline
+\multirow{2}{*}{News} & Accuracy &0.6191  &0.6775  &0.6830  \\ \cline{2-5} 
+                  &Runtime(s)  & 8314.1449 &15379.1084  &27298.4988  \\ \hline
+\multirow{2}{*}{IMDB} & Accuracy &\textbf{0.8916}  &0.7533  &0.8844  \\ \cline{2-5} 
+                  &Runtime(s)  &900.3511  &1767.4546  &1473.2600  \\ \hline
+\end{tabular}
+\label{acc}
+\caption{Summary of different LSTM structures' accuracy and run time}
+\end{table} 
 	\item Hyper-parameter  Results and Analysis
-	
+	For hyper-parameter analysis, we firstly analysed the effect of max review length, we can find that the best parameter is 500, when the max review length is quite small, the accuracy turns to be very low.
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/maxlen.pdf}
+	\caption{Max review length's effect}
+	\label{maxlen}
+\end{figure}
+	We have also analysed the effect of epoch in training, we found that for the smallest epoch the model has the highest accuracy on testing dataset, which is contrary to our hindsight, because more epochs should increase the accuracy a bit but will decrease the accuracy due to overfitting. We will further investigate the effect of drop-out parameter with epoch in the future.
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{fig/epoch.pdf}
+	\caption{Epoch's effect}
+	\label{epoch}
+\end{figure}
 \end{itemize}
 \end{document}
