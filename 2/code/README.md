@@ -2,10 +2,6 @@ The code is organized as follows:
 
 Validation pipeline.ipynb: code for evaluation different models and hyper-parameter tuning
 
-lstm/lstm-20news.py: code for lstm model on 20 news group dataset
-
-lstm/lstm-imdb.py: code for lstm model on IMDB review dataset
-
 dataset/dataset.py: code for dataset preparation
 
 dataset/IMDB.pickle: IMDB dataset. We transform the original 50000 txt files into a pickle dataset for the sake of simplicity. The transformation is done via dataset/dataset.py:119 prepare_IMDB_dataset() function. No other processing is done in this step.
