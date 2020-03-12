@@ -18,13 +18,11 @@
 \maketitle
 
 \begin{abstract}
-In this project, we try to implement different models based on \textit{scikit-learn} and other libraries and evaluate these models on two dataset: Twenty Newsgroup dataset, a multi-class classification task, and IMDB Reviews dataset, a binary classification task. When extracting feature vectors, we tried TF-IDF or used Glove embedding. We also tried to remove stop words or do Singular Value Decomposition (SVD) upon TF-IDF feature extractor. In the models implementation stage, we use models include but not limited to: SVM, Logistic Regression, Decision trees, Ada Boost, random forest, XGBoost, Multiple layer perceptron, LSTM. We also tune the hyper-parameter with greedy search method. SVM with TF-IDF techniques excels other upon Twenty Newsgroup dataset with 0.804 accuracy, IMDB dataset with 0.883 accuracy and overall 0.864 accuracy.
+In this project, we try to implement different models based on \textit{scikit-learn} and other libraries and evaluate these models on two dataset: Twenty Newsgroup dataset, a multi-class classification task, and IMDB Reviews dataset, a binary classification task. When extracting feature vectors, we tried TF-IDF or used Glove embedding. We also tried to remove stop words or do Singular Value Decomposition (SVD) upon TF-IDF feature extractor. In the models implementation stage, we use models include but not limited to: SVM, Logistic Regression, Decision trees, Ada Boost, random forest, XGBoost, Multiple layer perceptron, LSTM. We also tune the hyper-parameter with grid search pipelines. SVM with TF-IDF techniques excels other upon Twenty Newsgroup dataset with 0.804 accuracy, IMDB dataset with 0.883 accuracy and overall 0.864 accuracy. We also try state-of-the-art method to achieve 0.892 accuracy in IMDB dataset to our best.
 \end{abstract}
 
 \section{Introduction}
-The goal of this project is to investigate the performance of different models upon two different datasets: Twenty Newsgroup dataset and IMDB Reviews dataset and perform hyper-parameter tuning.
-
-The Twenty Newsgroup dataset is a 20-class classification task with approximately 20000 newsgroup documents evenly spread\cite{Lang95}. While the IMDB Reviews dataset is a binary sentimental classification task with 25000 movie reviews for both training and testing\cite{maas-EtAl:2011:ACL-HLT2011}.
+The goal of this project is to investigate the performance of different models upon two different datasets: Twenty Newsgroup dataset and IMDB Reviews dataset and perform hyper-parameter tuning. The Twenty Newsgroup dataset is a 20-class classification task with approximately 20000 newsgroup documents evenly spread\cite{Lang95}. While the IMDB Reviews dataset is a binary sentimental classification task with 25000 movie reviews for both training and testing\cite{maas-EtAl:2011:ACL-HLT2011}.
 
 In the pre-processing stage, we mainly try two types of techniques. First is TF-IDF based counting features with different pre-processing tricks, such as removing stop word or SVD decomposition. Second is using pre-trained global vector representation to embed the word vector. Here we use GloVe, an unsupervised learning algorithm to obtain vector representation\cite{pennington2014glove}.
 
@@ -45,14 +43,14 @@ Multiple classes in text classification makes it difficult to pick a particular 
 We use two dataset to test our model performance. The Twenty Newsgroup dataset is a 20-class classification task with approximately 20000 newsgroup documents evenly spread\cite{Lang95}. While the IMDB Reviews dataset is a binary sentimental classification task with 25000 movie reviews for both training and testing\cite{maas-EtAl:2011:ACL-HLT2011}. In the feature-extraction stage, we propose two types of methods: TF-IDF based and word2vec based. In the TF-IDF based method, we first tokenize every samples and apply TF-IDF to each. Several other feature engineering techniques, such as removing stop word or SVD decomposition. In the word2vec based method, we use pre-trained GloVe\cite{pennington2014glove} word representation to represent each sample.
 
 \section{Proposed approach}
-For our prediction model, we choose logistic regression , decision tree, support vector classifier, Adaboost, random forest, XGBoost and neural networks as candidate models. Of all the well-known learning methods, decision trees come closest to meeting the requirements for serving as an off-the-shelf procedure for data mining. They are relatively fast to construct and they produce interpretable models (if the trees are small). For naive bayes model, it does not require as much training data. Also, it is not sensitive to irrelevant features. For SVM model, It scales relatively well to high dimensional data. SVM models have generalization in practice, the risk of over-fitting is less in SVM. For XGBoost algorithm, it is a well-known tree boosting algorithm applied into many real world application. We choose MLP model because it is a very good algorithm to be used to map an N-dimensional input signal to an M-dimensional output signal, this mapping can also be non-linear. However, this will increase the total training time.  As these two datasets are sequence data, so we also leveraged the advantage of LSTM models for prediction.
+For our prediction model, we choose logistic regression , decision tree, support vector classifier, Adaboost, random forest, XGBoost and neural networks as candidate models. Of all the well-known learning methods, decision trees come closest to meeting the requirements for serving as an off-the-shelf procedure for data mining. They are relatively fast to construct and they produce interpretable models (if the trees are small). For naive bayes model, it does not require as much training data. Also, it is not sensitive to irrelevant features. For SVM model, It scales relatively well to high dimensional data. SVM models have generalization in practice, the risk of over-fitting is less in SVM. For XGBoost algorithm, it is a well-known tree boosting algorithm applied into many real world application. We choose MLP model because it is a very good algorithm to be used to map an N-dimensional input signal to an M-dimensional output signal, this mapping can also be non-linear. However, this will increase the total training time.  As these two datasets are sequence data, so we also leveraged the advantage of LSTM models for prediction as a trial of state-of-the-art algorithm.
 
 \section{Results}
 
-The experiments are performed to find a suitable preprocessing and classification technique for the proposal text documentation classifiers. Effect of different preprocessing methods (TF-IDF, stop words removal and SVD with different latent dimensions) on the performance of the classifiers along with grid-search on tuning parameters on each classifiers are also discussed. We combine $sklearn.pipline$ and $sklearn.model_selection.GridSearchCV$ to conduct general parameters search on 7 different data preprocessing methods where we choose $k=5$ for cross-validation when tuning parameters. 
+The experiments are performed to find a suitable preprocessing and classification technique for the proposal text documentation classifiers. Effect of different preprocessing methods (TF-IDF, stop words removal and SVD with different latent dimensions) on the performance of the classifiers along with grid-search on tuning parameters on each classifiers are also discussed. We combine $sklearn.pipline$ and $sklearn.model\_selection.GridSearchCV$ to conduct general parameters search on 7 different data preprocessing methods where we choose $k=5$ for cross-validation when tuning parameters. 
 
 \subsubsection*{Analysis of the accuracy performance of different classifiers}
-We plot test accuracy of different classifiers on two datasets according to 7 preprocessing techniques, including TF-IDF, TF-IDF \& removing stopping words and TF-IDF \& SVD with latent dimensions from 2 to 6. The result is shown in Figure \ref{accuracy_20} and Figure \ref{accuracy_imdb}.
+We plot test accuracy of different classifiers on two datasets according to 7 preprocessing techniques, including TF-IDF only, TF-IDF \& removing stopping words and TF-IDF \& SVD with latent dimensions from 2 to 6. The result is shown in Figure \ref{accuracy_20} and Figure \ref{accuracy_imdb}.
 
 \begin{figure}[H]
 	\centering
@@ -68,7 +66,7 @@ We plot test accuracy of different classifiers on two datasets according to 7 pr
 	\label{accuracy_imdb}
 \end{figure}
 
-The best performance is marked red. To be noticed that the SVD decomposition will produce negative values, which is not compatible for NB input. The accuracy and runtime plots would miss such records. From Figure \ref{accuracy_20}, it is clear dimensions reductions will lose much information if we focus on the multi-class classification problem like Twenty Newsgroup dataset but will slightly improve the performance of binary classifiers in Figure \ref{accuracy_imdb}. Generally, SVM performs best in both datasets, with accuracy 0.804 in TF-IDF processed Twenty Newsgroup dataset and 0.883 in TF-IDF processed IMDB dataset.
+The best performance is marked red. To be noticed that the SVD decomposition will produce negative values, which is not compatible for NB input. The accuracy and runtime plots would miss such records. From Figure \ref{accuracy_20}, it is clear dimensions reductions will lose much information if we focus on the multi-class classification problem like Twenty Newsgroup dataset but will slightly improve the performance of binary classifiers in Figure \ref{accuracy_imdb}. Generally, SVM performs best in both datasets, with accuracy 0.804 in TF-IDF processed Twenty Newsgroup dataset and 0.883 in TF-IDF processed IMDB dataset. We also analyze the \textbf{training accuracy} in Figure \ref{train_accuracy_20} and Figure \ref{train_accuracy_imdb} to see why some models fails, which is put in the Appendix.
 
 \subsubsection*{Analysis of the runtime performance of different classifiers}
 Futhermore, We plot runtime of classifiers with best parameters on two datasets according to 7 preprocessing techniques, as shown in Figure \ref{runtime_20} and Figure \ref{runtime_imdb}.
@@ -90,7 +88,7 @@ Futhermore, We plot runtime of classifiers with best parameters on two datasets 
 We find that removing stopping words and dimensional reductions will generally reduce the runtime except that NB is influenced slightly and MLP's runtime will, in the contrary, have sharp increase. We find that NB has smallest runtime 0.0636 seconds in TF-IDF processed Twenty Newsgroup dataset and 0.0153 in TF-IDF \& removing stopping words IMDB dataset. Combined with the previous accuracy performance where TF-IDF preprocessing also outperforms, we deduce that more compressed representation like dimensional reductions will increase the information loss, which is harmful to our text classification, especially multi-label classification.
 
 \subsubsection*{Best parameters}
-It is costly to list best parameters for all preprocessing and model combinations, we only consider the best parameters of models on 'TF-IDF' processed datasets, since such preprocessing is best performed. The best parameters are listed in Table \ref{params}. We split the models into tunable and not-tunable ones. To be noticed that, we use term "not-tunable" because it is computationally heavy for the model to train so we roughly choose the best parameters manually. Most models have the same best parameters in two datasets, but NB, SVM and ADB have slight difference. The details of parameters tuning can be found in the output in \textit{Validation pipeline.ipynb}.
+It is costly to list best parameters for all preprocessing and model combinations, we only consider the best parameters of models on 'TF-IDF' processed datasets, since such preprocessing is best performed. The best parameters are listed in Table \ref{params}. We split the models into tunable and not-tunable ones. To be noticed that, we use term "not-tunable" because it is computationally heavy for the model to retrain so we roughly choose the best parameters manually for them. Most models have the same best parameters in two datasets, but NB, SVM and ADB have slight difference, for example, the loss of SVM matters on different datasets and the number of estimators in ADB also is also significant. The details of parameters tuning can be found in the output in \textit{Validation pipeline.ipynb}.
 
 \begin{table}[H]
     \centering
@@ -118,7 +116,7 @@ It is costly to list best parameters for all preprocessing and model combination
 \end{table}
 
 \subsubsection*{Overall accuracy of different classifiers}
-We also discuss the overall accuracy where we consider the true positive portion on two datasets' joint test result. The result is shown in Figure \ref{overall_accuracy}. We can find that only LR, SVM and MLP can outperform the baseline.
+We discuss the overall accuracy where we consider the true positive portion on two datasets' joint test result, shown in Figure \ref{overall_accuracy}. We can find that only LR, SVM and MLP can outperform the baseline.
 
 \begin{figure}[H]
 	\centering
@@ -130,7 +128,7 @@ We also discuss the overall accuracy where we consider the true positive portion
 
 
 \section{Discussion and Conclusion}
-We outperform TA's baselines in Twenty Newsgroup dataset accuracy and overall accuracy and approximate very closely to IMDB dataset accuracy(ConvLSTM model on IMDB outperforms baseline a little bit [Table \ref{acc}]). We find that TF-IDF alone is very powerful preprocessing technique. Generally, SVM outperforms other classifiers and achieves highest accuracy in all cases. Runtime of traditional Machine Learning algorithm is much less than MLP based Neural Networks. Best parameters of models are roughly the same on two datasets but slightly differ. We also studied state-of-the-art method for higher accuracy. We constructed different LSTM structures (including BiLSTM\cite{graves2013hybrid}, ConvLSTM\cite{LSTM+CNN}) and analysed different hyper-parameters' effect. We found that convLSTM can improve the accuracy of vanilla LSTM model significantly on IMDB  dataset. However the accuracy drop down a bit in 20 news group dataset. Generally, ConvLSTM can speed up the training time approximate 50\%. For BiLSTM model, it has similar result on IMDB reviews dataset. But it will increase the accuracy of LSTM on 20 news group dataset in sacrifice of training time. The detailed results are given in Appendix.
+We outperform TA's baselines in Twenty Newsgroup dataset accuracy and overall accuracy and approximate closely to IMDB dataset accuracy with traditional Machine Learning method, Deep Learning model ConvLSTM model on IMDB outperforms baseline, as shown in Table \ref{acc}. We find that TF-IDF alone is very powerful preprocessing technique. Generally, SVM outperforms other classifiers and achieves highest accuracy in all cases. Runtime of traditional Machine Learning algorithm is much less than MLP based Neural Networks. Best parameters of models are roughly the same on two datasets but slightly differ. We also studied cutting-edge LSTM for higher accuracy, where we exceed the baseline of IMDB dataset. The details are given in Appendix.
 
 \section{Statement for Contributions}
 \begin{itemize}
@@ -139,11 +137,14 @@ We outperform TA's baselines in Twenty Newsgroup dataset accuracy and overall ac
 	\item Dingyi Zhuang: Experiments, validation pipelines and paper writing
 \end{itemize}
 \newpage
-\bibliographystyle{unsrt}
 
+\bibliographystyle{unsrt}
 \bibliography{ref}
-\section{Appendix}
-\subsection{Analysis of LSTM model}
+
+\section*{Appendix}
+\subsection*{Analysis of LSTM model}
+We constructed different LSTM structures (including BiLSTM\cite{graves2013hybrid}, ConvLSTM\cite{LSTM+CNN}) and analysed different hyper-parameters' effect. We found that convLSTM can improve the accuracy of vanilla LSTM model significantly on IMDB  dataset. However the accuracy drop down a bit in 20 news group dataset. Generally, ConvLSTM can speed up the training time approximate 50\%. For BiLSTM model, it has similar result on IMDB reviews dataset. But it will increase the accuracy of LSTM on 20 news group dataset in sacrifice of training time. 
+
 \begin{itemize}
 	\item Structure Results and Analysis
 	Basically, we have analysed three different architectures of LSTM. Firstly, we consider the simple LSTM as shown in Figure \ref{LSTM}.
@@ -169,6 +170,7 @@ We outperform TA's baselines in Twenty Newsgroup dataset accuracy and overall ac
 \end{figure}
 The accuracy and run time of each model on different datasets are summarized in the following Table \ref{acc}.
 % Please add the following required packages to your document preamble:
+
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|l|l|}
@@ -179,9 +181,10 @@ The accuracy and run time of each model on different datasets are summarized in 
 \multirow{2}{*}{IMDB} & Accuracy &\textbf{0.8916}  &0.7533  &0.8844  \\ \cline{2-5} 
                   &Runtime(s)  &900.3511  &1767.4546  &1473.2600  \\ \hline
 \end{tabular}
-\label{acc}
 \caption{Summary of different LSTM structures' accuracy and run time}
+\label{acc}
 \end{table} 
+
 	\item Hyper-parameter  Results and Analysis
 	For hyper-parameter analysis, we firstly analysed the effect of max review length, we can find that the best parameter is 500, when the max review length is quite small, the accuracy turns to be very low.
 	\begin{figure}[H]
@@ -198,4 +201,23 @@ The accuracy and run time of each model on different datasets are summarized in 
 	\label{epoch}
 \end{figure}
 \end{itemize}
+
+
+\subsection*{Analysis of training accuracy of tunable models}
+From the training accuracy (Figure \ref{train_accuracy_20} and Figure \ref{train_accuracy_imdb}) we can find that ADB models perform badly in Twenty Newsgroup dataset because it is underfitting. It is surprising that even SVM and LR does not perform quite well in the training accuracy, but still can obtain good results in the test dataset. We have double-check the code and are quite surprised by the result. We think this might due to the multi-class classification problem where decision boundaries of SVM and LR are less affected by new records. In the contrary, DT can perform quite well in the training set, even reaching 100\% accuracy. However, this leads to the other extreme that models overfit the training set. That is why DT performs bad in both datasets.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{fig/model_acc_train_20.eps}
+	\caption{Training accuracy on Twenty Newsgroup dataset according to different pre-processing techniques}
+	\label{train_accuracy_20}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{fig/model_acc_train_imdb.eps}
+	\caption{Training accuracy on IMDB Reviews dataset according to different pre-processing techniques}
+	\label{train_accuracy_imdb}
+\end{figure}
+
 \end{document}
