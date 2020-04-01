@@ -125,7 +125,7 @@ def test(PATH):
     net.eval()
     Accurate = 0
     Total = 0
-    for i,data in enumerate(trainloader,0): #enumerate starts from 0
+    for i,data in enumerate(testloader,0): #enumerate starts from 0
         # get the inputs; data is a list of [inputs, labels]
         inputs, labels = data
         outputs = net(inputs)
