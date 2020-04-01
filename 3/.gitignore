@@ -1,0 +1,15 @@
+# ignore all txt files
+*.txt
+
+# macOS Files
+.DS_Store
+
+# ignore all generated files from latex
+*.aux
+*.pdf
+!551P2.pdf
+*.gz
+*.log
+
+# Python Lib
+*.pyc
