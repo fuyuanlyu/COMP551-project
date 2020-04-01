@@ -1,96 +1,124 @@
+### Prepare for training & testing dataset. Define dataset class.
+import torch
+import torchvision.transforms as transforms
+import random
+from torch.utils.data import Dataset
+from PIL import Image
+import matplotlib.pyplot as plt
 import pickle
-import numpy as np
 
-def load_cfar10_batch(cifar10_dataset_folder_path, batch_id):
-    with open(cifar10_dataset_folder_path + '/data_batch_' + str(batch_id), mode='rb') as file:
-        # note the encoding type is 'latin1'
-        batch = pickle.load(file, encoding='latin1')
+class CIFAR10_from_array(Dataset):
+    def __init__(self, data, label, transform=None):
+        ##############################################
+        ### Initialize paths, transforms, and so on
+        ##############################################
+        # self.data = torch.from_numpy(data).float()
+        # self.label = torch.from_numpy(label).long()
+        self.data = data
+        self.label = label
+        self.transform = transform
+        self.img_shape = data.shape
 
-    features = batch['data'].reshape((len(batch['data']), 3, 32, 32)).transpose(0, 2, 3, 1)
-    labels = batch['labels']
+    def __getitem__(self, index):
+        ##############################################
+        # 1. Read from file (using numpy.fromfile, PIL.Image.open)
+        # 2. Preprocess the data (torchvision.Transform).
+        # 3. Return the data (e.g. image and label)
+        ##############################################
 
-    return features, labels
+        img = Image.fromarray(self.data[index])
+        label = self.label[index]
+        if self.transform is not None:
+            img = self.transform(img)
+        else:
+            img_to_tensor = transforms.ToTensor()
+            img = img_to_tensor(img)
+            # label = torch.from_numpy(label).long()
+        return img, label
 
-def load_label_names():
-    return ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
+    def __len__(self):
+        ##############################################
+        ### Indicate the total size of the dataset
+        ##############################################
+        return len(self.data)
 
-def normalize(x):
-    """
-        argument
-            - x: input image data in numpy array [32, 32, 3]
-        return
-            - normalized x
-    """
-    min_val = np.min(x)
-    max_val = np.max(x)
-    x = (x-min_val) / (max_val-min_val)
-    return x
-
-
-def one_hot_encode(x):
-    """
-        argument
-            - x: a list of labels
-        return
-            - one hot encoding matrix (number of labels, number of class)
-    """
-    encoded = np.zeros((len(x), 10))
-
-    for idx, val in enumerate(x):
-        encoded[idx][val] = 1
-
-    return encoded
-
-
-def _preprocess_and_save(normalize, one_hot_encode, features, labels, filename):
-    features = normalize(features)
-    labels = one_hot_encode(labels)
-
-    pickle.dump((features, labels), open(filename, 'wb'))
+    def plot_image(self, number):
+        file = self.data
+        label = self.label
+        fig = plt.figure(figsize=(3, 2))
+        # img = return_photo(batch_file)
+        plt.imshow(file[number])
+        plt.title(classes[label[number]])
 
 
-def preprocess_and_save_data(cifar10_dataset_folder_path, normalize, one_hot_encode):
-    n_batches = 5
-    valid_features = []
-    valid_labels = []
+    def setup_data_aug():
+        print("Using real-time data augmentation.\n")
+        # This will do preprocessing and realtime data augmentation:
+        from keras.preprocessing.image import ImageDataGenerator
 
-    for batch_i in range(1, n_batches + 1):
-        features, labels = load_cfar10_batch(cifar10_dataset_folder_path, batch_i)
+        datagen = ImageDataGenerator(
+            featurewise_center=False,  # set input mean to 0 over the dataset
+            samplewise_center=False,  # set each sample mean to 0
+            featurewise_std_normalization=False,  # divide inputs by std of the dataset
+            samplewise_std_normalization=False,  # divide each input by its std
+            zca_whitening=False,  # apply ZCA whitening
+            rotation_range=0,  # randomly rotate images in the range
+            # (degrees, 0 to 180)
+            width_shift_range=0.1,  # randomly shift images horizontally
+            # (fraction of total width)
+            height_shift_range=0.1,  # randomly shift images vertically
+            # (fraction of total height)
+            horizontal_flip=True,  # randomly flip images
+            vertical_flip=False  # randomly flip images
+        )
+        return datagen
 
-        # find index to be the point as validation data in the whole dataset of the batch (10%)
-        index_of_validation = int(len(features) * 0.1)
 
-        # preprocess the 90% of the whole dataset of the batch
-        # - normalize the features
-        # - one_hot_encode the lables
-        # - save in a new file named, "preprocess_batch_" + batch_number
-        # - each file for each batch
-        _preprocess_and_save(normalize, one_hot_encode,
-                             features[:-index_of_validation], labels[:-index_of_validation],
-                             'preprocess_batch_' + str(batch_i) + '.p')
+    # Normalize for R, G, B with img = img - mean / std
+    def normalize_dataset(data):
+        mean = data.mean(axis=(0,1,2)) / 255.0
+        std = data.std(axis=(0,1,2)) / 255.0
+        normalize = transforms.Normalize(mean=mean, std=std)
+        return normalize
 
-        # unlike the training dataset, validation dataset will be added through all batch dataset
-        # - take 10% of the whold dataset of the batch
-        # - add them into a list of
-        #   - valid_features
-        #   - valid_labels
-        valid_features.extend(features[-index_of_validation:])
-        valid_labels.extend(labels[-index_of_validation:])
+    def transform(normalize_dataset,X_train,X_test):
+        train_transform_aug = transforms.Compose([
+            transforms.Resize((40, 40)),  # resize the image
+            transforms.RandomCrop((32, 32)),  # random crop
+            transforms.RandomHorizontalFlip(),
+            transforms.RandomRotation(15),
+            transforms.ToTensor(),
+            normalize_dataset(X_train)
+        ])
 
-    # preprocess the all stacked validation dataset
-    _preprocess_and_save(normalize, one_hot_encode,
-                         np.array(valid_features), np.array(valid_labels),
-                         'preprocess_validation.p')
+        # Also use X_train in normalize since train/val sets should have same distribution
+        val_transform = transforms.Compose([
+            transforms.ToTensor(),
+            normalize_dataset(X_train)
+        ])
 
-    # load the test dataset
-    with open(cifar10_dataset_folder_path + '/test_batch', mode='rb') as file:
-        batch = pickle.load(file, encoding='latin1')
+        test_transform = transforms.Compose([
+            transforms.ToTensor(),
+            normalize_dataset(X_test)
+        ])
+    def load_cifar10_data(filename):
+        with open('../input/cifar10/'+ filename, 'rb') as file:
+            batch = pickle.load(file, encoding='latin1')
 
-    # preprocess the testing data
-    test_features = batch['data'].reshape((len(batch['data']), 3, 32, 32)).transpose(0, 2, 3, 1)
-    test_labels = batch['labels']
+        features = batch['data']
+        labels = batch['labels']
+        return features, labels
 
-    # Preprocess and Save all testing data
-    _preprocess_and_save(normalize, one_hot_encode,
-                         np.array(test_features), np.array(test_labels),
-                         'preprocess_training.p')
+    def one_hot_encode(x):
+        """
+            argument
+                - x: a list of labels
+            return
+                - one hot encoding matrix (number of labels, number of class)
+        """
+        encoded = np.zeros((len(x), 10))
+
+        for idx, val in enumerate(x):
+            encoded[idx][val] = 1
+
+        return encoded
