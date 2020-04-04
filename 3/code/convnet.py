@@ -4,7 +4,6 @@ import torchvision.transforms as transforms
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -12,15 +11,34 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # Global Variables: Load and preprocess the data
-transform = transforms.Compose(
-    [transforms.ToTensor(),transforms.Normalize((0.5,0.5,0.5),(0.5,0.5,0.5))])
+def transform_method(method='random_flip_crop_padding'):
+    if (method=='random_flip_crop_padding'):
+            transform = transforms.Compose(
+                            [transforms.RandomHorizontalFlip(),
+                             transforms.RandomCrop(size=[32,32], padding=[0, 2, 3, 4]),
+                             transforms.ToTensor()])
+    if (method =='normalize'):
+            transform = transforms.Compose(
+            [transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
+    if (method =='random_change_brightness'):
+            transform = torchvision.transforms.Compose([
+                torchvision.transforms.ColorJitter(hue=.05, saturation=.05),
+                torchvision.transforms.RandomHorizontalFlip(),
+                torchvision.transforms.RandomRotation(20),
+                transforms.ToTensor()])
+
+    return transform
+
+transforms_train=transform_method(method='random_change_brightness')
+transforms_test=transform_method(method='normalize')
 trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
-                                        download=False, transform=transform)
+                                        download=False, transform=transforms_train,target_transform=None) ##you can select which transform to use
+
 trainloader = torch.utils.data.DataLoader(trainset,batch_size=4,shuffle=True,num_workers=2)
 
 testset = torchvision.datasets.CIFAR10(root='./data', train=False,
-                                       download=False, transform=transform)
+                                       download=False, transform=transforms_test) ##it seem that test set doesn't need transform
 testloader = torch.utils.data.DataLoader(testset, batch_size=4,
                                          shuffle=False, num_workers=2)
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
@@ -50,7 +68,7 @@ class ConvNet(nn.Module):
     optimizer: str, 'SGD' or 'Adam'
     
     '''
-    def __init__(self,n_convs=2,convs_params=((3,6,5),(6,16,5)),n_fc=2,fc_params=(120,84),optimizer='SGD',epoch=2):
+    def __init__(self,n_convs=2,convs_params=((3,6,5),(6,16,5)),n_fc=2,fc_params=(120,84),optimizer='SGD',epoch=1):
         super(ConvNet,self).__init__()
         self.n_convs,self.convs_params,self.n_fc,self.fc_params,self.optim,self.epoch = n_convs,convs_params,n_fc,fc_params,optimizer,epoch
 
@@ -99,6 +117,14 @@ def train(net,epoch):
     Train process for each epoch
     '''
     running_loss = 0.0
+    # if not data_aug:
+    #     print('not using data augmentatinon')
+    # else:
+    #     input, label = trainset
+    #     datagen = setup_data_aug()
+    #     datagen.fit(input)
+    #     datagen.flow(input,label,batch_size=32)
+
     for i,data in enumerate(trainloader,0): #enumerate starts from 0
         # get the inputs; data is a list of [inputs, labels]
         inputs, labels = data
