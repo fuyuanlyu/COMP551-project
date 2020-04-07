@@ -45,3 +45,4 @@ def softmax(x):
     f = np.exp( (x - np.mean(x,axis=0))/np.std(x,axis=0) )  # shift values and normalize
     sm = f.T/f.sum(axis=1)
     return sm.T
+

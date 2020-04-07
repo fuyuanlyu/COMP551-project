@@ -58,7 +58,7 @@ class Layer:
         return ReLu_derivative(self.a)
 
     def update_weights(self,lr):
-        self.W += -(lr*self.g)
+        self.W -= (lr*self.g)
     
     def print_layer(self):
         #print("W:\n {} \n".format(self.W))
