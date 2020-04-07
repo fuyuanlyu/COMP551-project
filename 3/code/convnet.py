@@ -11,7 +11,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # Global Variables: Load and preprocess the data
-def transform_method(method='random_flip_crop_padding'):
+def transform_method(method='normalize'):
     if (method=='random_flip_crop_padding'):
             transform = transforms.Compose(
                             [transforms.RandomHorizontalFlip(),
@@ -30,16 +30,16 @@ def transform_method(method='random_flip_crop_padding'):
 
     return transform
 
-transforms_train=transform_method(method='random_change_brightness')
+transforms_train=transform_method(method='normalize')
 transforms_test=transform_method(method='normalize')
 trainset = torchvision.datasets.CIFAR10(root='./data', train=True,
                                         download=False, transform=transforms_train,target_transform=None) ##you can select which transform to use
 
-trainloader = torch.utils.data.DataLoader(trainset,batch_size=4,shuffle=True,num_workers=2)
+trainloader = torch.utils.data.DataLoader(trainset,batch_size=16,shuffle=True,num_workers=2)
 
 testset = torchvision.datasets.CIFAR10(root='./data', train=False,
                                        download=False, transform=transforms_test) ##it seem that test set doesn't need transform
-testloader = torch.utils.data.DataLoader(testset, batch_size=4,
+testloader = torch.utils.data.DataLoader(testset, batch_size=16,
                                          shuffle=False, num_workers=2)
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
