@@ -10,7 +10,7 @@
 \usepackage{titling}
 \usepackage{multirow}
 \setlength{\droptitle}{-2cm}
-\title{Project Report 2}
+\title{Project Report 3}
 \author{Fuyuan Lyu, Tianyu Shi, Dingyi Zhuang}
 
 \begin{document}
@@ -18,10 +18,20 @@
 \maketitle
 
 \begin{abstract}
-
+In this project, we build several models to classify image data. We use the CIFAR 10 dataset with the default test and train partitions.
+Then we build several models, including Multilayer perceptron, Convolutional Neural Network...(should we add more?). We have done several experiments on preprocessing methods, neural network structure, and parameter tuning.
 \end{abstract}
-
+  
 \section{Introduction}
+The goal of this project is to investigate the performance of different models upon the CIFAR-10 dataset. The CIFAR-10 dataset is a collection of images that are commonly used to train machine learning and computer vision algorithms. The CIFAR-10 dataset contains 60,000 32x32 color images in 10 different classes.The 10 different classes represent airplanes, cars, birds, cats, deer, dogs, frogs, horses, ships, and trucks. There are 6,000 images of each class.
+
+In the pre-processing stage, we have tried several data augmentation techniques, including Using the Random Horizontal Flip, Random Crop Transforms and Normalization on both training and testing set. Data augmentation can make our trained models more robust and capable of achieving higher accuracy without requiring larger dataset.
+
+% As for the model part, we try several different methods, include but not limited to: SVM, Logistic Regression (LR), Decision trees (DT), Ada Boost (ADB), random forest (RDF), XGBoost (XG), Multiple-layer perceptron(MLP) and LSTM-based neural network.
+
+% In the hyper-parameter tuning process, we separate the model into two categorizes. SVM, Logistic Regression, Decision trees, Ada Boost and random forest are tuned to improve performance. XGBoost, Multiple-layer perceptron and LSTM-based neural network are not tuned due to the lack of computation power.
+
+% Based on the result we obtained, TF-IDF is a more suitable preprocessing technique, SVM generally outperforms other models although its best parameters are different upon two datasets.
 
 
 \section{Related Work}
