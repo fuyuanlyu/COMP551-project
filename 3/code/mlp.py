@@ -184,5 +184,5 @@ class MLP:
     
 if __name__ == '__main__':
     # For debug
-    mlp = MLP(hidden_layer_params=(120, 84),epochs=3,lr=0.001)
+    mlp = MLP(hidden_layer_params=(120, 84),epochs=30,lr=0.001)
     mlp.main()
