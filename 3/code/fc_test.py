@@ -5,7 +5,8 @@ from convnet import trainloader,testloader,classes
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 import numpy as np
 
 import warnings
@@ -103,7 +104,7 @@ def test(net):
     '''
     Accurate = 0
     Total = 0
-    for i,data in enumerate(testloader,0): #enumerate starts from 0
+    for _, data in enumerate(testloader,0): #enumerate starts from 0
         # get the inputs; data is a list of [inputs, labels]
         inputs, labels = data
         outputs = net(inputs)

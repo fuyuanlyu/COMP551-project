@@ -84,7 +84,8 @@ class ConvNet(nn.Module):
             if i_fc == 0:
                 self.fc_list.append(nn.Linear(self.convs_params[-1][1]*self.convs_params[-1][2]*self.convs_params[-1][2],self.fc_params[i_fc]))
             else:
-                self.fc_list.append(nn.Linear(self.fc_params[i_fc-1],self.fc_params[i_fc]))
+                self.fc_list.append(nn.Linear(
+                    elf.fc_params[i_fc-1],self.fc_params[i_fc]))
         self.fc_list.append(nn.Linear(self.fc_params[-1],len(classes)))
 
         # Optimizer and Loss
