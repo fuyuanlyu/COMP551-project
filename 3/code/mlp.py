@@ -17,9 +17,9 @@ class MLP:
     -epochs
     '''
 
-    def __init__(self,hidden_layer_params=(120,84),train_data=trainloader,test_data=testloader,lr=1e-3,epochs=1):
+    def __init__(self,hidden_layer_params=(120,84),train_data=trainloader,test_data=testloader,lr=1e-3,epochs=1,activation='ReLU'):
         self.hidden_layer_params,self.train_data,self.test_data = hidden_layer_params,train_data,test_data
-
+        self.activation=activation
         self.lr = lr # Learning rate
         self.epochs = epochs
         # Construct network
@@ -39,15 +39,15 @@ class MLP:
 
         # Input layer
         h,w,c = self.train_data.sampler.data_source.data.shape[1:] # height, width and channel size of each data sample
-        new_layer = input_layer(h*w*c,bias=True,layer_id=0)
+        new_layer = input_layer(h*w*c,bias=True,layer_id=0,activation=self.activation)
         net.append(new_layer)
 
         # Hidden layers
         for i in range(len(self.hidden_layer_params)):
             if i== 0:
-                new_layer = hidden_layer(h*w*c,self.hidden_layer_params[i],bias=True,layer_id=i+1)
+                new_layer = hidden_layer(h*w*c,self.hidden_layer_params[i],bias=True,layer_id=i+1,activation=self.activation)
             else:
-                new_layer = hidden_layer(self.hidden_layer_params[i-1],self.hidden_layer_params[i],bias=True,layer_id=i+1)
+                new_layer = hidden_layer(self.hidden_layer_params[i-1],self.hidden_layer_params[i],bias=True,layer_id=i+1,activation=self.activation)
             net.append(new_layer)
 
         # Output layer

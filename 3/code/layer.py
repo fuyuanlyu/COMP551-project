@@ -12,9 +12,9 @@ class Layer:
     layer_id: int
     '''
     batch_size = None
-    def __init__(self,n_units_input,n_units_output,bias,layer_id):
+    def __init__(self,n_units_input,n_units_output,bias,layer_id,activation='ReLU'):
         self.n_units_input,self.n_units_output,self.bias,self.layer_id = n_units_input,n_units_output,bias,layer_id
-
+        self.activation = activation
         # Initialization
         # Summation vector
         self.z = self.init_vector((self.n_units_input ,Layer.batch_size))
@@ -44,7 +44,13 @@ class Layer:
             return np.random.normal(size=n_dim)
 
     def set_activation(self):
-        self.a = ReLu(self.z)
+        if self.activation is 'ReLU':
+            self.a = ReLu(self.z)
+        elif self.activation is 'sigmoid':
+            self.a = sigmoid(self.z)
+        else:
+            raise NotImplementedError
+
         if self.bias:
             self.add_activation_bias()
 
@@ -55,7 +61,13 @@ class Layer:
             self.a = np.vstack((np.ones(self.a.shape[1]), self.a))
     
     def get_derivative_of_activation(self):
-        return ReLu_derivative(self.a)
+        if self.activation is 'ReLU':
+            return ReLu_derivative(self.a)
+        elif self.activation is 'sigmoid':
+            return sigmoid_derivative(self.a)
+        else:
+            raise NotImplementedError
+        
 
     def update_weights(self,lr):
         self.W -= (lr*self.g)
@@ -69,18 +81,18 @@ class Layer:
 
 # Define common used layers using the defined parent class
 class input_layer(Layer):
-    def __init__(self,n_units_input, n_units_output=None, bias=True, layer_id=0):
-        Layer.__init__(self, n_units_input, n_units_output, bias, layer_id)
+    def __init__(self,n_units_input, n_units_output=None, bias=True, layer_id=0,activation='ReLU'):
+        Layer.__init__(self, n_units_input, n_units_output, bias, layer_id,activation)
         self.z = np.array([])
         #self.d = self.init_vector((self.n_units_input + 1, Layer.batch_size))
 
 class hidden_layer(Layer):
-    def __init__(self,n_units_input, n_units_output, bias=True, layer_id=None):
-        Layer.__init__(self, n_units_input, n_units_output, bias, layer_id)
+    def __init__(self,n_units_input, n_units_output, bias=True, layer_id=None,activation='ReLU'):
+        Layer.__init__(self, n_units_input, n_units_output, bias, layer_id,activation)
 
 class output_layer(Layer):
     def __init__(self,n_units_input,n_units_output,layer_id):
-        Layer.__init__(self, n_units_input, n_units_output, bias=False, layer_id =layer_id)
+        Layer.__init__(self, n_units_input, n_units_output, bias=False, layer_id = layer_id)
         # self.g = np.array([])
 
     def set_activation(self):
