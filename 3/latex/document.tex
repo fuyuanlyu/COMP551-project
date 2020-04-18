@@ -1,6 +1,6 @@
 \documentclass[11pt]{scrartcl}
 \usepackage[top=1cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
-\usepackage{graphicx,float}
+\usepackage{graphicx,float,enumerate}
 \usepackage{url}
 \usepackage[T1]{fontenc}
 \usepackage[font=small,labelfont=bf,tableposition=top]{caption}
@@ -53,11 +53,46 @@ Finally, we apply several data autmentation techniques for both training and tes
 \end{figure}
 
 \section{Proposed approach}
+Our approaches consist of two parts: multilayer perceptron and convolutional neural network.
+\subsection{Multilayer perceptron}
+We implement multilayer perceptron from scratch. We find that the most difficult parts lie in
+\begin{enumerate}[(1)]
+	\item How to construct the whole structure of multilayer perceptron
+	\item How to back propagate the errors
+	\item How to optimize the back propagation to make it not oscillate around the initial values
+\end{enumerate}
+We will introduce the building mechanism of our work by answering these three questions.
 
+Firstly, in order to give a clear representation of the layer, we define a parent class layer as programming object, which contains the summation vector of $wz+b$, the activation function, loss difference and gradient deviation etc. You can check the code in \texttt{layer.py}. The activation function we use here is ReLU instead of sigmoid, because it is more widely applied. Inherited from basic layer parent class, we define three major layers: \textit{input\_layer}, \textit{hidden\_layer} and \textit{output\_layer}. \textit{input\_layer} and \textit{output\_layer} have slight difference from their parent class, the former does not accept any output and is a container for the input data. As for output layer, we connect it with the last hidden layer and choose \textit{softmax} as its output results. So you can find that output layer has its special attribute \textit{output\_layer.output}. The advantage of defining such class of layers is that we can stack multiple layers when we build the multilayer perceptron, instead of directly defining the weights and bias matrices as many blogs do. You can check in in \textit{MLP.build\_net} in \texttt{mlp.py}.
+
+Secondly, we think the most difficult part in implementing the multilayer perceptron is the back propagation. Let's look at the \textit{MLP.train\_fit}, we flatten the input three-channel figure into one-dimensional vector. After we feed-forward the network to calculate the activations, we firstly compute the back propagation error. By implementing similar code from the slides, we use the one-hot encoding target minus the softmax probability as the output error. And then, we back propagate this error by multiplying weights and derivative of activation functions. If we consider the back propagation procedure in the slides as
+\begin{equation*}
+	\frac{\partial}{\partial V_{m,d}} = \sum_{c} \frac{\partial L}{\partial \hat{y}_c} \frac{\partial \hat{y}_c}{\partial u_m} \frac{\partial u_m}{\partial z_m} \frac{\partial z_m}{\partial q_m} \frac{\partial q_m}{\partial V_{m,d}}
+\end{equation*}
+Then \textit{MLP.back\_propgation\_error} computes the 
+
+$$\sum_{c} \frac{\partial L}{\partial \hat{y}_c} \frac{\partial \hat{y}_c}{\partial u_m} \frac{\partial u_m}{\partial z_m} \frac{\partial z_m}{\partial q_m}$$
+
+And then we add \textit{MLP.compute\_gradients\_errors} to make it complete. 
+
+But the back propagation is not yet stable, we therefore add stochastic gradient descent (SGD) with momentum to make the optimization stable in \textit{MLP.compute\_gradients\_errors}. We are confused for a very long time about our accuracy as it is only 0.1 in the beginning, which is only the oscillation around the initialization values. We then realize that it is because the unstable property of SGD. So we add the momentum term for more stable learning with $\beta = 0.9$:
+
+\begin{align*}
+	\Delta w^{\{t\}} & \gets \beta \Delta w^{\{t-1\}} + (1-\beta) \nabla J (w^{\{t\}})\\
+	w^{\{t\}} & \gets w^{\{t-1\}} - \alpha \Delta w^{\{t\}}
+\end{align*}
+
+After update the gradient updates, it would be very easy to implement the rest of the part.
+
+\subsection{Convolutional neural network}
+Our implementation of Convolutional neural network is based on the PyTorch documentation example, but we
+\begin{enumerate}[(1)]
+	\item Use \textit{nn.ModuleList} to make adding any numbers of convolutional layers and fully connected layers possible.
+	\item Add comments on each reused code line. 
+\end{enumerate}
+Because it is reused from the documentation and commented, there is no more details to emphasize.
 
 \section{Results}
-
-
 \section{Discussion and Conclusion}
 
 \section{Statement for Contributions}
