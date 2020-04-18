@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex document"] 1587176246 "document.aux" "document.bbl" "document" 1587177882
+["bibtex document"] 1587176246 "document.aux" "document.bbl" "document" 1587181196
   "/usr/local/texlive/2019/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
   "document.aux" 1587176247 5103 50a46507b8712bbc9294ddb9506de49d "pdflatex"
   "ref.bib" 1587176175 6739 b569e51429611c49e72fe73e0983cf5b ""
   (generated)
-  "document.blg"
   "document.bbl"
-["pdflatex"] 1587176246 "/Users/tianyushi/OneDrive - McGill University/code/COMP551-project/2/latex/document.tex" "/Users/tianyushi/OneDrive - McGill University/code/COMP551-project/2/latex/document.pdf" "document" 1587177882
+  "document.blg"
+["pdflatex"] 1587176246 "/Users/tianyushi/OneDrive - McGill University/code/COMP551-project/2/latex/document.tex" "/Users/tianyushi/OneDrive - McGill University/code/COMP551-project/2/latex/document.pdf" "document" 1587181196
   "/Users/tianyushi/OneDrive - McGill University/code/COMP551-project/2/latex/document.aux" 1587176247 5103 50a46507b8712bbc9294ddb9506de49d ""
-  "/Users/tianyushi/OneDrive - McGill University/code/COMP551-project/2/latex/document.tex" 1587177882 18680 29abebb1a643a50caa082007e99ced96 ""
+  "/Users/tianyushi/OneDrive - McGill University/code/COMP551-project/2/latex/document.tex" 1587181192 18680 29abebb1a643a50caa082007e99ced96 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2019/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -109,7 +109,7 @@
   "/usr/local/texlive/2019/texmf.cnf" 1557341546 577 d150fef99ac436ad1156e86b0892f6ef ""
   "document.aux" 1587176247 5103 50a46507b8712bbc9294ddb9506de49d "pdflatex"
   "document.bbl" 1587176246 5252 05a21ac30d76216a2bd595b689fa7721 "bibtex document"
-  "document.tex" 1587177882 18680 29abebb1a643a50caa082007e99ced96 ""
+  "document.tex" 1587181192 18680 29abebb1a643a50caa082007e99ced96 ""
   "fig/bilstm.png" 1587176175 58666 e35f41e34245b9056b102bd2a25ca7b6 ""
   "fig/convlstm.png" 1587176175 55592 afe969b69168f421be0b6b086e1162c2 ""
   "fig/epoch.pdf" 1587176175 10184 f6c8e932b23904901ca7109f27f74ec6 ""
@@ -123,8 +123,8 @@
   "fig/model_runtime_20.eps" 1587176175 74333 8195f8d217c99d83bea59e6be25a2451 ""
   "fig/model_runtime_imdb.eps" 1587176175 71117 494f3413ef3550e27e78b93351871cca ""
   (generated)
-  "document.pdf"
-  "document.log"
-  "document.aux"
   "/Users/tianyushi/OneDrive - McGill University/code/COMP551-project/2/latex/document.log"
+  "document.log"
   "/Users/tianyushi/OneDrive - McGill University/code/COMP551-project/2/latex/document.pdf"
+  "document.pdf"
+  "document.aux"
