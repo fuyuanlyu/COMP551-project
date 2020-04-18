@@ -93,13 +93,54 @@ Our implementation of Convolutional neural network is based on the PyTorch docum
 Because it is reused from the documentation and commented, there is no more details to emphasize.
 
 \section{Results}
+In the experiment stage, we will compare the performance of multilayer perceptron and convolution neural network on CIFAR10 dataset\cite{krizhevsky2009learning}. We also perform hyper-parameter tuning for both models.
+
+\subsection{Comparison between multilayer perceptron and convolutional neural network}
+
+Multilayer perceptron and convolutional neural network have different structure patterns. Multilayer perceptron is purely based on fully connected layers while convolutional neural network consists of both convolution layers as feature extractor and fully connected layers as classifier. In this subsection, we will mainly use the number of parameters inside each models as the comparison metrics.
+
+
+\subsection{Hyper-parameter tuning for multilayer perceptron}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{ccccc}
+		\hline
+		  units & epochs & activation func. & learing ratio & accuracy  \\
+		\hline
+		  (120, 84) & 10 & ReLU & 1e-3 & 0.2715 \\
+		 \hline
+		  (120, 84) & 30 & ReLU & 1e-3 & 0.2804 \\
+		  (120, 84) & 3  & ReLU & 1e-3 & 0.2691 \\
+		 \hline
+		  (120, 84) & 10 & ReLU & 1e-4 & 0.2642 \\
+		  (120, 84) & 10 & ReLU & 1e-2 & 0.2829 \\
+		 \hline
+		  (360,140) & 10 & ReLU & 1e-3 & 0.3125 \\
+		  (180,120) & 10 & ReLU & 1e-3 & 0.3038 \\
+		  (60, 40)  & 10 & ReLU & 1e-3 & 0.2478 \\
+		 \hline
+		  (120, 84) & 10 & Sigmoid & 1e-3 & 0.2715 \\
+		\hline
+	\end{tabular} 
+	\caption{Best parameters of different classifiers using TF-IDF preprocessing technique on both datasets}
+	\label{params}
+\end{table}
+
+\subsection{Hyper-parameter tuning for convolution neuron network}
+
+
 \section{Discussion and Conclusion}
 
+
+
 \section{Statement for Contributions}
+
+
 \begin{itemize}
-	\item Fuyuan Lyu: 
-	\item Tianyu Shi: 
-	\item Dingyi Zhuang: 
+	\item Fuyuan Lyu: Experiment evaluation and writing report
+	\item Tianyu Shi: Image pre-processing and writing report
+	\item Dingyi Zhuang: Implementation of models and writing report
 \end{itemize}
 \newpage
 
