@@ -72,6 +72,9 @@ class ConvNet(nn.Module):
         super(ConvNet,self).__init__()
         self.n_convs,self.convs_params,self.n_fc,self.fc_params,self.optim,self.epoch = n_convs,convs_params,n_fc,fc_params,optimizer,epoch
 
+        if n_convs != 2 and n_convs != 3:
+            raise NotImplementedError
+
         # Pooling
         self.pool = nn.MaxPool2d(2,2) # Kenrl size; stride
         # Define conv layers
@@ -82,10 +85,9 @@ class ConvNet(nn.Module):
         self.fc_list = nn.ModuleList()
         for i_fc in range(n_fc):
             if i_fc == 0:
-                self.fc_list.append(nn.Linear(self.convs_params[-1][1]*self.convs_params[-1][2]*self.convs_params[-1][2],self.fc_params[i_fc]))
+                self.fc_list.append(nn.Linear(self.convs_params[-1][1]*25,self.fc_params[i_fc]))
             else:
-                self.fc_list.append(nn.Linear(
-                    elf.fc_params[i_fc-1],self.fc_params[i_fc]))
+                self.fc_list.append(nn.Linear(self.fc_params[i_fc-1],self.fc_params[i_fc]))
         self.fc_list.append(nn.Linear(self.fc_params[-1],len(classes)))
 
         # Optimizer and Loss
@@ -100,10 +102,21 @@ class ConvNet(nn.Module):
     def forward(self,x):
         
         # Convolution
-        for conv_layer in self.conv_list:
-            x = self.pool(conv_layer(x))     
+        # if self.n_convs == 2:
+        #     for conv_layer in self.conv_list:
+        #         x = self.pool(F.relu(conv_layer(x)))  
+        for i, conv_layer in enumerate(self.conv_list):
+            if self.n_convs == 2:
+                x = self.pool(F.relu(conv_layer(x)))  
+            elif self.n_convs == 3:
+                if i != 1:
+                    x = self.pool(F.relu(conv_layer(x)))
+                else:
+                    x = F.relu(conv_layer(x))
+                
+
         # Flatten
-        x = x.view(-1,self.convs_params[-1][1]*self.convs_params[-1][2]*self.convs_params[-1][2])
+        x = x.view(-1,self.convs_params[-1][1]*25)
         # Fully connected layer
         for i,fc_layer in enumerate(self.fc_list):
             if i < self.n_fc:
@@ -175,6 +188,6 @@ def main(net,PATH):
 
 if __name__ == '__main__':
     PATH = 'saved_models/cnn_test.pth' # Saved path
-    net = ConvNet() # Define you parameters for ConvNet here
+    net = ConvNet(n_convs=3,convs_params=((3,24,5),(24,36,3),(36,36,3)),n_fc=2,fc_params=(120,84),optimizer='SGD',epoch=10) # Define you parameters for ConvNet here
     print('ConvNet structure: \n',net)
     main(net,PATH)
