@@ -139,6 +139,8 @@ def train(net,epoch):
     #     datagen.fit(input)
     #     datagen.flow(input,label,batch_size=32)
 
+    Accurate = 0
+    Total = 0
     for i,data in enumerate(trainloader,0): #enumerate starts from 0
         # get the inputs; data is a list of [inputs, labels]
         inputs, labels = data
@@ -151,11 +153,18 @@ def train(net,epoch):
         net.optimizer.step() # Optimization update
         
         # print statistics
-        running_loss += loss.item()
-        if i % 2000 == 1999:    # print every 2000 mini-batches average loss
-            print('[%d, %5d] loss: %.3f' %
-                (epoch + 1, i + 1, running_loss / 2000))
-            running_loss = 0.0
+        # running_loss += loss.item()
+        # if i % 2000 == 1999:    # print every 2000 mini-batches average loss
+        #     print('[%d, %5d] loss: %.3f' %
+        #         (epoch + 1, i + 1, running_loss / 2000))
+        #     running_loss = 0.0
+
+        _, predicted = torch.max(outputs, 1)
+        TP = (predicted == labels)
+        TP = TP.data.numpy()
+        Accurate += np.sum(TP)
+        Total += len(inputs)
+    return Accurate/Total, loss
 
 def test(PATH):
     '''
@@ -165,12 +174,12 @@ def test(PATH):
     net.eval()
     Accurate = 0
     Total = 0
-    for i,data in enumerate(testloader,0): #enumerate starts from 0
+    for _, data in enumerate(testloader,0): #enumerate starts from 0
         # get the inputs; data is a list of [inputs, labels]
         inputs, labels = data
         outputs = net(inputs)
         _, predicted = torch.max(outputs, 1)
-        TP = labels == predicted
+        TP = (labels == predicted)
         TP = TP.data.numpy()
         Accurate += np.sum(TP)
         Total += len(inputs)
@@ -180,14 +189,33 @@ def main(net,PATH):
     '''
     The main function to run
     '''
+    train_accs = []
+    test_accs = []
+    losses = []
     for epoch in range(net.epoch):
-        train(net,epoch)
-    torch.save(net, PATH)
-    accuracy = test(PATH)
-    print('Model accuracy: %.3f' % accuracy)
+        train_acc, loss = train(net,epoch)
+        torch.save(net, PATH)
+        test_acc = test(PATH)
+        train_accs.append(train_acc)
+        test_accs.append(test_acc)
+        losses.append(loss)
+        print("Epoch: {0}\t Loss: {loss:.4f} \t Train accuracy: {train_acc:.3f} \t Test accuracy: {test_acc:.3f}"
+                .format(epoch, train_acc=train_acc, test_acc=test_acc, loss=loss))
+
+    # Draw figures
+    x = np.arange(net.epoch)
+    plt.figure()
+    l1 = plt.plot(x, train_accs, 'r-', label='Train acc.')
+    l2 = plt.plot(x, test_accs, 'g-', label='Test acc.')            
+    # l3 = plt.plot(x, losses, 'b-', label='Loss')
+    plt.xlabel("Epoch")
+    plt.ylabel("Accuracy")
+    plt.legend()
+    plt.show()
+
 
 if __name__ == '__main__':
     PATH = 'saved_models/cnn_test.pth' # Saved path
-    net = ConvNet(n_convs=3,convs_params=((3,24,5),(24,36,3),(36,36,3)),n_fc=2,fc_params=(120,84),optimizer='SGD',epoch=10) # Define you parameters for ConvNet here
+    net = ConvNet(n_convs=2,convs_params=((3,6,5),(6,16,5)),n_fc=2,fc_params=(120,84),optimizer='SGD',epoch=10) # Define you parameters for ConvNet here
     print('ConvNet structure: \n',net)
     main(net,PATH)

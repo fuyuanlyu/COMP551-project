@@ -8,6 +8,7 @@
 %\usepackage{algorithm, algorithmic}
 %opening
 \usepackage{titling}
+\usepackage{subfigure}
 \usepackage{multirow}
 \setlength{\droptitle}{-2cm}
 \title{Project Report 3}
@@ -94,6 +95,26 @@ Because it is reused from the documentation and commented, there are no more det
 
 \section{Results}
 In the experiment stage, we will compare the performance of multilayer perceptron and convolution neural network on CIFAR10 dataset\cite{krizhevsky2009learning}. We also perform hyper-parameter tuning for both models.
+
+\begin{figure}[htbp]
+	\centering
+	\subfigure[Multilayer perceptron]{
+		\begin{minipage}[t]{0.5\linewidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{fig/mlp.png}
+			%\caption{fig1}
+		\end{minipage}%
+	}%
+	\subfigure[ConvNet]{
+		\begin{minipage}[t]{0.5\linewidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{fig/conv.png}
+			%\caption{fig2}
+		\end{minipage}%
+	}%
+	\centering
+	\caption{Epoch-Accuracy curves}
+\end{figure}
 
 
 \subsection{Hyper-parameter tuning for multilayer perceptron}

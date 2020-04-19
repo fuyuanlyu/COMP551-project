@@ -31,6 +31,8 @@ class MLP:
         self.loss = [] # Cross entropy loss
         self.training_acc = []
         self.train_fitted = []
+        self.train_epoch_acc = []
+        self.test_epoch_acc = []
 
     def build_net(self):
         self.batch_size = self.train_data.batch_size
@@ -130,6 +132,7 @@ class MLP:
             loss = []
             train_fitted = []
             training_acc = []
+            train_epoch_acc = 0.
             for i,data in enumerate(trainloader,0):
                 self.data_X, self.data_Y = data
                 self.data_X = self.data_X.reshape(self.batch_size,-1) #Flatten input into 4x3072
@@ -150,11 +153,13 @@ class MLP:
             self.loss.append(loss)
             self.train_fitted.append(train_fitted)
             self.training_acc.append(training_acc)
-        self.plot_debug()
+            self.train_epoch_acc.append(np.mean(self.training_acc[epoch]))
+            self.test()
+        # self.plot_debug()
 
     def plot_debug(self):
         plt.plot(self.loss)
-        #plt.savefig('test_lr{:}.png'.format(self.lr))
+        # plt.savefig('test_lr{:}.png'.format(self.lr))
 
     def predict(self,x_input,in_training=False):
         '''
@@ -177,12 +182,24 @@ class MLP:
             predicted = self.predict(inputs)
             TP.append(self.get_accurate_number(labels,predicted))
         print("Test acc: ", np.mean(TP))
+        self.test_epoch_acc.append(np.mean(TP))
+
+    def plot(self):
+        x = np.arange(self.epochs)
+        plt.figure()
+        l1 = plt.plot(x, self.train_epoch_acc, 'r-', label='Train acc.')
+        l2 = plt.plot(x, self.test_epoch_acc, 'g-', label='Test acc.') 
+        plt.xlabel("Epoch")
+        plt.ylabel("Accuracy")
+        plt.legend()
+        plt.show()
 
     def main(self):
         self.train_fit()
-        self.test()
+        self.plot()
+        
     
 if __name__ == '__main__':
     # For debug
-    mlp = MLP(hidden_layer_params=(120, 84),epochs=3,lr=0.001, activation='sigmoid')
+    mlp = MLP(hidden_layer_params=(120, 84),epochs=10,lr=0.001, activation='sigmoid')
     mlp.main()
